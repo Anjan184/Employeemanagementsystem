@@ -7,6 +7,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
   <title>ESS</title>
   <meta content="" name="description">
@@ -82,7 +85,6 @@
               <hr class="dropdown-divider">
             </li>
 
-           
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq">
@@ -159,6 +161,7 @@
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gem"></i><span>Leave Management</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="employee_leave">
@@ -215,15 +218,17 @@
 
     <section class="section dashboard">
 <h2 style="text-align:center;"></h2>
-
-     <td>${totalTime}</td>
+	<div>
+		<i class="bi bi-clock-fill" style="font-size: 40px;"></i>
+	</div>	
+	 <td>${totalTime}</td>
+	 <p>Total Leaves applied</p>
+	 <td>${totalLeaves}</td>
     </section>
 
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-
 
 </body>
 

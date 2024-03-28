@@ -259,6 +259,16 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public Long countLeaves(User user) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="select count(leave_Id) from Leaves where user=:user";
+		Long count=(Long)session.createQuery(hql).setParameter("user", user).uniqueResult();
+		System.out.println(count);
+		return count;
+	}
+	
+	
+	@Transactional
 	public void delete_leave(int leave_Id,Leaves leave) {
 		Leaves l=this.hibernateTemplate.load(Leaves.class,leave_Id);
 		this.hibernateTemplate.delete(l);

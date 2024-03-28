@@ -294,7 +294,10 @@ public class MainController {
         String TotalTime=calculateTotalWork(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
         
-		return "employee_dashboard";
+        Long LeavesCount=userDao.countLeaves(currentUser);
+		model.addAttribute("totalLeaves",LeavesCount);
+		
+        return "employee_dashboard";
 	}
 	
 	@RequestMapping(value="/employee_events")
