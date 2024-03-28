@@ -289,8 +289,8 @@ public class MainController {
   
         List<PunchIn> punchindetails=userDao.showPunchIn(selectedDate,currentUser);
         model.addAttribute("punchindetails", punchindetails);
-        List<PunchOut> punchoutdetails=userDao.showPunchOut(currentUser);
-        model.addAttribute("punchoutdetails", punchoutdetails);     
+        List<PunchOut> punchoutdetails=userDao.showPunchOutOne(selectedDate,currentUser);
+        model.addAttribute("punchoutdetails", punchoutdetails);
         String TotalTime=calculateTotalWork(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
         

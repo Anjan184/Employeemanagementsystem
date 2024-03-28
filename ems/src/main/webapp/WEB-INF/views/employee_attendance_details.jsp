@@ -77,7 +77,7 @@
 						<th>Punch In</th>
 						<th>Punch Out</th>
 						<th>Work done</th>
-						<th>Total Work of the Day</th>
+			
 				
 					</tr>
 				</thead>
@@ -89,15 +89,14 @@
 							<td>${punchInDetails.getPunchIn_Date()}</td>
 							<td>${punchInDetails.getPunchIn()}</td>
 							<td>${punchoutdetails[status.index].getPunchOut()}</td>
-							<td>${elapsedTimes[status.index]}</td>
-							<td>
-							<c:if test="${status.index == 0}">
-               			    	${totalTime}
-               			    </c:if>
-               			    </td>
-               			   
+							<td>${elapsedTimes[status.index]}</td>           			   
 						</tr>
 					</c:forEach>
+					
+					<tr><!-- Row for total work of the day -->
+						<td colspan="3" >Total Work of the Day</td>
+						<td>${totalTime}</td>
+					</tr>
 				</tbody>
 			</table>
 
