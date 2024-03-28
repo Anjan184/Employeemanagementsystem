@@ -16,43 +16,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 <style>
-.calendar {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-}
 
-.month {
-  text-align: center;
-}
 
-.weekdays {
-  display: flex;
-}
-
-.weekdays div {
-  flex: 1;
-  text-align: center;
-  font-weight: bold;
-}
-
-.days {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.days div {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.total-time,
-.total-leaves {
-  margin-top: 20px;
-}
 
 
 
@@ -65,7 +30,8 @@
 }
 .total-time,
 .total-leaves {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  
 }
 
 .total-time .bi,
@@ -77,7 +43,7 @@
 .total-leaves-value {
   font-size: 24px;
   font-weight: bold;
-  margin-left: 10px;
+
 }
 
 .total-leaves-label {
@@ -274,6 +240,7 @@
   </aside><!-- End Sidebar-->
 
  <main id="main" class="main">
+    
     <div class="pagetitle">
         <h1>Employee Dashboard</h1>
         <nav>
@@ -284,31 +251,70 @@
         </nav>
     </div><!-- End Page Title -->
 
+ <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card " style="height: 265px;width:66%;margin-left:280px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calender</h5>
+                        <!-- Add your calendar component here -->
+                        <!-- Example: -->
+                        <div id="calendar">
+                            <!-- Calendar content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Calendar Section -->
+    
+    
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card " style="height: 265px;width:66%;margin-left:655px;margin-top:-63%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center" style="margin-top: -8%;">Events Calender</h5>
+                        <!-- Add your calendar component here -->
+                        <!-- Example: -->
+                        <div id="calendar">
+                            <!-- Calendar content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Calendar Section -->
+
+
+
     <!-- Total Time and Total Leaves Section -->
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Time</h5>
-                        <div class="total-time">
-                           
-                            <span class="total-time-value">${totalTime}</span>
-                        </div>
-                    </div>
-                </div>
+        
+          <div class="col-md-6">
+   		 <div class="card" style="height: 120px;width:67%;margin-top: 18px;margin-left:280px;">
+        <div class="card-body">
+            <h5 class="card-title" style="font-size: 16px;">Total Time</h5>
+            <div class="total-time" >
+                <span class="total-time-value" style="font-size: 18px;">${totalTime}</span>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Leaves Applied</h5>
-                        <div class="total-leaves">
-                
-                            <span class="total-leaves-value">${totalLeaves}</span>
-                        </div>
-                    </div>
-                </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card" style="height: 120px;width:66%;margin-top: 18px;margin-left:160px;">
+        <div class="card-body">
+            <h5 class="card-title" style="font-size: 16px;">Total Leaves Applied</h5>
+            <div class="total-leaves" style="padding: 5px;">
+                <span class="total-leaves-value" style="font-size: 18px;">${totalLeaves}</span>
             </div>
+        </div>
+    </div>
+</div>
+
+
         </div>
     </div>
 </main>
