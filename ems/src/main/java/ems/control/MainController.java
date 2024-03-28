@@ -46,21 +46,28 @@ public class MainController {
 	
 	//For authentication purpose of login
 	@RequestMapping(value="/Dashboard", method= {RequestMethod.GET,RequestMethod.POST})
-	public String admin(@RequestParam String email, @RequestParam String password, @RequestParam String role,Model model,@ModelAttribute User user,HttpSession session) {
+	public RedirectView admin(@RequestParam String email, @RequestParam String password, @RequestParam String role,Model model,@ModelAttribute User user,HttpSession session,HttpServletRequest request) {
 		session.setAttribute("email", email);		
-		model.addAttribute("error", ""); // or model.remove("error");
+	
 		 if (userDao.authenticateUser(email, password, role)) {     
 	            if ("employee".equals(role)) {
-	                return "employee_dashboard";
+	            	 RedirectView redirectView=new RedirectView();
+	         		redirectView.setUrl(request.getContextPath()+"/employee_dashboard");
+	         		return redirectView;
+	              
 	            }           
 	            else if ("admin".equals(role)) {
 	            	 List<User> employees = userDao.getAllEmployees();
 	                 model.addAttribute("employees", employees);
-	                 return "index";
+	                 RedirectView redirectView=new RedirectView();
+		         		redirectView.setUrl(request.getContextPath()+"/index");
+		         		return redirectView;
 	            }  
 	        }
-			model.addAttribute("error","Invalid details");
-			return "login";
+		 	model.addAttribute("error", "Incorrect email, password, or role.");
+			 RedirectView redirectView=new RedirectView();
+      		redirectView.setUrl(request.getContextPath()+"/");
+      		return redirectView;
 	}
 	
 	//this redirect to add new employee page when clicked on add new employee button(Admin)
@@ -291,12 +298,14 @@ public class MainController {
         model.addAttribute("punchindetails", punchindetails);
         List<PunchOut> punchoutdetails=userDao.showPunchOutOne(selectedDate,currentUser);
         model.addAttribute("punchoutdetails", punchoutdetails);
-        String TotalTime=calculateTotalWork(punchindetails, punchoutdetails, selectedDate);
+        String TotalTime=calculateTotalWorkDashboard(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
         
         Long LeavesCount=userDao.countLeaves(currentUser);
 		model.addAttribute("totalLeaves",LeavesCount);
 		
+		List<Holidays> holidays = userDao.getHolidays();
+		model.addAttribute("holiday",holidays);
         return "employee_dashboard";
 	}
 	
@@ -322,7 +331,7 @@ public class MainController {
 	
 	// Punchin method
 	@RequestMapping(value="/punchin", method=RequestMethod.GET)
-	public String punchIn(HttpSession session) {    
+	public RedirectView punchIn(HttpSession session,HttpServletRequest request) {    
 	    String currentUserEmail = (String) session.getAttribute("email"); 
 	    User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 	    PunchIn punchIn = new PunchIn();
@@ -331,18 +340,22 @@ public class MainController {
 	    punchIn.setUser(currentUser);
 	    userDao.addpunchin(punchIn,currentUser);
 	    session.setAttribute("punchInFlag", true);
-	    
-	    return "employee_dashboard";    
+	    RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/employee_dashboard");
+		return redirectView;
+	  
 	}
 
 	// Punchout method
 	@RequestMapping(value="/punchout", method=RequestMethod.GET)
-	public String punchOut(HttpSession session) {
+	public RedirectView punchOut(HttpSession session,HttpServletRequest request) {
 	    String currentUserEmail = (String) session.getAttribute("email"); 
 	    User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 	    Boolean punchInFlag = (Boolean) session.getAttribute("punchInFlag");
 	    if (punchInFlag == null || !punchInFlag) {
-	        return "redirect:/employee_dashboard?Please punch in first";
+	        RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/employee_dashboard?Please punch in first");
+			return redirectView;
 	    }
 	    PunchOut punchOut = new PunchOut();
 	    punchOut.setPunchOut(Time.valueOf(LocalTime.now()));
@@ -350,8 +363,10 @@ public class MainController {
 	    punchOut.setUser(currentUser);
 	    userDao.addpunchout(punchOut,currentUser);
 	    session.removeAttribute("punchInFlag");
-	    
-	    return "employee_dashboard";
+	    RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/employee_dashboard");
+		return redirectView;
+	   
 	}
 
 	
@@ -432,7 +447,32 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("%02d:%02d:%02d Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		    return String.format("Total Work %02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		}
+
+	  public String calculateTotalWorkDashboard(List<PunchIn> punchInDetails,List<PunchOut> punchOutDetails,String selectedDate){
+			 long totalMilliseconds = 0;
+			for (int i = 0; i < Math.min(punchInDetails.size(), punchOutDetails.size()); i++) {
+	            PunchIn punchIn = punchInDetails.get(i);
+	            PunchOut punchOut = punchOutDetails.get(i);
+	            if(punchIn.getPunchIn_Date().toString().equals(selectedDate)) {	
+	            	 long elapsedTimeMillis = Duration.between(punchIn.getPunchIn().toLocalTime(), punchOut.getPunchOut().toLocalTime()).toMillis();
+	                 totalMilliseconds += elapsedTimeMillis;
+	            }
+				}
+			long totalHours = totalMilliseconds / 3600000;
+		    long totalMinutes = (totalMilliseconds % 3600000) / 60000;
+		    long totalSeconds = (totalMilliseconds % 60000) / 1000;    
+		    long extraHours = 0;  
+		    if (totalHours > 7 || (totalHours == 7 && totalMinutes >= 30)) {
+		        extraHours = totalHours - 7;
+		        if (totalMinutes < 30) {
+		            extraHours -= 1;
+		            totalMinutes += 60;
+		        }
+		        totalMinutes -= 30; 
+		    }
+		    return String.format("%02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
 		}
 
 
@@ -496,9 +536,12 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/signout",method=RequestMethod.GET)
-	public String signout(HttpSession session,HttpServletResponse response) {
+	public RedirectView signout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
 		session.invalidate();
-		return "login";
+		RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/");
+		return redirectView;
+		
 	}
 
 	}

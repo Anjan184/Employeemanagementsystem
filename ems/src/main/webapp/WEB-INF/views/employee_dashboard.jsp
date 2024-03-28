@@ -11,10 +11,79 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
+
   <title>ESS</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 <style>
+.calendar {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.month {
+  text-align: center;
+}
+
+.weekdays {
+  display: flex;
+}
+
+.weekdays div {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days div {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.total-time,
+.total-leaves {
+  margin-top: 20px;
+}
+
+
+
+.section.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.total-time,
+.total-leaves {
+  margin-bottom: 20px;
+}
+
+.total-time .bi,
+.total-leaves .bi {
+  color: #4CAF50; /* Green color for clock icon */
+}
+
+.total-time-value,
+.total-leaves-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.total-leaves-label {
+  font-size: 18px;
+  font-weight: bold;
+}
 
     .punch-btn {
       display: block;
@@ -204,29 +273,45 @@
 
   </aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
-
+ <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Employee Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="employee_dashboard">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
+        <h1>Employee Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="employee_dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-<h2 style="text-align:center;"></h2>
-	<div>
-		<i class="bi bi-clock-fill" style="font-size: 40px;"></i>
-	</div>	
-	 <td>${totalTime}</td>
-	 <p>Total Leaves applied</p>
-	 <td>${totalLeaves}</td>
-    </section>
-
-  </main><!-- End #main -->
+    <!-- Total Time and Total Leaves Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Time</h5>
+                        <div class="total-time">
+                           
+                            <span class="total-time-value">${totalTime}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Leaves Applied</h5>
+                        <div class="total-leaves">
+                
+                            <span class="total-leaves-value">${totalLeaves}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

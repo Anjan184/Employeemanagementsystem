@@ -125,10 +125,13 @@ color:white;
         <button type="submit">Login</button>
     </div>
     </form>
-    
-   <c:if test="${not empty error}">
-    <c:out value="${error}" />
-	</c:if>
-        
+
+        	<!-- Display error message -->
+<c:if test="${not empty error}">
+    <div class="alert alert-danger" role="alert">
+        ${error}
+    </div>
+</c:if>
+        	
 </body>
 </html>
