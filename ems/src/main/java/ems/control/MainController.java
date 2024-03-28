@@ -284,6 +284,16 @@ public class MainController {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
+        
+        String selectedDate =LocalDate.now().toString();
+  
+        List<PunchIn> punchindetails=userDao.showPunchIn(selectedDate,currentUser);
+        model.addAttribute("punchindetails", punchindetails);
+        List<PunchOut> punchoutdetails=userDao.showPunchOut(currentUser);
+        model.addAttribute("punchoutdetails", punchoutdetails);     
+        String TotalTime=calculateTotalWork(punchindetails, punchoutdetails, selectedDate);
+        model.addAttribute("totalTime", TotalTime);
+        
 		return "employee_dashboard";
 	}
 	
@@ -365,12 +375,16 @@ public class MainController {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
+        
 		List<PunchIn> punchindetails=userDao.showPunchIn(selectedDate,currentUser);
         model.addAttribute("punchindetails", punchindetails);
-        List<PunchOut> punchoutdetails=userDao.showPunchOut(currentUser);
-        model.addAttribute("punchoutdetails", punchoutdetails);     
+              
+        List<PunchOut> punchoutdetails=userDao.showPunchOutOne(selectedDate,currentUser);
+        model.addAttribute("punchoutdetails", punchoutdetails);
+        
         List<String> elapsedTimes = calculateElapsedTimes(punchindetails, punchoutdetails,selectedDate);
         model.addAttribute("elapsedTimes", elapsedTimes);
+        
         String TotalTime=calculateTotalWork(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
        

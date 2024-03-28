@@ -216,7 +216,7 @@
     <section class="section dashboard">
 <h2 style="text-align:center;"></h2>
 
-     
+     <td>${totalTime}</td>
     </section>
 
   </main><!-- End #main -->

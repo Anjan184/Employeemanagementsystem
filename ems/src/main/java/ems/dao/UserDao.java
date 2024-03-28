@@ -152,6 +152,22 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public List<PunchOut> showPunchOutOne(String selectedDate,User user) {
+		Session session=sessionFactory.getCurrentSession();
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date date;
+	    try {
+	        date = dateFormat.parse(selectedDate);
+	    } catch (ParseException e) {
+	        // Handle parsing exception
+	        e.printStackTrace();
+	        return Collections.emptyList(); // Or handle it appropriately
+	    }
+		String hql="From PunchOut p where p.user = :user and p.PunchOut_Date = :selectedDate";
+		  return session.createQuery(hql,PunchOut.class).setParameter("user", user).setParameter("selectedDate", date).getResultList();
+	}
+	
+	@Transactional
 	public List<PunchIn> showPunchInOne(User user) {
 		Session session=sessionFactory.getCurrentSession();
 		String hql="From PunchIn p WHERE p.user = :user ";

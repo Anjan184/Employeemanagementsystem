@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Leaves {
@@ -18,7 +19,8 @@ public class Leaves {
 	private User user;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @SequenceGenerator(name="leave_Id_generator", sequenceName = "leave_Id_seq", initialValue = 1, allocationSize = 1)
 private int leave_Id;
 
 private Date from_Date;

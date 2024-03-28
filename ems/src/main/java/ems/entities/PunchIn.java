@@ -10,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class PunchIn {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @SequenceGenerator(name="p_in_id_generator", sequenceName = "p_in_id_seq", initialValue = 1, allocationSize = 1)
 	private int p_in_id;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

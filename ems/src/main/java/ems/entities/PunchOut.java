@@ -2,8 +2,6 @@ package ems.entities;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class PunchOut {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @SequenceGenerator(name="p_in_id_generator", sequenceName = "p_in_id_seq", initialValue = 1, allocationSize = 1)
 	private int p_out_id;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
