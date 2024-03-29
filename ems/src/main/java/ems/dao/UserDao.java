@@ -106,6 +106,15 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public List<Integer> getDaysInEvent(){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="select day(date) FROM Events";
+		System.out.println(hql);
+		return session.createQuery(hql,Integer.class).getResultList();	
+		
+	}
+	
+	@Transactional
 	public void addEvents(Events event) {
 		this.hibernateTemplate.save(event);
 	}
@@ -263,7 +272,6 @@ public class UserDao {
 		Session session=sessionFactory.getCurrentSession();
 		String hql="select count(leave_Id) from Leaves where user=:user";
 		Long count=(Long)session.createQuery(hql).setParameter("user", user).uniqueResult();
-		System.out.println(count);
 		return count;
 	}
 	

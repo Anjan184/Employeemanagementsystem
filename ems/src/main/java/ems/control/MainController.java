@@ -3,6 +3,7 @@ package ems.control;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -309,11 +310,7 @@ public class MainController {
         Long LeavesCount=userDao.countLeaves(currentUser);
 		model.addAttribute("totalLeaves",LeavesCount);
 		
-		List<Holidays> holidays = userDao.getHolidays();
-		model.addAttribute("holiday",holidays);
-		
-		List<Events> events = userDao.getEvents();
-		model.addAttribute("event",events);	
+	
 		
 		 List<String> monthsAndYear = new ArrayList<>();
 		    int currentYear = currentDate.getYear();
@@ -326,6 +323,7 @@ public class MainController {
 		    }
 		    model.addAttribute("monthsAndYear", monthsAndYear);
 
+		    
 		    List<List<Integer>> monthsAndDays = new ArrayList<>();
 		    for (int year = currentYear; year < currentYear + yearsToDisplay; year++) {
 		        for (int month = 1; month <= 12; month++) {
@@ -339,7 +337,11 @@ public class MainController {
 		    }
 		    model.addAttribute("monthsAndDays", monthsAndDays);
 
-	        
+		    
+		List<Integer> daysOfEvents=userDao.getDaysInEvent();
+		model.addAttribute("daysOfEvents",daysOfEvents);    
+	
+		
         return "employee_dashboard";
 	}
 	

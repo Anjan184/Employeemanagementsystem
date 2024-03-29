@@ -2,6 +2,8 @@ package ems.entities;
 
 
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,12 +15,14 @@ public class Events {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eventid;
-	private String date;
+	private Date date;
 	private String name;
 	private String time;
 	
 	
-	public Events(int eventid, String date, String name, String time) {
+	
+
+	public Events(int eventid, Date date, String name, String time) {
 		super();
 		this.eventid = eventid;
 		this.date = date;
@@ -37,12 +41,14 @@ public class Events {
 	}
 
 
-	public String getDate() {
+
+
+	public Date getDate() {
 		return date;
 	}
 
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

@@ -1,6 +1,8 @@
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@include file="./base.jsp" %>
+     <%@ page import="ems.control.MainController" %>
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +48,7 @@
             width: 0.7rem; /* Set the width of the slider controls' icons */
             height: 1rem; /* Set the height of the slider controls' icons */
             border-radius:13px;
-            margin-bottom:270px;
+            margin-bottom:240px;
         }
 
         /* Optional: Increase the size of the slider controls' icons */
@@ -293,7 +295,7 @@
                     <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calendar</h5>
                     <!-- Bootstrap Carousel for Holidays -->
                     <div id="holidaysCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="margin-top: -3%;" >
                             <!-- Iterate over each month's days -->
                             <c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
                                 <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
@@ -316,8 +318,12 @@
                                     <div class="row">
                                         <!-- Display days of the month -->
                                         <ul class="list-inline text-center"  style="margin-top: -13px;" >
+                               
+                                 
                                             <c:forEach items="${monthsAndDays[status.index]}" var="day">
                                                 <li class="list-inline-item" style="width: 9.28%">${day}</li>
+                    
+                                               
                                             </c:forEach>
                                         </ul>
                                     </div>
@@ -353,7 +359,7 @@
                     <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
                     <!-- Bootstrap Carousel for Events -->
                     <div id="eventsCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="margin-top: -3%;">
                             <!-- Iterate over each month's days -->
                             <c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
                                 <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
@@ -373,12 +379,17 @@
                                             <li class="list-inline-item" style="width: 9.28%">Sun</li>
                                         </ul>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" >
                                         <!-- Display days of the month -->
                                         <ul class="list-inline text-center"  style="margin-top: -13px;" >
                                             <c:forEach items="${monthsAndDays[status.index]}" var="day">
-                                                <li class="list-inline-item" style="width: 9.28%">${day}</li>
+                                                <li class="list-inline-item" style="width: 9.28%">${day}</li> 
+                                               
+                                               
+                                               
                                             </c:forEach>
+                                            
+                                          
                                         </ul>
                                     </div>
                                 </div>
@@ -409,9 +420,9 @@
         <div class="row">
         
           <div class="col-md-6">
-   		 <div class="card" style="height: 120px;width:79%;margin-top: 6px;margin-left:230px;">
+   		 <div class="card" style="height: 115px;width:79%;margin-left:230px;">
         <div class="card-body">
-            <h5 class="card-title" style="font-size: 16px;">Total Time</h5>
+            <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Time</h5>
             <div class="total-time" >
                 <span class="total-time-value" style="font-size: 18px;">${totalTime}</span>
             </div>
@@ -420,9 +431,9 @@
 </div>
 
 <div class="col-md-6">
-    <div class="card" style="height: 120px;width:79%;margin-top: 6px;margin-left:116px;">
+    <div class="card" style="height: 115px;width:79%;margin-left:116px;">
         <div class="card-body">
-            <h5 class="card-title" style="font-size: 16px;">Total Leaves Applied</h5>
+            <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Leaves Applied</h5>
             <div class="total-leaves" style="padding: 5px;">
                 <span class="total-leaves-value" style="font-size: 18px;">${totalLeaves}</span>
             </div>

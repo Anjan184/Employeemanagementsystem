@@ -1,5 +1,7 @@
 package ems.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,9 +13,18 @@ public class Holidays {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 private String fromdate;
-private String date;
+private Date date;
 private String name;
 private int days;
+
+public Holidays(int id, String fromdate, Date date, String name, int days) {
+	super();
+	this.id = id;
+	this.fromdate = fromdate;
+	this.date = date;
+	this.name = name;
+	this.days = days;
+}
 
 public int getId() {
 	return id;
@@ -28,23 +39,12 @@ public void setName(String name) {
 	this.name = name;
 }
 
-
-public Holidays(int id, String fromdate, String date, String name, int days) {
-	super();
-	this.id = id;
-	this.fromdate = fromdate;
-	this.date = date;
-	this.name = name;
-	this.days = days;
-}
-public String getDate() {
+public Date getDate() {
 	return date;
 }
-public void setDate(String date) {
+public void setDate(Date date) {
 	this.date = date;
 }
-
-
 public String getFromdate() {
 	return fromdate;
 }
@@ -59,7 +59,6 @@ public void setDays(int days) {
 }
 public Holidays() {
 	super();
-	// TODO Auto-generated constructor stub
 }
 
 }
