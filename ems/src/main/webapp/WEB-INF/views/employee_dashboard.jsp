@@ -16,10 +16,42 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 <style>
+ /* Customize slider appearance */
+       .carousel-item {
+            text-align: center;
+        }
 
+        /* Adjust styles for horizontal date display */
+        .carousel-item ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allow dates to wrap to new line */
+            justify-content: center;
+        }
 
+        .carousel-item li {
+            margin: 5px; /* Adjust spacing between dates */
+            width: 15%; /* Set width to ensure 6 dates fit in one row */
+        }
 
+        /* Customize slider controls */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: red; /* Change the background color of the slider controls */
+            color: white; /* Change the color of the slider controls' icons */
+            font-size: 1rem; /* Change the font size of the slider controls' icons to make them smaller */
+            width: 0.7rem; /* Set the width of the slider controls' icons */
+            height: 1rem; /* Set the height of the slider controls' icons */
+            border-radius:13px;
+            margin-bottom:270px;
+        }
 
+        /* Optional: Increase the size of the slider controls' icons */
+        .carousel-control-prev-icon::before,
+        .carousel-control-next-icon::before {
+            font-size: 1rem; /* Change the font size of the icons inside the slider controls */
+        }
 
 .section.dashboard {
   display: flex;
@@ -251,40 +283,118 @@
         </nav>
     </div><!-- End Page Title -->
 
- <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card " style="height: 265px;width:66%;margin-left:280px;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calender</h5>
-                        <!-- Add your calendar component here -->
-                        <!-- Example: -->
-                        <div id="calendar">
-                            <!-- Calendar content goes here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- End Calendar Section -->
-    
-    
 <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card " style="height: 265px;width:66%;margin-left:655px;margin-top:-63%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center" style="margin-top: -8%;">Events Calender</h5>
-                        <!-- Add your calendar component here -->
-                        <!-- Example: -->
-                        <div id="calendar">
-                            <!-- Calendar content goes here -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card " style="height: 310px;width:79%;margin-left:230px;margin-top:3px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calendar</h5>
+                    <!-- Bootstrap Carousel -->
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Iterate over each month's days -->
+                            <c:forEach items="${monthsAndDays}" var="monthDays" varStatus="status">
+                                <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
+                                    <div class="row">
+                                        <!-- Display days of the week -->
+                                        <ul class="list-inline text-center">
+                                            <li class="list-inline-item" style="width: 9.28%">Mon</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Tue</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Wed</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Thu</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Fri</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Sat</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Sun</li>
+                                        </ul>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Display days of the month -->
+                                        <ul class="list-inline text-center">
+                                            <c:forEach items="${monthDays}" var="day">
+                                                <li class="list-inline-item" style="width: 9.28%">${day}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
+                        <!-- Previous and Next buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- End Calendar Section -->
+    </div>
+</div>
+
+
+<!-- Include Bootstrap JS at the end of body -->
+
+
+    
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card " style="height: 310px;width:79%;margin-left:610px;margin-top:-73%;">
+                <div class="card-body">
+                    <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
+                    <!-- Bootstrap Carousel -->
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Iterate over each month's days -->
+                            <c:forEach items="${monthsAndDays}" var="monthDays" varStatus="status">
+                                <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
+                                    <div class="row">
+                                        <!-- Display days of the week -->
+                                        <ul class="list-inline text-center">
+                                            <li class="list-inline-item" style="width: 9.28%">Mon</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Tue</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Wed</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Thu</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Fri</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Sat</li>
+                                            <li class="list-inline-item" style="width: 9.28%">Sun</li>
+                                        </ul>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Display days of the month -->
+                                        <ul class="list-inline text-center">
+                                            <c:forEach items="${monthDays}" var="day">
+                                                <li class="list-inline-item" style="width: 9.28%">${day}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <!-- Previous and Next buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -293,7 +403,7 @@
         <div class="row">
         
           <div class="col-md-6">
-   		 <div class="card" style="height: 120px;width:67%;margin-top: 18px;margin-left:280px;">
+   		 <div class="card" style="height: 120px;width:79%;margin-top: 6px;margin-left:230px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;">Total Time</h5>
             <div class="total-time" >
@@ -304,7 +414,7 @@
 </div>
 
 <div class="col-md-6">
-    <div class="card" style="height: 120px;width:66%;margin-top: 18px;margin-left:160px;">
+    <div class="card" style="height: 120px;width:79%;margin-top: 6px;margin-left:116px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;">Total Leaves Applied</h5>
             <div class="total-leaves" style="padding: 5px;">
@@ -317,6 +427,7 @@
 
         </div>
     </div>
+  
 </main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

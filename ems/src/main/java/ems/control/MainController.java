@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
 
@@ -289,15 +290,18 @@ public class MainController {
 	@RequestMapping(value="/employee_dashboard")
 	public String employee_dashboard(HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
-        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+       
+		User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
         
         String selectedDate =LocalDate.now().toString();
   
         List<PunchIn> punchindetails=userDao.showPunchIn(selectedDate,currentUser);
         model.addAttribute("punchindetails", punchindetails);
+      
         List<PunchOut> punchoutdetails=userDao.showPunchOutOne(selectedDate,currentUser);
         model.addAttribute("punchoutdetails", punchoutdetails);
+        
         String TotalTime=calculateTotalWorkDashboard(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
         
@@ -306,6 +310,22 @@ public class MainController {
 		
 		List<Holidays> holidays = userDao.getHolidays();
 		model.addAttribute("holiday",holidays);
+		
+		List<Events> events = userDao.getEvents();
+		model.addAttribute("event",events);	
+		
+		 List<List<Integer>> monthsAndDays = new ArrayList<>();
+
+	        for (int month = 1; month <= 12; month++) {
+	            List<Integer> daysOfMonth = new ArrayList<>();
+	            int daysInMonth = java.time.YearMonth.of(2024, month).lengthOfMonth();
+	            for (int day = 1; day <= daysInMonth; day++) {
+	                daysOfMonth.add(day);
+	            }
+	            monthsAndDays.add(daysOfMonth);
+	        }
+
+	        model.addAttribute("monthsAndDays", monthsAndDays);
         return "employee_dashboard";
 	}
 	
