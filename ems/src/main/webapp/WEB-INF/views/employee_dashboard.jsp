@@ -17,6 +17,8 @@
   <meta content="" name="keywords">
 <style>
  /* Customize slider appearance */
+       
+       
        .carousel-item {
             text-align: center;
         }
@@ -286,18 +288,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card " style="height: 310px;width:79%;margin-left:230px;margin-top:3px;">
+            <div class="card" style="height: 310px;width: 79%;margin-left: 230px;margin-top: 3px;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calendar</h5>
-                    <!-- Bootstrap Carousel -->
-                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Bootstrap Carousel for Holidays -->
+                    <div id="holidaysCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <!-- Iterate over each month's days -->
-                            <c:forEach items="${monthsAndDays}" var="monthDays" varStatus="status">
+                            <c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
                                 <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
                                     <div class="row">
+                                        <!-- Display month and year -->
+                                        <h5 class="text-center " style="margin-top: -5px;">${monthYear}</h5>
+                                    </div>
+                                    <div class="row">
                                         <!-- Display days of the week -->
-                                        <ul class="list-inline text-center">
+                                        <ul class="list-inline text-center " >
                                             <li class="list-inline-item" style="width: 9.28%">Mon</li>
                                             <li class="list-inline-item" style="width: 9.28%">Tue</li>
                                             <li class="list-inline-item" style="width: 9.28%">Wed</li>
@@ -309,8 +315,8 @@
                                     </div>
                                     <div class="row">
                                         <!-- Display days of the month -->
-                                        <ul class="list-inline text-center">
-                                            <c:forEach items="${monthDays}" var="day">
+                                        <ul class="list-inline text-center"  style="margin-top: -13px;" >
+                                            <c:forEach items="${monthsAndDays[status.index]}" var="day">
                                                 <li class="list-inline-item" style="width: 9.28%">${day}</li>
                                             </c:forEach>
                                         </ul>
@@ -319,12 +325,12 @@
                             </c:forEach>
                         </div>
                         <!-- Previous and Next buttons -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        <button class="carousel-control-prev" type="button" data-bs-target="#holidaysCarousel"
                                 data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        <button class="carousel-control-next" type="button" data-bs-target="#holidaysCarousel"
                                 data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -336,28 +342,28 @@
     </div>
 </div>
 
-
 <!-- Include Bootstrap JS at the end of body -->
-
-
-    
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card " style="height: 310px;width:79%;margin-left:610px;margin-top:-73%;">
+            <div class="card" style="height: 310px;width:79%;margin-left:610px;margin-top:-73%;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
-                    <!-- Bootstrap Carousel -->
-                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Bootstrap Carousel for Events -->
+                    <div id="eventsCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <!-- Iterate over each month's days -->
-                            <c:forEach items="${monthsAndDays}" var="monthDays" varStatus="status">
+                            <c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
                                 <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
                                     <div class="row">
+                                        <!-- Display month and year -->
+                                        <h5 class="text-center " style="margin-top: -5px;">${monthYear}</h5>
+                                    </div>
+                                    <div class="row">
                                         <!-- Display days of the week -->
-                                        <ul class="list-inline text-center">
+                                        <ul class="list-inline text-center " >
                                             <li class="list-inline-item" style="width: 9.28%">Mon</li>
                                             <li class="list-inline-item" style="width: 9.28%">Tue</li>
                                             <li class="list-inline-item" style="width: 9.28%">Wed</li>
@@ -369,8 +375,8 @@
                                     </div>
                                     <div class="row">
                                         <!-- Display days of the month -->
-                                        <ul class="list-inline text-center">
-                                            <c:forEach items="${monthDays}" var="day">
+                                        <ul class="list-inline text-center"  style="margin-top: -13px;" >
+                                            <c:forEach items="${monthsAndDays[status.index]}" var="day">
                                                 <li class="list-inline-item" style="width: 9.28%">${day}</li>
                                             </c:forEach>
                                         </ul>
@@ -379,12 +385,12 @@
                             </c:forEach>
                         </div>
                         <!-- Previous and Next buttons -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel"
                                 data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        <button class="carousel-control-next" type="button" data-bs-target="#eventsCarousel"
                                 data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>

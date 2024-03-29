@@ -294,6 +294,7 @@ public class MainController {
 		User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
         
+        LocalDate currentDate = LocalDate.now();
         String selectedDate =LocalDate.now().toString();
   
         List<PunchIn> punchindetails=userDao.showPunchIn(selectedDate,currentUser);
@@ -314,18 +315,31 @@ public class MainController {
 		List<Events> events = userDao.getEvents();
 		model.addAttribute("event",events);	
 		
-		 List<List<Integer>> monthsAndDays = new ArrayList<>();
+		 List<String> monthsAndYear = new ArrayList<>();
+		    int currentYear = currentDate.getYear();
+		    int yearsToDisplay = 5; // Change this value to adjust the number of years to display
+		    for (int year = currentYear; year < currentYear + yearsToDisplay; year++) {
+		        for (int month = 1; month <= 12; month++) {
+		            String monthAndYear = java.time.Month.of(month).toString().substring(0, 3) + " " + year;
+		            monthsAndYear.add(monthAndYear);
+		        }
+		    }
+		    model.addAttribute("monthsAndYear", monthsAndYear);
 
-	        for (int month = 1; month <= 12; month++) {
-	            List<Integer> daysOfMonth = new ArrayList<>();
-	            int daysInMonth = java.time.YearMonth.of(2024, month).lengthOfMonth();
-	            for (int day = 1; day <= daysInMonth; day++) {
-	                daysOfMonth.add(day);
-	            }
-	            monthsAndDays.add(daysOfMonth);
-	        }
+		    List<List<Integer>> monthsAndDays = new ArrayList<>();
+		    for (int year = currentYear; year < currentYear + yearsToDisplay; year++) {
+		        for (int month = 1; month <= 12; month++) {
+		            List<Integer> daysOfMonth = new ArrayList<>();
+		            int daysInMonth = java.time.YearMonth.of(year, month).lengthOfMonth();
+		            for (int day = 1; day <= daysInMonth; day++) {
+		                daysOfMonth.add(day);
+		            }
+		            monthsAndDays.add(daysOfMonth);
+		        }
+		    }
+		    model.addAttribute("monthsAndDays", monthsAndDays);
 
-	        model.addAttribute("monthsAndDays", monthsAndDays);
+	        
         return "employee_dashboard";
 	}
 	
@@ -492,7 +506,7 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("%02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		    return String.format("Work %02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
 		}
 
 
