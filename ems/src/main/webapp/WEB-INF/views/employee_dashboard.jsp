@@ -355,6 +355,7 @@
 <!-- Include Bootstrap JS at the end of body -->
 
 
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -392,12 +393,12 @@
                 <c:forEach items="${monthsAndDays[status.index]}" var="dayOfMonth" varStatus="dayStatus">
                                                 <c:set var="highlight" value="false" />
                                                 <!-- Check if the current day is in the list of days with events -->
+                                                     <c:if test="${MonthAndYearInEvent.contains(monthYear)}">
                                                 <c:if test="${daysOfEvents.contains(dayOfMonth)}">
                                                     <c:set var="highlight" value="true" />
-                                                </c:if>
                                                 
-                                                     <c:if test="${MonthAndYearInEvent.contains(monthsAndYear)}">
                                                     <c:set var="highlight" value="true" />
+                                                </c:if>
                                                 </c:if>
                                                 
                                                 <!-- Render each day of the month with or without highlight -->

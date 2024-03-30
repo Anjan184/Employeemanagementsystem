@@ -115,7 +115,7 @@ public class UserDao {
 	@Transactional
 	public List<String> getMonthsandYearInEvent(){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="SELECT CONCAT(CASE WHEN SUBSTRING(date, 6, 2) = '01' THEN 'Jan' WHEN SUBSTRING(date, 6, 2) = '02' THEN 'Feb' WHEN SUBSTRING(date, 6, 2) = '03' THEN 'Mar' WHEN SUBSTRING(date, 6, 2) = '04' THEN 'Apr' WHEN SUBSTRING(date, 6, 2) = '05' THEN 'May' WHEN SUBSTRING(date, 6, 2) = '06' THEN 'Jun' WHEN SUBSTRING(date, 6, 2) = '07' THEN 'Jul' WHEN SUBSTRING(date, 6, 2) = '08' THEN 'Aug' WHEN SUBSTRING(date, 6, 2) = '09' THEN 'Sep' WHEN SUBSTRING(date, 6, 2) = '10' THEN 'Oct' WHEN SUBSTRING(date, 6, 2) = '11' THEN 'Nov' WHEN SUBSTRING(date, 6, 2) = '12' THEN 'Dec' END, ' ', YEAR(date)) AS month_year FROM Events";
+		String hql="SELECT CONCAT(CASE WHEN SUBSTRING(date, 6, 2) = '01' THEN 'JAN' WHEN SUBSTRING(date, 6, 2) = '02' THEN 'FEB' WHEN SUBSTRING(date, 6, 2) = '03' THEN 'MAR' WHEN SUBSTRING(date, 6, 2) = '04' THEN 'APR' WHEN SUBSTRING(date, 6, 2) = '05' THEN 'MAY' WHEN SUBSTRING(date, 6, 2) = '06' THEN 'JUN' WHEN SUBSTRING(date, 6, 2) = '07' THEN 'JUL' WHEN SUBSTRING(date, 6, 2) = '08' THEN 'AUG' WHEN SUBSTRING(date, 6, 2) = '09' THEN 'SEP' WHEN SUBSTRING(date, 6, 2) = '10' THEN 'OCT' WHEN SUBSTRING(date, 6, 2) = '11' THEN 'NOV' WHEN SUBSTRING(date, 6, 2) = '12' THEN 'DEC' END, ' ', YEAR(date)) AS month_year FROM Events";
 	
 		return session.createQuery(hql,String.class).getResultList();		
 	}
