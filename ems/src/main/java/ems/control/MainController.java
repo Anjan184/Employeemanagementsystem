@@ -322,7 +322,7 @@ public class MainController {
 		        }
 		    }
 		    model.addAttribute("monthsAndYear", monthsAndYear);
-
+		 
 		    
 		    List<List<Integer>> monthsAndDays = new ArrayList<>();
 		    for (int year = currentYear; year < currentYear + yearsToDisplay; year++) {
@@ -340,8 +340,15 @@ public class MainController {
 		    
 		List<Integer> daysOfEvents=userDao.getDaysInEvent();
 		model.addAttribute("daysOfEvents",daysOfEvents);    
+		
+		List<String> MonthAndYearInEvent=userDao.getMonthsandYearInEvent();
+		model.addAttribute("MonthAndYearInEvent",MonthAndYearInEvent);    
+
+//		List<Integer> yearsOfEvents=userDao.getYearsInEvent();
+//		model.addAttribute("yearsOfEvents",yearsOfEvents);    
 	
 		
+
         return "employee_dashboard";
 	}
 	

@@ -109,9 +109,15 @@ public class UserDao {
 	public List<Integer> getDaysInEvent(){
 		Session session=sessionFactory.getCurrentSession();
 		String hql="select day(date) FROM Events";
-		System.out.println(hql);
 		return session.createQuery(hql,Integer.class).getResultList();	
-		
+	}
+	
+	@Transactional
+	public List<String> getMonthsandYearInEvent(){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="SELECT CONCAT(CASE WHEN SUBSTRING(date, 6, 2) = '01' THEN 'Jan' WHEN SUBSTRING(date, 6, 2) = '02' THEN 'Feb' WHEN SUBSTRING(date, 6, 2) = '03' THEN 'Mar' WHEN SUBSTRING(date, 6, 2) = '04' THEN 'Apr' WHEN SUBSTRING(date, 6, 2) = '05' THEN 'May' WHEN SUBSTRING(date, 6, 2) = '06' THEN 'Jun' WHEN SUBSTRING(date, 6, 2) = '07' THEN 'Jul' WHEN SUBSTRING(date, 6, 2) = '08' THEN 'Aug' WHEN SUBSTRING(date, 6, 2) = '09' THEN 'Sep' WHEN SUBSTRING(date, 6, 2) = '10' THEN 'Oct' WHEN SUBSTRING(date, 6, 2) = '11' THEN 'Nov' WHEN SUBSTRING(date, 6, 2) = '12' THEN 'Dec' END, ' ', YEAR(date)) AS month_year FROM Events";
+	
+		return session.createQuery(hql,String.class).getResultList();		
 	}
 	
 	@Transactional

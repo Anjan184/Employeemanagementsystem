@@ -19,7 +19,11 @@
   <meta content="" name="keywords">
 <style>
  /* Customize slider appearance */
-       
+		      .highlighted {
+    background-color: red;
+    color: white; /* Optionally, change text color to white for better visibility */
+    border-radius: 50%; /* Optionally, add border-radius for rounded corners */
+}
        
        .carousel-item {
             text-align: center;
@@ -354,46 +358,58 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 310px;width:79%;margin-left:610px;margin-top:-73%;">
+            <div class="card" style="height: 310px;width:79%;margin-left:680px;margin-top:-63%;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
                     <!-- Bootstrap Carousel for Events -->
                     <div id="eventsCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" style="margin-top: -3%;">
                             <!-- Iterate over each month's days -->
-                            <c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
-                                <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
-                                    <div class="row">
-                                        <!-- Display month and year -->
-                                        <h5 class="text-center " style="margin-top: -5px;">${monthYear}</h5>
-                                    </div>
-                                    <div class="row">
-                                        <!-- Display days of the week -->
-                                        <ul class="list-inline text-center " >
-                                            <li class="list-inline-item" style="width: 9.28%">Mon</li>
-                                            <li class="list-inline-item" style="width: 9.28%">Tue</li>
+                          <!-- Iterate over each month's days -->
+				<c:forEach items="${monthsAndYear}" var="monthYear" varStatus="status">
+    <div class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
+        <div class="row">
+            <!-- Display month and year -->
+            <h5 class="text-center" style="margin-top: -5px;">${monthYear}</h5>
+        </div>
+        <div class="row">
+            <!-- Display days of the week -->
+            <ul class="list-inline text-center">
+               							 <li class="list-inline-item" style="width: 9.28%">Mon</li>
+                 							<li class="list-inline-item" style="width: 9.28%">Tue</li>
                                             <li class="list-inline-item" style="width: 9.28%">Wed</li>
                                             <li class="list-inline-item" style="width: 9.28%">Thu</li>
                                             <li class="list-inline-item" style="width: 9.28%">Fri</li>
                                             <li class="list-inline-item" style="width: 9.28%">Sat</li>
                                             <li class="list-inline-item" style="width: 9.28%">Sun</li>
-                                        </ul>
-                                    </div>
-                                    <div class="row" >
-                                        <!-- Display days of the month -->
-                                        <ul class="list-inline text-center"  style="margin-top: -13px;" >
-                                            <c:forEach items="${monthsAndDays[status.index]}" var="day">
-                                                <li class="list-inline-item" style="width: 9.28%">${day}</li> 
-                                               
-                                               
-                                               
+                <!-- Add more days of the week... -->
+            </ul>
+        </div>
+        <div class="row">
+            <!-- Display days of the month -->
+            <ul class="list-inline text-center" style="margin-top: -13px;">
+                <!-- Iterate over days of the month for the current month -->
+                <c:forEach items="${monthsAndDays[status.index]}" var="dayOfMonth" varStatus="dayStatus">
+                                                <c:set var="highlight" value="false" />
+                                                <!-- Check if the current day is in the list of days with events -->
+                                                <c:if test="${daysOfEvents.contains(dayOfMonth)}">
+                                                    <c:set var="highlight" value="true" />
+                                                </c:if>
+                                                
+                                                     <c:if test="${MonthAndYearInEvent.contains(monthsAndYear)}">
+                                                    <c:set var="highlight" value="true" />
+                                                </c:if>
+                                                
+                                                <!-- Render each day of the month with or without highlight -->
+                                                <li class="list-inline-item ${highlight ? 'highlighted' : ''}" style="width: 9.28%">
+                                                    ${dayOfMonth}
+                                                </li>
                                             </c:forEach>
-                                            
-                                          
-                                        </ul>
-                                    </div>
-                                </div>
-                            </c:forEach>
+            </ul>
+        </div>
+    </div>
+</c:forEach>
+
                         </div>
                         <!-- Previous and Next buttons -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel"
