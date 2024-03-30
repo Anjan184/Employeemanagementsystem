@@ -324,13 +324,13 @@ public class MainController {
 		    model.addAttribute("monthsAndYear", monthsAndYear);
 		 
 		    
-		    List<List<Integer>> monthsAndDays = new ArrayList<>();
+		    List<List<String>> monthsAndDays = new ArrayList<>();
 		    for (int year = currentYear; year < currentYear + yearsToDisplay; year++) {
 		        for (int month = 1; month <= 12; month++) {
-		            List<Integer> daysOfMonth = new ArrayList<>();
+		            List<String> daysOfMonth = new ArrayList<>();
 		            int daysInMonth = java.time.YearMonth.of(year, month).lengthOfMonth();
 		            for (int day = 1; day <= daysInMonth; day++) {
-		                daysOfMonth.add(day);
+		                daysOfMonth.add(String.valueOf(day));
 		            }
 		            monthsAndDays.add(daysOfMonth);
 		        }
@@ -344,6 +344,9 @@ public class MainController {
 		List<String> MonthAndYearInEvent=userDao.getMonthsandYearInEvent();
 		model.addAttribute("MonthAndYearInEvent",MonthAndYearInEvent);    
 
+		List<String> DateOfEvent=userDao.getDateOfEvent();
+		model.addAttribute("DateOfEvent",DateOfEvent);  		
+		
 //		List<Integer> yearsOfEvents=userDao.getYearsInEvent();
 //		model.addAttribute("yearsOfEvents",yearsOfEvents);    
 	

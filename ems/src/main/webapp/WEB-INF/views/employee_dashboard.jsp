@@ -392,24 +392,23 @@
                 <!-- Iterate over days of the month for the current month -->
                 <c:forEach items="${monthsAndDays[status.index]}" var="dayOfMonth" varStatus="dayStatus">
                                                 <c:set var="highlight" value="false" />
-                                                <!-- Check if the current day is in the list of days with events -->
-                                                     <c:if test="${MonthAndYearInEvent.contains(monthYear)}">
-                                                <c:if test="${daysOfEvents.contains(dayOfMonth)}">
-                                                    <c:set var="highlight" value="true" />
-                                                
+                                              <c:set var="dayString" value="${dayOfMonth}" />
+                                                <c:if test="${MonthAndYearInEvent.contains(monthYear)}">
+                                                <c:if test="${DateOfEvent.contains(dayString.concat(monthYear))}">
+                                            
+                                                    <c:set var="highlight" value="true" /> 
                                                     <c:set var="highlight" value="true" />
                                                 </c:if>
                                                 </c:if>
                                                 
-                                                <!-- Render each day of the month with or without highlight -->
                                                 <li class="list-inline-item ${highlight ? 'highlighted' : ''}" style="width: 9.28%">
                                                     ${dayOfMonth}
                                                 </li>
                                             </c:forEach>
-            </ul>
-        </div>
-    </div>
-</c:forEach>
+								            </ul>
+								        </div>
+								    </div>
+								</c:forEach>
 
                         </div>
                         <!-- Previous and Next buttons -->
