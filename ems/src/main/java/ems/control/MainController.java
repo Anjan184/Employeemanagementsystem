@@ -307,6 +307,9 @@ public class MainController {
         String TotalTime=calculateTotalWorkDashboard(punchindetails, punchoutdetails, selectedDate);
         model.addAttribute("totalTime", TotalTime);
         
+        String ExtraTime=calculateExtraWorkDashboard(punchindetails, punchoutdetails, selectedDate);
+        model.addAttribute("ExtraTime",ExtraTime);
+        
         Long LeavesCount=userDao.countLeaves(currentUser);
 		model.addAttribute("totalLeaves",LeavesCount);
 		
@@ -504,6 +507,7 @@ public class MainController {
 		    return String.format("Total Work %02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
 		}
 
+	 
 	  public String calculateTotalWorkDashboard(List<PunchIn> punchInDetails,List<PunchOut> punchOutDetails,String selectedDate){
 			 long totalMilliseconds = 0;
 			for (int i = 0; i < Math.min(punchInDetails.size(), punchOutDetails.size()); i++) {
@@ -526,11 +530,34 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("Work %02d:%02d:%02d and Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		    return String.format("Work %02d:%02d:%02d ", totalHours, totalMinutes, totalSeconds);
 		}
-
-
 	
+	  public String calculateExtraWorkDashboard(List<PunchIn> punchInDetails,List<PunchOut> punchOutDetails,String selectedDate){
+			 long totalMilliseconds = 0;
+			for (int i = 0; i < Math.min(punchInDetails.size(), punchOutDetails.size()); i++) {
+	            PunchIn punchIn = punchInDetails.get(i);
+	            PunchOut punchOut = punchOutDetails.get(i);
+	            if(punchIn.getPunchIn_Date().toString().equals(selectedDate)) {	
+	            	 long elapsedTimeMillis = Duration.between(punchIn.getPunchIn().toLocalTime(), punchOut.getPunchOut().toLocalTime()).toMillis();
+	                 totalMilliseconds += elapsedTimeMillis;
+	            }
+				}
+			long totalHours = totalMilliseconds / 3600000;
+		    long totalMinutes = (totalMilliseconds % 3600000) / 60000;
+		    long totalSeconds = (totalMilliseconds % 60000) / 1000;    
+		    long extraHours = 0;  
+		    if (totalHours > 7 || (totalHours == 7 && totalMinutes >= 30)) {
+		        extraHours = totalHours - 7;
+		        if (totalMinutes < 30) {
+		            extraHours -= 1;
+		            totalMinutes += 60;
+		        }
+		        totalMinutes -= 30; 
+		    }
+		    return String.format("Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		}
+	  
 	@RequestMapping(value="/employee_leave",method=RequestMethod.GET)
 	public String employee_leave(HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 

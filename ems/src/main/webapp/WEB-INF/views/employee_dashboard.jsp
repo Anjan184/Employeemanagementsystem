@@ -295,7 +295,7 @@
   
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 310px;width: 79%;margin-left: 10px;margin-top: 3px;">
+            <div class="card" style="height: 310px;width: 79%;margin-left: 50px;margin-top: 3px;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calendar</h5>
                     <!-- Bootstrap Carousel for Holidays -->
@@ -370,7 +370,7 @@
 <div class="container">  
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 310px;width:79%;margin-left:400px;margin-top:-73%;">
+            <div class="card" style="height: 310px;width:79%;margin-left:500px;margin-top:-73%;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
                     <!-- Bootstrap Carousel for Events -->
@@ -448,7 +448,7 @@
         <div class="row">
         
           <div class="col-md-6">
-   		 <div class="card" style="height: 115px;width:79%;margin-left:10px;">
+   		 <div class="card" style="height: 115px;width:67%;margin-left:10px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Time</h5>
             <div class="total-time" >
@@ -458,8 +458,9 @@
     </div>
 </div>
 
+
 <div class="col-md-6">
-    <div class="card" style="height: 115px;width:79%;margin-left:-92px;">
+    <div class="card" style="height: 115px;width:67%;margin-left:-150px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Leaves Applied</h5>
             <div class="total-leaves" style="padding: 5px;">
@@ -470,9 +471,24 @@
 </div>
 
 
+    <div class="container">
+        <div class="row">
+        
+          <div class="col-md-6">
+   		 <div class="card" style="height: 115px;width:67%;margin-left:680px;margin-top:-145px;">
+        <div class="card-body">
+            <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Extra Time</h5>
+            <div class="total-time" >
+                <span class="total-time-value" style="font-size: 18px;">${ExtraTime}</span>
+            </div>
         </div>
     </div>
-  
+</div>
+
+        </div>
+    </div>
+  </div>
+  </div>
 </main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
