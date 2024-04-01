@@ -329,11 +329,13 @@
                                                <c:set var="highlight" value="false" />
                      <c:set var="dayString" value="${dayOfMonth}" />
                        <c:if test="${MonthAndYearInHolidays.contains(monthYear)}">
-                         <c:if test="${DateOfHolidays.contains(dayString.concat(monthYear))}">                    
+                         <c:if test="${DateOfHolidays.contains(dayString.concat(monthYear)) || ToDateOfHolidays.contains(dayString.concat(monthYear))}">         
                                       <c:set var="highlight" value="true" /> 
                                                     <c:set var="highlight" value="true" />
+                    
                                                   </c:if>
                                                 </c:if>   
+                                            
                                       <li class="list-inline-item ${highlight ? 'highlighted' : ''}" style="width: 9.28%">
                                                     ${dayOfMonth}
                                                 </li>
