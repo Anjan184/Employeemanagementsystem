@@ -347,10 +347,14 @@ public class MainController {
 		List<String> DateOfEvent=userDao.getDateOfEvent();
 		model.addAttribute("DateOfEvent",DateOfEvent);  		
 		
-//		List<Integer> yearsOfEvents=userDao.getYearsInEvent();
-//		model.addAttribute("yearsOfEvents",yearsOfEvents);    
+		List<Integer> daysOfHolidays=userDao.getDaysInHolidays();
+		model.addAttribute("daysOfHolidays",daysOfHolidays);    
 	
+		List<String> MonthAndYearInHolidays=userDao.getMonthsandYearInHolidays();
+		model.addAttribute("MonthAndYearInHolidays",MonthAndYearInHolidays);
 		
+		List<String> DateOfHolidays=userDao.getDateOfHolidays();
+		model.addAttribute("DateOfHolidays",DateOfHolidays);  
 
         return "employee_dashboard";
 	}

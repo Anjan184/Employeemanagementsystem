@@ -292,9 +292,10 @@
     </div><!-- End Page Title -->
 
 <div class="container">
+  
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 310px;width: 79%;margin-left: 230px;margin-top: 3px;">
+            <div class="card" style="height: 310px;width: 79%;margin-left: 10px;margin-top: 3px;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Holidays Calendar</h5>
                     <!-- Bootstrap Carousel for Holidays -->
@@ -324,10 +325,18 @@
                                         <ul class="list-inline text-center"  style="margin-top: -13px;" >
                                
                                  
-                                            <c:forEach items="${monthsAndDays[status.index]}" var="day">
-                                                <li class="list-inline-item" style="width: 9.28%">${day}</li>
-                    
-                                               
+                                       <c:forEach items="${monthsAndDays[status.index]}" var="dayOfMonth" varStatus="dayStatus">
+                                               <c:set var="highlight" value="false" />
+                     <c:set var="dayString" value="${dayOfMonth}" />
+                       <c:if test="${MonthAndYearInHolidays.contains(monthYear)}">
+                         <c:if test="${DateOfHolidays.contains(dayString.concat(monthYear))}">                    
+                                      <c:set var="highlight" value="true" /> 
+                                                    <c:set var="highlight" value="true" />
+                                                  </c:if>
+                                                </c:if>   
+                                      <li class="list-inline-item ${highlight ? 'highlighted' : ''}" style="width: 9.28%">
+                                                    ${dayOfMonth}
+                                                </li>
                                             </c:forEach>
                                         </ul>
                                     </div>
@@ -356,10 +365,10 @@
 
 
 
-<div class="container">
+<div class="container">  
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 310px;width:79%;margin-left:680px;margin-top:-63%;">
+            <div class="card" style="height: 310px;width:79%;margin-left:400px;margin-top:-73%;">
                 <div class="card-body">
                     <h5 class="card-title text-center" style="margin-top: -8%;">Events Calendar</h5>
                     <!-- Bootstrap Carousel for Events -->
@@ -386,8 +395,9 @@
                 <!-- Add more days of the week... -->
             </ul>
         </div>
+        
         <div class="row">
-            <!-- Display days of the month -->
+        
             <ul class="list-inline text-center" style="margin-top: -13px;">
                 <!-- Iterate over days of the month for the current month -->
                 <c:forEach items="${monthsAndDays[status.index]}" var="dayOfMonth" varStatus="dayStatus">
@@ -436,7 +446,7 @@
         <div class="row">
         
           <div class="col-md-6">
-   		 <div class="card" style="height: 115px;width:79%;margin-left:230px;">
+   		 <div class="card" style="height: 115px;width:79%;margin-left:10px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Time</h5>
             <div class="total-time" >
@@ -447,7 +457,7 @@
 </div>
 
 <div class="col-md-6">
-    <div class="card" style="height: 115px;width:79%;margin-left:116px;">
+    <div class="card" style="height: 115px;width:79%;margin-left:-92px;">
         <div class="card-body">
             <h5 class="card-title" style="font-size: 16px;margin-top:-25px;">Total Leaves Applied</h5>
             <div class="total-leaves" style="padding: 5px;">

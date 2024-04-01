@@ -127,6 +127,27 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public List<Integer> getDaysInHolidays(){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="select day(fromdate) FROM Holidays";
+		return session.createQuery(hql,Integer.class).getResultList();	
+	}
+	
+	@Transactional
+	public List<String> getMonthsandYearInHolidays(){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="SELECT CONCAT(CASE WHEN SUBSTRING(date, 6, 2) = '01' THEN 'JAN' WHEN SUBSTRING(date, 6, 2) = '02' THEN 'FEB' WHEN SUBSTRING(date, 6, 2) = '03' THEN 'MAR' WHEN SUBSTRING(date, 6, 2) = '04' THEN 'APR' WHEN SUBSTRING(date, 6, 2) = '05' THEN 'MAY' WHEN SUBSTRING(date, 6, 2) = '06' THEN 'JUN' WHEN SUBSTRING(date, 6, 2) = '07' THEN 'JUL' WHEN SUBSTRING(date, 6, 2) = '08' THEN 'AUG' WHEN SUBSTRING(date, 6, 2) = '09' THEN 'SEP' WHEN SUBSTRING(date, 6, 2) = '10' THEN 'OCT' WHEN SUBSTRING(date, 6, 2) = '11' THEN 'NOV' WHEN SUBSTRING(date, 6, 2) = '12' THEN 'DEC' END, ' ', YEAR(date)) AS month_year FROM Holidays";
+		return session.createQuery(hql,String.class).getResultList();		
+	}
+	
+	@Transactional
+	public List<String> getDateOfHolidays(){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="SELECT CONCAT(day(fromdate), CASE WHEN SUBSTRING(date, 6, 2) = '01' THEN 'JAN' WHEN SUBSTRING(date, 6, 2) = '02' THEN 'FEB' WHEN SUBSTRING(date, 6, 2) = '03' THEN 'MAR' WHEN SUBSTRING(date, 6, 2) = '04' THEN 'APR' WHEN SUBSTRING(date, 6, 2) = '05' THEN 'MAY' WHEN SUBSTRING(date, 6, 2) = '06' THEN 'JUN' WHEN SUBSTRING(date, 6, 2) = '07' THEN 'JUL' WHEN SUBSTRING(date, 6, 2) = '08' THEN 'AUG' WHEN SUBSTRING(date, 6, 2) = '09' THEN 'SEP' WHEN SUBSTRING(date, 6, 2) = '10' THEN 'OCT' WHEN SUBSTRING(date, 6, 2) = '11' THEN 'NOV' WHEN SUBSTRING(date, 6, 2) = '12' THEN 'DEC' END, ' ', YEAR(date)) AS month_year FROM Holidays";
+		return session.createQuery(hql,String.class).getResultList();	
+	}
+	
+	@Transactional
 	public void addEvents(Events event) {
 		this.hibernateTemplate.save(event);
 	}
