@@ -59,6 +59,41 @@
 .punch-out-btn {
 	background-color: red;
 }
+
+ .leave-table th {
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Additional styling for table rows */
+
+  .leave-table td {
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Dark gray text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Styling for hover effect */
+
+  .leave-table tbody tr:hover td {
+    background-color: #e2e2e2; /* Light gray background on hover */
+  }
+  
+  .add-leave-btn {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding */
+        background-color: #007bff; /* Blue background color */
+        color: white; /* White text color */
+        text-decoration: none; /* Remove underline */
+        border-radius: 5px; /* Rounded border */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    /* Hover effect */
+    .add-leave-btn:hover {
+        background-color: #0056b3; /* Darker blue background on hover */
+    }
 </style>
 </head>
 
@@ -246,7 +281,7 @@
 							<td>${leave.from_Date}</td>
 							<td>${leave.to_Date}</td>
 							<td>${leave.leave_type}</td>
-							<td><textarea readonly>${leave.reason}</textarea></td>
+							<td>${leave.reason}</td>
 							<td>${leave.status}</td>
 							<td>
 								<div>
@@ -262,7 +297,7 @@
 			<br>
 
 			<div style="text-align: center;">
-				<a href="add_new_leave"><strong>Add new Leave</strong></a>
+				<a href="add_new_leave"  class="add-leave-btn"><strong>Add new Leave</strong></a>
 			</div>
 
 		</section>
@@ -270,9 +305,32 @@
 	</main>
 	<!-- End #main -->
 
-	<a href="#"
-		class="back-to-top d-flex align-items-center justify-content-center"><i
-		class="bi bi-arrow-up-short"></i></a>
+<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
+
+
 
 
 

@@ -28,6 +28,60 @@
   <meta content="" name="keywords">
 <style>
 
+.profile {
+        padding: 30px;
+    }
+
+    /* Profile card styles */
+    .profile-card {
+        text-align: center;
+    }
+
+
+
+    /* Profile name styles */
+    .profile-card h2 {
+        margin-bottom: 5px;
+        color: #333; /* Dark text color */
+    }
+
+    /* Profile position styles */
+    .profile-card h3 {
+        margin-bottom: 20px;
+        color: #666; /* Medium dark text color */
+    }
+
+    /* Overview section styles */
+    .profile-overview {
+        padding-top: 20px;
+    }
+
+    /* Label styles */
+    .label {
+        font-weight: bold;
+        color: #777; /* Medium light text color */
+    }
+
+    /* Details styles */
+    .details {
+        color: #555; /* Medium text color */
+        margin-bottom: 10px;
+    }
+
+    /* Navigation tabs styles */
+    .nav-tabs-bordered .nav-link {
+        border: none;
+        background-color: transparent;
+        color: #333; /* Dark text color */
+        border-bottom: 2px solid transparent;
+    }
+
+    /* Active tab styles */
+    .nav-tabs-bordered .nav-link.active {
+        color: #007bff; /* Blue text color */
+        border-bottom-color: #007bff; /* Blue border color */
+    }
+
     .punch-btn {
       display: block;
       width: 80%;
@@ -273,7 +327,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
+                    <div class="col-lg-3 col-md-4 label">Role</div>
                     <div class="col-lg-9 col-md-8">${currentUser.position}</div>
                   </div>
 
@@ -292,6 +346,12 @@
                     <div class="col-lg-9 col-md-8">${currentUser.email}</div>
                   </div>
 
+				<div class="row">
+                    <div class="col-lg-3 col-md-4 label">Blood Group</div>
+                    <div class="col-lg-9 col-md-8">${currentUser.bloodgroup}</div>
+                  </div>
+				
+
                 </div>
 
                
@@ -306,6 +366,30 @@
 
   </main><!-- End #main -->
 
+<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

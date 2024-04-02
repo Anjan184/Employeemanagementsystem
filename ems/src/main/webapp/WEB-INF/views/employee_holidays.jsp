@@ -59,6 +59,40 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     
+    .holiday-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .holiday-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .holiday-table tbody tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  /* Additional styling for table header */
+
+  .holiday-table th {
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Additional styling for table rows */
+
+  .holiday-table td {
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Dark gray text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Styling for hover effect */
+
+  .holiday-table tbody tr:hover td {
+    background-color: #e2e2e2; /* Light gray background on hover */
+  }
+    
 </style>
 </head>
 
@@ -261,6 +295,31 @@
     </section>
 
   </main><!-- End #main -->
+
+	<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

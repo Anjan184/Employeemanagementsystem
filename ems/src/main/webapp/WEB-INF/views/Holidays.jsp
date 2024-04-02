@@ -27,6 +27,13 @@
       text-align: left;
     }
 
+ .holiday-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
 </style>
 </head>
@@ -250,6 +257,32 @@
     </section>
 
   </main><!-- End #main -->
+
+  	<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	            // Toggle icon based on body class
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
  
 

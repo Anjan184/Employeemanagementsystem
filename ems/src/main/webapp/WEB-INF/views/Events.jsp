@@ -27,6 +27,13 @@
       text-align: left;
     }
 
+ .event-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
 </style>
 </head>
@@ -249,6 +256,29 @@
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
+<script>
+ function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
 
 </body>

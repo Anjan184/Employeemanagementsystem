@@ -233,14 +233,14 @@
                 <p>+91 79 6777 2222</p>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
               <div class="info-box card">
                 <i class="bi bi-envelope"></i>
                 <h3>Email Us</h3>
                 <p>info@drcsystems.com</p>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <div class="info-box card">
                 <i class="bi bi-clock"></i>
                 <h3>Open Hours</h3>
@@ -258,6 +258,30 @@
     </section>
 
   </main><!-- End #main -->
+<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
 
 </body>

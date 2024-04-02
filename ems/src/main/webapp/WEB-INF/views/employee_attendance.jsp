@@ -38,6 +38,24 @@
 	background-color: #ddd;
 }
 
+.attendance-table th {
+	font-size: 14px; /* Adjust font size */
+	color: #333; /* Darker text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
+
+/* Additional styling for table rows */
+.attendance-table td {
+	font-size: 14px; /* Adjust font size */
+	color: #555; /* Dark gray text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
+
+/* Styling for hover effect */
+.attendance-table tbody tr:hover td {
+	background-color: #e2e2e2; /* Light gray background on hover */
+}
+
 .punch-btn {
 	display: block;
 	width: 80%;
@@ -58,6 +76,21 @@
 
 .punch-out-btn {
 	background-color: red;
+}
+
+.attendance-table td a {
+	display: inline-block;
+	padding: 8px 12px;
+	background-color: #007bff; /* Blue background color */
+	color: #fff; /* White text color */
+	text-decoration: none; /* Remove default underline */
+	border-radius: 4px; /* Rounded corners */
+	transition: background-color 0.3s ease;
+	/* Smooth transition on hover */
+}
+
+.attendance-table td a:hover {
+	background-color: #0056b3; /* Darker blue on hover */
 }
 </style>
 </head>
@@ -85,8 +118,7 @@
 						src="resources/assets/img/profile-img.jpg" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -118,8 +150,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -227,11 +258,11 @@
 		<!-- End Page Title -->
 
 		<section class="section dashboard">
-		
+
 			<table class="attendance-table">
 				<thead>
 					<tr>
-				
+
 						<th>Date</th>
 						<th>First In</th>
 						<th>Last Out</th>
@@ -241,21 +272,23 @@
 				<tbody>
 					<c:forEach items="${showFirst}" var="showFirst" varStatus="status">
 						<tr>
-						
+
 							<td>${showFirst.getPunchIn_Date()}</td>
 							<td>${showFirst.getPunchIn()}</td>
 							<c:forEach items="${showLast}" var="punchOut">
 								<c:if
 									test="${punchOut.getPunchOut_Date() == showFirst.getPunchIn_Date()}">
-										<td>${punchOut.getPunchOut()}</td>
+									<td>${punchOut.getPunchOut()}</td>
 								</c:if>
 							</c:forEach>
-							<td><a	href="employee_attendance_details/${showFirst.getPunchIn_Date()}">Details</a></td>
-							
+							<td><a
+								href="employee_attendance_details/${showFirst.getPunchIn_Date()}">
+									<i class="bi bi-people-fill"></i> Details
+							</a></td>
 						</tr>
-						
-						
-						
+
+
+
 					</c:forEach>
 				</tbody>
 			</table>
@@ -263,6 +296,31 @@
 
 	</main>
 	<!-- End #main -->
+	<script>
+		function select(selector) {
+			return document.querySelector(selector);
+		}
+
+		function on(event, element, callback) {
+			document.addEventListener(event, function(e) {
+				if (e.target.closest(element)) {
+					callback(e);
+				}
+			});
+		}
+
+		if (select('.toggle-sidebar-btn')) {
+			on('click', '.toggle-sidebar-btn', function(e) {
+				const body = select('body');
+				body.classList.toggle('toggle-sidebar');
+				const icon = select('.toggle-sidebar-btn i');
+
+				e.preventDefault(); // Prevent default behavior of the anchor tag
+			});
+		}
+	</script>
+
+
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i

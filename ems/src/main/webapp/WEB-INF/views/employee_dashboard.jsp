@@ -23,7 +23,7 @@
 
     /* Adjust main content width when toggle-sidebar class is applied */
     .toggle-sidebar #main {
-        margin-left: 250px; /* Same as the sidebar width */
+        margin-left: 20px; /* Same as the sidebar width */
     }
 
 .highlighted {
@@ -297,8 +297,9 @@
 			</nav>
 		</div>
 
-		<div class="container">
+	<div class="flex:container" style="display: flex-row; justify-content: space-between;">
 
+		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card border-0 shadow-lg rounded"
@@ -380,11 +381,10 @@
 	
 
 
-		<div class="container">
-			<div class="row">
+	<div class="container">
 				<div class="col-md-6">
 					<div class="card border-0 shadow-lg rounded"
-						style="height: 310px; width: 79%; margin-left: 500px; margin-top: -73%; background-color: #f8f9fa;">
+						style="height: 310px; width: 79%; margin-left: 500px; margin-top:-73%;background-color: #f8f9fa;">
 						<div class="card-body">
 							<h5 class="card-title text-center mb-4" style="color: #343a40;">Events
 								Calendar</h5>
@@ -459,8 +459,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
+</div>
+</div>
 
 
 		<div class="container">
@@ -518,7 +518,19 @@
 
 	    if (select('.toggle-sidebar-btn')) {
 	        on('click', '.toggle-sidebar-btn', function (e) {
-	            select('body').classList.toggle('toggle-sidebar');
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	            // Toggle icon based on body class
+	            if (body.classList.contains('toggle-sidebar')) {
+		        
+	                icon.classList.remove('bi-list');
+	               // Change to your desired icon when sidebar is toggled
+	            } else {
+	                icon.classList.remove('bi-x'); // Change to your desired icon when sidebar is not toggled
+	                icon.classList.add('bi-list');
+	                
+	            }
 	            e.preventDefault(); // Prevent default behavior of the anchor tag
 	        });
 	    }
@@ -527,11 +539,6 @@
 
 	</main>
 
-
-
-	<a href="#"
-		class="back-to-top d-flex align-items-center justify-content-center"><i
-		class="bi bi-arrow-up-short"></i></a>
 
 
 

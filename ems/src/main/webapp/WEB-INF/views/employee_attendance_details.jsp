@@ -14,51 +14,83 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 <style>
-.attendance-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+ /* Table styling */
+    .attendance-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
 
-.attendance-table th, .attendance-table td {
-	padding: 8px;
-	border: 1px solid #ddd;
-	text-align: center;
-}
+    /* Table header styling */
+    .attendance-table th {
+        padding: 12px; /* Adjust padding */
+        background-color: #f2f2f2; /* Light gray background */
+        color: #333; /* Dark text color */
+        border: 1px solid #ddd; /* Light gray border */
+        text-align: center; /* Center-align text */
+    }
 
-.attendance-table th {
-	background-color: #f2f2f2;
-}
+    /* Table body row styling */
+    .attendance-table td {
+        padding: 10px; /* Adjust padding */
+        border: 1px solid #ddd; /* Light gray border */
+        text-align: center; /* Center-align text */
+    }
 
-.attendance-table tbody tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
+    /* Alternate row background color */
+    .attendance-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Light gray background for even rows */
+    }
 
-.attendance-table tbody tr:hover {
-	background-color: #ddd;
-}
+    /* Hover effect */
+    .attendance-table tbody tr:hover {
+        background-color: #f2f2f2; /* Darker gray background on hover */
+    }
 
-.punch-btn {
-	display: block;
-	width: 80%;
-	padding: 8px;
-	margin-bottom: 10px;
-	border: none;
-	margin-left: 8px;
-	cursor: pointer;
-	font-size: 16px;
-	text-align: center;
-	color: #fff;
-	border-radius: 30px;
-}
+    /* Styling for punch-in and punch-out buttons */
+    .punch-btn {
+        display: inline-block;
+        padding: 8px 16px; /* Adjust padding */
+        border: none;
+        cursor: pointer;
+        font-size: 14px; /* Adjust font size */
+        text-align: center;
+        border-radius: 20px; /* Rounded border */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
 
-.punch-in-btn {
-	background-color: green;
-}
+    /* Styling for punch-in button */
+    .punch-in-btn {
+        background-color: green;
+        color: white; /* White text color */
+    }
 
-.punch-out-btn {
-	background-color: red;
-}
+    /* Styling for punch-out button */
+    .punch-out-btn {
+        background-color: red;
+        color: white; /* White text color */
+    }
+
+    /* Styling for back-to-top button */
+    .back-to-top {
+        position: fixed;
+        bottom: 20px; /* Adjust position */
+        right: 20px; /* Adjust position */
+        background-color: #007bff; /* Blue background */
+        color: white; /* White text color */
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 50%; /* Rounded border */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    /* Hover effect for back-to-top button */
+    .back-to-top:hover {
+        background-color: #0056b3; /* Darker blue background on hover */
+    }
+
 </style>
 </head>
 
@@ -67,7 +99,7 @@
 	<main id="main" class="main">
 
 		<section class="section dashboard">
-			<h1 style="text-align: center;">Employee Attendance</h1>
+			<h1 style="text-align: center;">Employee Attendance Details</h1>
 			
 			<table class="attendance-table">
 				<thead>
@@ -104,10 +136,6 @@
 
 	</main>
 	<!-- End #main -->
-
-	<a href="#"
-		class="back-to-top d-flex align-items-center justify-content-center"><i
-		class="bi bi-arrow-up-short"></i></a>
 
 
 

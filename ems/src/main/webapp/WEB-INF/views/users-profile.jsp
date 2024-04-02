@@ -236,7 +236,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
+                    <div class="col-lg-3 col-md-4 label">Role</div>
                     <div class="col-lg-9 col-md-8">${currentUser.position}</div>
                   </div>
 
@@ -255,6 +255,10 @@
                     <div class="col-lg-9 col-md-8">${currentUser.email}</div>
                   </div>
 
+				<div class="row">
+                    <div class="col-lg-3 col-md-4 label">Blood Group</div>
+                    <div class="col-lg-9 col-md-8">${currentUser.bloodgroup}</div>
+                  </div>
                 </div>
 
               
@@ -272,6 +276,31 @@
   </main><!-- End #main -->
 
 
+  	<script>
+
+	 function select(selector) {
+	        return document.querySelector(selector);
+	    }
+
+	    function on(event, element, callback) {
+	        document.addEventListener(event, function (e) {
+	            if (e.target.closest(element)) {
+	                callback(e);
+	            }
+	        });
+	    }
+
+	    if (select('.toggle-sidebar-btn')) {
+	        on('click', '.toggle-sidebar-btn', function (e) {
+	            const body = select('body');
+	            body.classList.toggle('toggle-sidebar');
+	            const icon = select('.toggle-sidebar-btn i');
+	            // Toggle icon based on body class
+	          
+	            e.preventDefault(); // Prevent default behavior of the anchor tag
+	        });
+	    }
+</script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
