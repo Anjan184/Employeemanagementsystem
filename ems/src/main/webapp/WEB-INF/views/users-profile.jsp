@@ -8,7 +8,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
- 
   <title>Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -215,9 +214,10 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">profile Details</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profile Details</button>
                 </li>
-
+				
+				
 
               </ul>
               <div class="tab-content pt-2">
@@ -262,10 +262,11 @@
 
               </div><!-- End Bordered Tabs -->
 
-            </div>
-          </div>
-
-        </div>
+	
+				</div>
+				</div>
+				</div>
+       
     </section>
 
   </main><!-- End #main -->

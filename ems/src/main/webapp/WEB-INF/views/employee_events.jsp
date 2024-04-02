@@ -13,6 +13,8 @@
   <meta content="" name="keywords">
 <style>
 
+
+
     .punch-btn {
       display: block;
       width: 80%;
@@ -39,17 +41,28 @@
     .event-table td {
       padding: 10px;
       border: 1px solid #ddd;
+      text-align: left;
+      
     }
 
     .event-table th {
       background-color: #f8f9fa;
-      text-align: left;
+  
       font-weight: bold;
     }
 
     .event-table td {
       text-align: left;
     }
+    
+    .event-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
 
 </style>
 </head>

@@ -70,6 +70,8 @@ public class UserDao {
     query.executeUpdate();
 	}
 	
+	
+	
 	@Transactional
 	public void deleteUser(int id,User user) {
 		User u=this.hibernateTemplate.load(User.class,id);

@@ -29,6 +29,14 @@
 	text-align: left;
 }
 
+  .leave-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
 .punch-btn {
 	display: block;
 	width: 80%;
@@ -37,6 +45,7 @@
 	border: none;
 	margin-left: 8px;
 	cursor: pointer;
+	
 	font-size: 16px;
 	text-align: center;
 	color: #fff;

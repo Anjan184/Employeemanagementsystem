@@ -66,8 +66,6 @@ public class User {
 		this.role = role;
 	}
 	
-	
-	
 
 	public User( String email, String password, String role, String fullname, Date dob, String contact,
 			String gender, String position, String bloodgroup, String address) {

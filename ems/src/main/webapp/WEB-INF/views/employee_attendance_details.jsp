@@ -64,26 +64,24 @@
 
 <body>
 
-
 	<main id="main" class="main">
 
 		<section class="section dashboard">
 			<h1 style="text-align: center;">Employee Attendance</h1>
+			
 			<table class="attendance-table">
 				<thead>
-					<tr>
-					
+					<tr>	
 						<th>Date</th>
 						<th>Punch In</th>
 						<th>Punch Out</th>
 						<th>Work done</th>
-			
-				
+	
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${punchindetails}" var="punchInDetails"
-						varStatus="status">
+					varStatus="status"	>
 						<tr>
 						
 							<td>${punchInDetails.getPunchIn_Date()}</td>

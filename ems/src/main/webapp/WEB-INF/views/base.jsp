@@ -38,9 +38,7 @@
   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
  
   <!-- Template Main JS File -->
   <script src="resources/assets/js/main.js"></script>

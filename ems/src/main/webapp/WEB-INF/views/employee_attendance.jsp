@@ -208,8 +208,6 @@
 			<!-- Punch Out button -->
 			<li class="nav-item"><a href="punchout"
 				class="punch-btn punch-out-btn">Punch Out</a></li>
-
-
 		</ul>
 
 	</aside>
@@ -229,7 +227,7 @@
 		<!-- End Page Title -->
 
 		<section class="section dashboard">
-			<h1 style="text-align: center;">Employee Attendance</h1>
+		
 			<table class="attendance-table">
 				<thead>
 					<tr>
@@ -252,16 +250,15 @@
 										<td>${punchOut.getPunchOut()}</td>
 								</c:if>
 							</c:forEach>
-							<td><a
-								href="employee_attendance_details/${showFirst.getPunchIn_Date()}">Details</a></td>
+							<td><a	href="employee_attendance_details/${showFirst.getPunchIn_Date()}">Details</a></td>
+							
 						</tr>
+						
+						
+						
 					</c:forEach>
 				</tbody>
-
 			</table>
-
-
-
 		</section>
 
 	</main>

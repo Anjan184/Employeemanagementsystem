@@ -251,7 +251,7 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
         
         List<Leaves> Approvedleaves=userDao.getApprovedLeaves();
-        model.addAttribute("Approved",Approvedleaves); 
+        model.addAttribute("Approved",Approvedleaves);
         
 		return "approved_application";
 	}
@@ -268,6 +268,8 @@ public class MainController {
         return "rejected_application";
 	}
 	
+
+	
 	
 	//this is help in showing profile of user(Admin,Employee)
 	@RequestMapping(value="/users-profile")
@@ -275,11 +277,10 @@ public class MainController {
 		 String currentUserEmail = (String) session.getAttribute("email"); 
 	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 	        model.addAttribute("currentUser", currentUser);
-	      
-	        
 		return "users-profile";
 	}
 	
+
 	@RequestMapping(value="/pages-contact")
 	public String pages_contact(HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
@@ -287,6 +288,8 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
 		return "pages-contact";
 	}
+	
+	
 	
 	@RequestMapping(value="/employee_dashboard")
 	public String employee_dashboard(HttpSession session,Model model) {
@@ -447,6 +450,7 @@ public class MainController {
 	//employee attendance details page
 	@RequestMapping(value="/employee_attendance_details/{selectedDate}")
 		public String showPunchDetails(@PathVariable("selectedDate") String selectedDate,Model model,HttpSession session) {
+	
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
@@ -530,7 +534,7 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("Work %02d:%02d:%02d ", totalHours, totalMinutes, totalSeconds);
+		    return String.format("%02d:%02d:%02d ", totalHours, totalMinutes, totalSeconds);
 		}
 	
 	  public String calculateExtraWorkDashboard(List<PunchIn> punchInDetails,List<PunchOut> punchOutDetails,String selectedDate){
@@ -555,7 +559,7 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("Extra Work: %02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		    return String.format("%02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
 		}
 	  
 	@RequestMapping(value="/employee_leave",method=RequestMethod.GET)
@@ -619,6 +623,7 @@ public class MainController {
 	@RequestMapping(value="/signout",method=RequestMethod.GET)
 	public RedirectView signout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
 		session.invalidate();
+	
 		RedirectView redirectView=new RedirectView();
 		redirectView.setUrl(request.getContextPath()+"/");
 		return redirectView;
