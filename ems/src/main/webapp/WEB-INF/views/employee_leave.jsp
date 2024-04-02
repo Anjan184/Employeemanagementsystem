@@ -14,6 +14,9 @@
 
 
 <style>
+
+
+
 .leave-table th, .leave-table td {
 	padding: 10px;
 	border: 1px solid #ddd;
@@ -94,6 +97,8 @@
     .add-leave-btn:hover {
         background-color: #0056b3; /* Darker blue background on hover */
     }
+    
+    
 </style>
 </head>
 
@@ -263,7 +268,7 @@
 
 		<section class="section ">
 			<table class="leave-table">
-				<thead>
+				<thead> 
 					<tr>
 						<th>Id</th>
 						<th>From Date</th>

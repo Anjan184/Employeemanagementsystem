@@ -8,130 +8,129 @@
 <%@include file="./base.jsp"%>
 
 <title>Login page</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Include Bootstrap CSS -->
 <style>
 
- body {
-    background-image: url("resources/assets/img/5172658.jpg");
-    background-size: cover;
-    background-position: center; 
-    
-} 
+body {
+    background-image:url("resources/assets/img/top-view.jpg");
+    font-family: Arial, sans-serif;
+    background-size:cover;
+    background-position:center;
+    margin: 0;
+    padding: 0;
+}
 
-form {
-
-	
-    width: 300px;
-    margin: 0 auto;
-
- 
-  	
-  
+.lgn {
+    width: 350px;
+    margin: 80px auto; /* Center the form horizontally */
+    padding: 10px;
+    height:450px;;
+    border: none; /* Remove border */
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8); /* Set background color with transparency */
 }
 
 .logo-container {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: center; /* Center items horizontally */
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
+    margin-left:90%;
 }
-select {
-    width: 100%;
+
+select, input[type="email"], input[type="password"]{
+    width: 80%;
+    margin-left:33px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+
+
 button {
-    width: 100%;
-    padding: 10px;
+    width: 60%;
+  
+    margin-left:64px;
     background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 5px;
+
+    border-radius: 70px;
     cursor: pointer;
+      /* Center the button horizontally */
+  
+   
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-.lgn{
-margin-top:190px;
-
-}
-
-.login-text{
-margin-bottom:30px;
-text-align:center;
-font-weight:bold;
-font-size: 30px;
-color:white;
-}
-
-.logo-img{
-    width: 24px; /* Adjust the width of the image */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Add space between the logo and ESS */
-}
-.mail{
-color:white;
-}
-
-.pass{
-color:white;
-
-}
-
-.rl{
-color:white;
-}
-.d-none.d-lg-block {
-    color: white; 
+.login-text {
+    margin-bottom: 30px;
+    text-align: center;
     font-weight: bold;
+    font-size: 24px;
+    color: #333;
+}
+
+.logo-img {
+    width: 24px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.rl {
+    color: #333;
+text-align:center;
+}
+
+.role{
+width:80%;
+
 }
 
 
 </style>
 </head>
 <body>
-
-	<form action="Dashboard" method="post">
-        
-          <div class="lgn"> 
-             <div class="logo-container">
-            <img src="resources/assets/img/logo.png" alt="Logo" class="logo-img">
-            <span class="d-none d-lg-block">ESS</span>
-        </div>
-        <span class="login-text d-none d-lg-block">Login</span>
-        
-        <label for="email" class="mail">Username:</label>
-        <input type="email" name="email" id="email" required>
-        <br>
-        <label for="password" class="pass">Password :</label>
-        <input type="password" name="password" id="password" required>
-        
-        <br>
-
-
-        <label for="role"  class="rl">Select Role:</label>
-        <select  name="role" id="role" required>
-            <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
-        </select>
-
-        <br>
-
-        <button type="submit">Login</button>
+<div class="logo-container">
+        <img src="resources/assets/img/logo.png" alt="Logo" class="logo-img">
+        <span class="d-none d-lg-block" style="font-size:30px;"><b>ESS</b></span>
     </div>
-    </form>
+    
 
-        	<!-- Display error message -->
+<form action="Dashboard" method="post" class="lgn">
+    
+    <span class="login-text d-none d-lg-block">Login Here</span>
+    
+    <label for="email" class="mail col-8 text-right font-weight-bold">Username</label>
+    <input type="email" name="email" id="email" class="form-control" placeholder="Enter Username" required> <!-- Add Bootstrap form-control class -->
+    <br>
+    <label for="password" class="pass col-8 text-right font-weight-bold">Password</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required> <!-- Add Bootstrap form-control class -->
+    
+    <br>
+
+    <label for="role" class="rl col-8 text-right font-weight-bold" >Select Role</label>
+    <select name="role" id="role" class="role" required> <!-- Add Bootstrap form-control class -->
+        <option value="admin">Admin</option>
+        <option value="employee">Employee</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button type="submit" class="btn btn-primary">Login</button> <!-- Add Bootstrap btn and btn-primary classes -->
+</form>
+
+<!-- Display error message -->
 <c:if test="${not empty error}">
-    <div class="alert alert-danger" role="alert">
+    <div class="alert" role="alert">
         ${error}
     </div>
 </c:if>
-        	
+
 </body>
 </html>
