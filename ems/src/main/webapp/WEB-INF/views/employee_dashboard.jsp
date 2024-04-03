@@ -16,15 +16,14 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 <style>
+.toggle-sidebar #sidebar {
+	width: 350px; /* Set your desired max width */
+}
 
-   .toggle-sidebar #sidebar {
-        width: 350px; /* Set your desired max width */
-    }
-
-    /* Adjust main content width when toggle-sidebar class is applied */
-    .toggle-sidebar #main {
-        margin-left: 20px; /* Same as the sidebar width */
-    }
+/* Adjust main content width when toggle-sidebar class is applied */
+.toggle-sidebar #main {
+	margin-left: 20px; /* Same as the sidebar width */
+}
 
 .highlighted {
 	background-color: red;
@@ -134,8 +133,7 @@
 			<a href="employee_dashboard" class="logo d-flex align-items-center">
 				<img src="resources/assets/img/logo.png" alt=""> <span
 				class="d-none d-lg-block">ESS</span>
-			</a> 
-			<i class="bi bi-list toggle-sidebar-btn"></i>
+			</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 
 		</div>
 		<!-- End Logo -->
@@ -151,8 +149,7 @@
 						src="resources/assets/img/profile-img.jpg" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -185,8 +182,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -275,7 +271,7 @@
 			<li class="nav-item"><a href="punchin"
 				class="punch-btn punch-in-btn">Punch In</a></li>
 
-		
+
 			<li class="nav-item"><a href="punchout"
 				class="punch-btn punch-out-btn">Punch Out</a></li>
 
@@ -287,7 +283,7 @@
 
 	<main id="main" class="main">
 
-		<div class="pagetitle" >
+		<div class="pagetitle">
 			<h1>Employee Dashboard</h1>
 			<nav>
 				<ol class="breadcrumb">
@@ -297,31 +293,27 @@
 			</nav>
 		</div>
 
-	<div class="flex:container" style="display: flex-row; justify-content: space-between;">
 
-		<div class="container">
+
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card border-0 shadow-lg rounded"
-						style="height: 310px; width: 79%; margin-left: 50px; margin-top: 3px; border: 2px solid #ccc; background-color: #f8f9fa;">
+						style="height: 310px; width: 75%; margin-top: 3px; margin-left: 80px; border: 2px solid #ccc; background-color: #f8f9fa;">
 						<div class="card-body">
 							<h5 class="card-title text-center"
 								style="margin-top: -2%; color: #343a40;">Holidays Calendar</h5>
-				
 							<div id="holidaysCarousel" class="carousel slide"
 								data-bs-ride="carousel">
-								<div class="carousel-inner" style="margin-top: -1%;">
-									
+								<div class="carousel-inner">
 									<c:forEach items="${monthsAndYear}" var="monthYear"
 										varStatus="status">
 										<div
 											class="carousel-item <c:if test="${status.index eq 0}">active</c:if>">
 											<div class="row">
-											
 												<b class="text-center " style="margin-top: -5px;">${monthYear}</b>
 											</div>
 											<div class="row">
-											
 												<ul class="list-inline text-center ">
 													<li class="list-inline-item" style="width: 10.28%">Mon</li>
 													<li class="list-inline-item" style="width: 9.28%">Tue</li>
@@ -333,11 +325,8 @@
 												</ul>
 											</div>
 											<div class="row">
-												
 												<ul class="list-inline text-center"
 													style="margin-top: -11px;">
-
-
 													<c:forEach items="${monthsAndDays[status.index]}"
 														var="dayOfMonth" varStatus="dayStatus">
 														<c:set var="highlight" value="false" />
@@ -347,10 +336,8 @@
 																test="${DateOfHolidays.contains(dayString.concat(monthYear)) || ToDateOfHolidays.contains(dayString.concat(monthYear))}">
 																<c:set var="highlight" value="true" />
 																<c:set var="highlight" value="true" />
-
 															</c:if>
 														</c:if>
-
 														<li
 															class="list-inline-item ${highlight ? 'highlighted' : ''}"
 															style="width: 9.28%">${dayOfMonth}</li>
@@ -360,7 +347,6 @@
 										</div>
 									</c:forEach>
 								</div>
-							
 								<button class="carousel-control-prev" type="button"
 									data-bs-target="#holidaysCarousel" data-bs-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -375,24 +361,16 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 
-	
-
-
-	<div class="container">
 				<div class="col-md-6">
 					<div class="card border-0 shadow-lg rounded"
-						style="height: 310px; width: 79%; margin-left: 500px; margin-top:-73%;background-color: #f8f9fa;">
+						style="height: 310px; width: 75%; margin-top: 3px;margin-left:70px; border: 2px solid #ccc; background-color: #f8f9fa;">
 						<div class="card-body">
-							<h5 class="card-title text-center mb-4" style="color: #343a40;">Events
+							<h5 class="card-title text-center mb-4" style="color: #343a40;margin-top: -2%;">Events
 								Calendar</h5>
-					
 							<div id="eventsCarousel" class="carousel slide"
 								data-bs-ride="carousel">
-								<div class="carousel-inner" style="margin-top: -3%;">
-							
+								<div class="carousel-inner" style="margin-top: -5%;">
 									<c:forEach items="${monthsAndYear}" var="monthYear"
 										varStatus="status">
 										<div
@@ -411,15 +389,11 @@
 													<li class="list-inline-item" style="width: 9.28%">Fri</li>
 													<li class="list-inline-item" style="width: 9.28%">Sat</li>
 													<li class="list-inline-item" style="width: 9.28%">Sun</li>
-											
 												</ul>
 											</div>
-
 											<div class="row">
-
 												<ul class="list-inline text-center"
 													style="margin-top: -13px;">
-											
 													<c:forEach items="${monthsAndDays[status.index]}"
 														var="dayOfMonth" varStatus="dayStatus">
 														<c:set var="highlight" value="false" />
@@ -427,12 +401,10 @@
 														<c:if test="${MonthAndYearInEvent.contains(monthYear)}">
 															<c:if
 																test="${DateOfEvent.contains(dayString.concat(monthYear))}">
-
 																<c:set var="highlight" value="true" />
 																<c:set var="highlight" value="true" />
 															</c:if>
 														</c:if>
-
 														<li
 															class="list-inline-item ${highlight ? 'highlighted' : ''}"
 															style="width: 9.28%">${dayOfMonth}</li>
@@ -441,9 +413,7 @@
 											</div>
 										</div>
 									</c:forEach>
-
 								</div>
-						
 								<button class="carousel-control-prev" type="button"
 									data-bs-target="#eventsCarousel" data-bs-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -459,82 +429,92 @@
 					</div>
 				</div>
 			</div>
-</div>
-</div>
+		</div>
+
+
 
 
 		<div class="container">
-    <div class="row">
+			<div class="row">
 
-        <div class="col-md-4">
-            <div class="card bg-primary border-0 shadow-lg rounded" style="height: 115px;">
-                <div class="card-body " style="border-radius: 30px;">
-                    <h5 class="card-title mb-3" style="font-size: 1.2rem; color: #fff;">Total Time</h5>
-                    <div class="total-time">
-                        <span class="total-time-value" style="font-size: 1.5rem;color:white;">${totalTime}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="col-md-4">
+					<div class="card bg-primary border-0 shadow-lg rounded"
+						style="height: 115px;">
+						<div class="card-body " style="border-radius: 30px;">
+							<h5 class="card-title mb-3"
+								style="font-size: 1.2rem; color: #fff;">Total Time</h5>
+							<div class="total-time">
+								<span class="total-time-value"
+									style="font-size: 1.5rem; color: white;">${totalTime}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        <div class="col-md-4">
-            <div class="card bg-success border-0 shadow-lg rounded" style="height: 115px;">
-                <div class="card-body " style="border-radius: 30px;">
-                    <h5 class="card-title mb-3" style="font-size: 1.2rem; color: #fff;">Total Leaves Applied</h5>
-                    <div class="total-leaves">
-                        <span class="total-leaves-value" style="font-size: 1.5rem;color:white;">${totalLeaves}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="col-md-4">
+					<div class="card bg-success border-0 shadow-lg rounded"
+						style="height: 115px;">
+						<div class="card-body " style="border-radius: 30px;">
+							<h5 class="card-title mb-3"
+								style="font-size: 1.2rem; color: #fff;">Total Leaves
+								Applied</h5>
+							<div class="total-leaves">
+								<span class="total-leaves-value"
+									style="font-size: 1.5rem; color: white;">${totalLeaves}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        <div class="col-md-4">
-            <div class="card bg-danger border-0 shadow-lg rounded" style="height: 115px;">
-                <div class="card-body " style="border-radius: 30px;">
-                    <h5 class="card-title mb-3" style="font-size: 1.2rem; color: #fff;">Extra Time</h5>
-                    <div class="total-time">
-                        <span class="total-time-value" style="font-size: 1.5rem;color:white;">${ExtraTime}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="col-md-4">
+					<div class="card bg-danger border-0 shadow-lg rounded"
+						style="height: 115px;">
+						<div class="card-body " style="border-radius: 30px;">
+							<h5 class="card-title mb-3"
+								style="font-size: 1.2rem; color: #fff;">Extra Time</h5>
+							<div class="total-time">
+								<span class="total-time-value"
+									style="font-size: 1.5rem; color: white;">${ExtraTime}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    </div>
-</div>
+			</div>
+		</div>
 
-	<script>
+		<script>
+			function select(selector) {
+				return document.querySelector(selector);
+			}
 
-	 function select(selector) {
-	        return document.querySelector(selector);
-	    }
+			function on(event, element, callback) {
+				document.addEventListener(event, function(e) {
+					if (e.target.closest(element)) {
+						callback(e);
+					}
+				});
+			}
 
-	    function on(event, element, callback) {
-	        document.addEventListener(event, function (e) {
-	            if (e.target.closest(element)) {
-	                callback(e);
-	            }
-	        });
-	    }
+			if (select('.toggle-sidebar-btn')) {
+				on('click', '.toggle-sidebar-btn', function(e) {
+					const body = select('body');
+					body.classList.toggle('toggle-sidebar');
+					const icon = select('.toggle-sidebar-btn i');
+					// Toggle icon based on body class
+					if (body.classList.contains('toggle-sidebar')) {
 
-	    if (select('.toggle-sidebar-btn')) {
-	        on('click', '.toggle-sidebar-btn', function (e) {
-	            const body = select('body');
-	            body.classList.toggle('toggle-sidebar');
-	            const icon = select('.toggle-sidebar-btn i');
-	            // Toggle icon based on body class
-	            if (body.classList.contains('toggle-sidebar')) {
-		        
-	                icon.classList.remove('bi-list');
-	               // Change to your desired icon when sidebar is toggled
-	            } else {
-	                icon.classList.remove('bi-x'); // Change to your desired icon when sidebar is not toggled
-	                icon.classList.add('bi-list');
-	                
-	            }
-	            e.preventDefault(); // Prevent default behavior of the anchor tag
-	        });
-	    }
-</script>
+						icon.classList.remove('bi-list');
+						// Change to your desired icon when sidebar is toggled
+					} else {
+						icon.classList.remove('bi-x'); // Change to your desired icon when sidebar is not toggled
+						icon.classList.add('bi-list');
+
+					}
+					e.preventDefault(); // Prevent default behavior of the anchor tag
+				});
+			}
+		</script>
 
 
 	</main>

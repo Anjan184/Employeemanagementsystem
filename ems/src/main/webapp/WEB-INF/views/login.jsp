@@ -18,6 +18,8 @@ body {
     background-position:center;
     margin: 0;
     padding: 0;
+     height: 100vh; /* Set body height to viewport height */
+    overflow: hidden;
 }
 
 .lgn {
@@ -26,16 +28,17 @@ body {
     padding: 10px;
     height:450px;;
     border: none; /* Remove border */
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.8); /* Set background color with transparency */
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.6); /* Set background color with transparency */
+    
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-left:90%;
+    justify-content: right;
+    margin-top:-2 %;
+	margin-right:25px;
 }
 
 select, input[type="email"], input[type="password"]{
@@ -76,19 +79,20 @@ button:hover {
 }
 
 .logo-img {
-    width: 24px;
+    width: 37px;
     height: auto;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 .rl {
     color: #333;
 text-align:center;
+
 }
 
 .role{
 width:80%;
-
+border-radius:5px;
 }
 
 
@@ -97,7 +101,7 @@ width:80%;
 <body>
 <div class="logo-container">
         <img src="resources/assets/img/logo.png" alt="Logo" class="logo-img">
-        <span class="d-none d-lg-block" style="font-size:30px;"><b>ESS</b></span>
+        <span class="d-none d-lg-block" style="font-size:60px;"><b>ESS</b></span>
     </div>
     
 
@@ -122,7 +126,7 @@ width:80%;
     <br>
     <br>
 
-    <button type="submit" class="btn btn-primary">Login</button> <!-- Add Bootstrap btn and btn-primary classes -->
+    <button type="submit" class="btn btn-primary" style="border-radius:50px;">Login</button> <!-- Add Bootstrap btn and btn-primary classes -->
 </form>
 
 <!-- Display error message -->
