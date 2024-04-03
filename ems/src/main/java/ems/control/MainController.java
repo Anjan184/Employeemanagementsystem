@@ -612,6 +612,8 @@ public class MainController {
 		return "employee_profile";
 	}
 	
+	
+	
 	@RequestMapping(value="/employee_contact")
 	public String employee_contact(HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
@@ -619,6 +621,21 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
 		return "employee_contact";
 	}
+	
+	@RequestMapping(value="/editprofile",method=RequestMethod.POST)
+	public String edit_profile(HttpSession session,Model model,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String email,@RequestParam String password) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        currentUser.setFullname(fullname);
+        currentUser.setAddress(address);
+        currentUser.setContact(contact);
+        currentUser.setEmail(email);
+        currentUser.setPassword(password);
+        userDao.createUser(currentUser);
+		return "employee_profile";
+	}
+	
 	
 	@RequestMapping(value="/signout",method=RequestMethod.GET)
 	public RedirectView signout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
