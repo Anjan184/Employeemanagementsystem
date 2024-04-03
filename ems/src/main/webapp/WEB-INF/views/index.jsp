@@ -11,7 +11,9 @@
   <title>ESS</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  
 <style>
+
 .employee-table {
     width: 103%;
     border-collapse: collapse;
@@ -169,7 +171,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Leave Management</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-house-door"></i><span>Leave Management</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -191,7 +193,22 @@
           </li>
           
         </ul>
- 
+        
+ <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#tasks-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-check2-square"></i><span>Tasks</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="tasks-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a class="nav-link" href="tasks">
+                <i class="bi bi-circle"></i><span>Assign Tasks</span>
+            </a>
+        </li>
+       
+    </ul>
+</li><!-- End Tables Nav -->
+
+		
 
       <li class="nav-heading">Pages</li>
 
