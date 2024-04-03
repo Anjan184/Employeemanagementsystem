@@ -1,10 +1,9 @@
 <%@page import="ems.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@include file="./base.jsp" %>
+ <%@include file="./base.jsp" %>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -33,7 +32,20 @@
     background-color: #f9f9f9; /* Alternate row background color */
 }
 
+.add-new-employee-btn {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding */
+        background-color: #007bff; /* Blue background color */
+        color: white; /* White text color */
+        text-decoration: none; /* Remove underline */
+        border-radius: 5px; /* Rounded border */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
 
+    /* Hover effect */
+    .add-new-employee-btn:hover {
+        background-color: #0056b3; /* Darker blue background on hover */
+    }
 </style>
 </head>
 
@@ -243,13 +255,11 @@
                 <td>${employee.position}</td>
                 <td>${employee.bloodgroup}</td>
                 <td>${employee.address}</td>
-                <td>
                 
-                <div>
+                <td>
                 <a href="edit_employee/${employee.id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
                 <a href="delete/${employee.id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
-            	</div>
-            </td>
+          	    </td>
             </tr>
         </c:forEach>
     </tbody>
@@ -257,7 +267,7 @@
 	<br>
 				
 	<div style="text-align: center;">
-   <a href="add_new_employee"><strong>Add new employee</strong></a>
+   <a href="add_new_employee" class="add-new-employee-btn"><strong>Add new employee</strong></a>
 	</div>
      
     </section>

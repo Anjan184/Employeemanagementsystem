@@ -35,6 +35,39 @@
 	background-color: #ddd;
 }
 
+.attendance-table th {
+	font-size: 14px; /* Adjust font size */
+	color: #333; /* Darker text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
+
+/* Additional styling for table rows */
+.attendance-table td {
+	font-size: 14px; /* Adjust font size */
+	color: #555; /* Dark gray text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
+
+/* Styling for hover effect */
+.attendance-table tbody tr:hover td {
+	background-color: #e2e2e2; /* Light gray background on hover */
+}
+
+.attendance-table td a {
+	display: inline-block;
+	padding: 8px 12px;
+	background-color: #007bff; /* Blue background color */
+	color: #fff; /* White text color */
+	text-decoration: none; /* Remove default underline */
+	border-radius: 4px; /* Rounded corners */
+	transition: background-color 0.3s ease;
+	/* Smooth transition on hover */
+}
+
+.attendance-table td a:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+}
+
 </style>
 </head>
 
@@ -219,7 +252,7 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-     	<h1 style="text-align: center;">Attendance</h1>
+
 			<table class="attendance-table">
 				<thead>
 					<tr>

@@ -35,6 +35,55 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
+  .holiday-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .holiday-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .holiday-table tbody tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  /* Additional styling for table header */
+
+  .holiday-table th {
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Additional styling for table rows */
+
+  .holiday-table td {
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Dark gray text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Styling for hover effect */
+
+  .holiday-table tbody tr:hover td {
+    background-color: #e2e2e2; /* Light gray background on hover */
+  }
+  
+  .add-holiday-btn {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding */
+        background-color: #007bff; /* Blue background color */
+        color: white; /* White text color */
+        text-decoration: none; /* Remove underline */
+        border-radius: 5px; /* Rounded border */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    /* Hover effect */
+    .add-holiday-btn:hover {
+        background-color: #0056b3; /* Darker blue background on hover */
+    }
+
 </style>
 </head>
 
@@ -251,7 +300,7 @@
       <br>
       
       <div style="text-align: center;">
-  	 <a href="add_new_holiday"><strong>Add new Holiday</strong></a>
+  	 <a href="add_new_holiday" class="add-holiday-btn"><strong>Add new Holiday</strong></a>
 	</div>
 	
     </section>

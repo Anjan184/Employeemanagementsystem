@@ -77,7 +77,10 @@ public class MainController {
 	
 	//this redirect to add new employee page when clicked on add new employee button(Admin)
 	@RequestMapping(value="/add_new_employee")
-	public String add_new_employee() {
+	public String add_new_employee(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
 		return "add_new_employee";
 	}
 	
@@ -144,7 +147,10 @@ public class MainController {
 	
 	//add event page
 	@RequestMapping(value="/add_event")
-	public String Add_new_event() {
+	public String Add_new_event(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
 		return "add_event";
 	}
 
@@ -182,7 +188,10 @@ public class MainController {
 	
 	//holiday button and when clicked fire add holiday(Admin)
 	@RequestMapping(value="/add_new_holiday")
-	public String Add_new_holiday() {
+	public String Add_new_holiday(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
 		return "add_holiday";
 	}
 	
