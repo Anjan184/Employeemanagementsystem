@@ -26,7 +26,7 @@ body {
     width: 350px;
     margin: 80px auto; /* Center the form horizontally */
     padding: 10px;
-    height:450px;;
+    height:380px;;
     border: none; /* Remove border */
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.6); /* Set background color with transparency */
@@ -110,20 +110,13 @@ border-radius:5px;
     <span class="login-text d-none d-lg-block">Login Here</span>
     
     <label for="email" class="mail col-8 text-right font-weight-bold">Username</label>
+    <br>
     <input type="email" name="email" id="email" class="form-control" placeholder="Enter Username" required> <!-- Add Bootstrap form-control class -->
     <br>
     <label for="password" class="pass col-8 text-right font-weight-bold">Password</label>
+    <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required> <!-- Add Bootstrap form-control class -->
     
-    <br>
-
-    <label for="role" class="rl col-8 text-right font-weight-bold" >Select Role</label>
-    <select name="role" id="role" class="role" required> <!-- Add Bootstrap form-control class -->
-        <option value="admin">Admin</option>
-        <option value="employee">Employee</option>
-    </select>
-
-    <br>
     <br>
 
     <button type="submit" class="btn btn-primary" style="border-radius:50px;">Login</button> <!-- Add Bootstrap btn and btn-primary classes -->

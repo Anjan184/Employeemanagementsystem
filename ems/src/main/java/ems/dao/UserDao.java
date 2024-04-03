@@ -93,13 +93,27 @@ public class UserDao {
 		  }
 	
 	@Transactional
-	public boolean authenticateUser(String email, String password,String role) {
+	public boolean authenticateUser(String email, String password) {
 		 Session session = sessionFactory.getCurrentSession();
-	    String hql = "FROM User WHERE email = :email and password = :password and role=:role";
-	    List<User> users = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(hql, User.class).setParameter("email", email).setParameter("password", password).setParameter("role", role).getResultList();
+	    String hql = "FROM User WHERE email = :email and password = :password ";
+	    List<User> users = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(hql, User.class).setParameter("email", email).setParameter("password", password).getResultList();
+	   
 	    return !users.isEmpty();
 	}
 	
+	@Transactional
+	public User getUserByEmail(String email) {
+	    Session session = sessionFactory.getCurrentSession();
+	    String hql = "FROM User WHERE email = :email";
+	    List<User> users = session.createQuery(hql, User.class)
+	                              .setParameter("email", email)
+	                              .getResultList();
+	    if (!users.isEmpty()) {
+	        return users.get(0); // Assuming emails are unique, return the first user found
+	    } else {
+	        return null; // User not found
+	    }
+	}
 	@Transactional
 	public List<Events> getEvents(){
 		Session session=sessionFactory.getCurrentSession();

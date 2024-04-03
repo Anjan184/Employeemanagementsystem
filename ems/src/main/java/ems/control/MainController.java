@@ -50,17 +50,18 @@ public class MainController {
 	
 	//For authentication purpose of login
 	@RequestMapping(value="/Dashboard", method= {RequestMethod.GET,RequestMethod.POST})
-	public RedirectView admin(@RequestParam String email, @RequestParam String password, @RequestParam String role,Model model,@ModelAttribute User user,HttpSession session,HttpServletRequest request) {
+	public RedirectView admin(@RequestParam String email, @RequestParam String password, Model model,@ModelAttribute User user,HttpSession session,HttpServletRequest request) {
 		session.setAttribute("email", email);		
 	
-		 if (userDao.authenticateUser(email, password, role)) {     
-	            if ("employee".equals(role)) {
+		 if (userDao.authenticateUser(email, password)) {   
+			  User u = userDao.getUserByEmail(email);
+	            if ("employee".equals(u.getRole())) {
 	            	 RedirectView redirectView=new RedirectView();
 	         		redirectView.setUrl(request.getContextPath()+"/employee_dashboard");
 	         		return redirectView;
 	              
 	            }           
-	            else if ("admin".equals(role)) {
+	            else if ("admin".equals(u.getRole())) {
 	            	 List<User> employees = userDao.getAllEmployees();
 	                 model.addAttribute("employees", employees);
 	                 RedirectView redirectView=new RedirectView();
@@ -647,6 +648,31 @@ public class MainController {
 		return redirectView;
 		
 	}
+	
+	@RequestMapping(value="/editprofileadmin",method=RequestMethod.POST)
+	public RedirectView edit_profile_admin(HttpSession session,Model model,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String gender,@RequestParam String email,@RequestParam String password,@RequestParam String bloodgroup,HttpServletRequest request) {
+	
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        
+     
+        currentUser.setFullname(fullname);
+        currentUser.setAddress(address);
+        currentUser.setContact(contact);
+        currentUser.setGender(gender);
+        currentUser.setEmail(email);
+        currentUser.setPassword(password);
+        currentUser.setBloodgroup(bloodgroup);
+        userDao.createUser(currentUser);
+       
+        
+        RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/users-profile");
+		return redirectView;
+		
+	}
+	
 	
 	
 	@RequestMapping(value="/signout",method=RequestMethod.GET)

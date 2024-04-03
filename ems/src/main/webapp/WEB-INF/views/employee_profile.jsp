@@ -364,8 +364,7 @@
 
 
 						<div class="tab-content pt-2">
-							<div class="tab-pane fade show profile-edit pt-2"
-								id="profile-edit">
+							<div class="tab-pane fade show profile-edit pt-2" id="profile-edit">
 
 
 								<form action="editprofile" method="post" >
