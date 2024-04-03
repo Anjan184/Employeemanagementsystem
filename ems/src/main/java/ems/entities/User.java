@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+
+
 @Entity
 public class User {
 	@Id
@@ -25,7 +27,9 @@ public class User {
 	private String bloodgroup;
 	private String address;
 	
+
 	
+
 	public String getAddress() {
 		return address;
 	}
@@ -66,22 +70,6 @@ public class User {
 		this.role = role;
 	}
 	
-
-	public User( String email, String password, String role, String fullname, Date dob, String contact,
-			String gender, String position, String bloodgroup, String address) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.fullname = fullname;
-		this.dob = dob;
-		this.contact = contact;
-		this.gender = gender;
-		this.position = position;
-		this.bloodgroup = bloodgroup;
-		this.address = address;
-	}
-
 	public String getFullname() {
 		return fullname;
 	}
@@ -130,6 +118,22 @@ public class User {
 		this.bloodgroup = bloodgroup;
 	}
 
+	public User(int id, String email, String password, String role, String fullname, Date dob,
+			String contact, String gender, String position, String bloodgroup, String address) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.fullname = fullname;
+		this.dob = dob;
+		this.contact = contact;
+		this.gender = gender;
+		this.position = position;
+		this.bloodgroup = bloodgroup;
+		this.address = address;
+	}
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
