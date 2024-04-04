@@ -36,10 +36,10 @@
 			<ul class="d-flex align-items-center">
 				<li class="nav-item dropdown pe-3"><a
 					class="nav-link nav-profile d-flex align-items-center pe-0"
-					href="#" data-bs-toggle="dropdown"> <img
-						src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>" width="50" height="50" alt="Profile"
-						class="rounded-circle"> <span
-						class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
+					href="#" data-bs-toggle="dropdown"> 
+				<img src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>"  width="50" height="50" alt="Profile" class="rounded-circle">
+
+						<span class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
 				</a>
 				<!-- End Profile Iamge Icon -->
 
@@ -190,7 +190,7 @@
 						<div
 							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-							<img src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>"  width="150" height="150" alt="Profile" class="rounded-circle">
+							<img src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>"  width="100" height="100" alt="Profile" class="rounded-circle">
 							
 							<h2>${currentUser.fullname}</h2>
 							<h3>${currentUser.position}</h3>

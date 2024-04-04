@@ -54,10 +54,12 @@ public class MainController {
 	@RequestMapping(value="/Dashboard", method= {RequestMethod.GET,RequestMethod.POST})
 	public RedirectView admin(@RequestParam String email, @RequestParam String password, Model model,@ModelAttribute User user,HttpSession session,HttpServletRequest request) {
 		session.setAttribute("email", email);		
-	
+		 
 		 if (userDao.authenticateUser(email, password)) {   
-			  User u = userDao.getUserByEmail(email);
-	            if ("employee".equals(u.getRole())) {
+		User u = userDao.getUserByEmail(email);
+		 String img = Base64.encodeBase64String(u.getProfilePicture());
+         session.setAttribute("img",img);
+		if ("employee".equals(u.getRole())) {
 	            	 RedirectView redirectView=new RedirectView();
 	         		redirectView.setUrl(request.getContextPath()+"/employee_dashboard");
 	         		return redirectView;
@@ -291,6 +293,7 @@ public class MainController {
 		 String currentUserEmail = (String) session.getAttribute("email"); 
 	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 	        model.addAttribute("currentUser", currentUser);
+	        
 		return "users-profile";
 	}
 	
@@ -636,12 +639,18 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/editprofile",method=RequestMethod.POST)
-	public RedirectView edit_profile_employee(HttpSession session,Model model,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String gender,@RequestParam String email,@RequestParam String password,@RequestParam String bloodgroup,HttpServletRequest request) {
+	public RedirectView edit_profile_employee(HttpSession session,Model model, @RequestParam("profilePicture") CommonsMultipartFile profilePicture,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String gender,@RequestParam String email,@RequestParam String password,@RequestParam String bloodgroup,HttpServletRequest request) {
 	
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
         
+        if (!profilePicture.isEmpty()) {
+            byte[] imageData = profilePicture.getBytes();
+            currentUser.setProfilePicture(imageData);
+         String img = Base64.encodeBase64String(imageData);
+         session.setAttribute("img",img);
+        }
      
         currentUser.setFullname(fullname);
         currentUser.setAddress(address);
@@ -668,7 +677,7 @@ public class MainController {
  
         if (!profilePicture.isEmpty()) {
             byte[] imageData = profilePicture.getBytes();
-         currentUser.setProfilePicture(imageData);
+            currentUser.setProfilePicture(imageData);
          String img = Base64.encodeBase64String(imageData);
          session.setAttribute("img",img);
         }
