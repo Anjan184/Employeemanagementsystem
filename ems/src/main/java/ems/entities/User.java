@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 
 
@@ -16,6 +17,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @SequenceGenerator(name="id_generator", sequenceName = "id_seq", initialValue = 1, allocationSize = 1)
 	private int id;
+	@Lob
+    private byte[] profilePicture;
 	private String email;
 	private String password;
 	private String role;	
@@ -29,6 +32,14 @@ public class User {
 	
 
 	
+
+	public byte[] getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(byte[] profilePicture) {
+		this.profilePicture = profilePicture;
+	}
 
 	public String getAddress() {
 		return address;
@@ -118,10 +129,13 @@ public class User {
 		this.bloodgroup = bloodgroup;
 	}
 
-	public User(int id, String email, String password, String role, String fullname, Date dob,
+
+	
+	public User(int id, byte[] profilePicture, String email, String password, String role, String fullname, Date dob,
 			String contact, String gender, String position, String bloodgroup, String address) {
 		super();
 		this.id = id;
+		this.profilePicture = profilePicture;
 		this.email = email;
 		this.password = password;
 		this.role = role;
@@ -133,7 +147,7 @@ public class User {
 		this.bloodgroup = bloodgroup;
 		this.address = address;
 	}
-	
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub

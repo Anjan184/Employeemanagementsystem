@@ -37,7 +37,7 @@
 				<li class="nav-item dropdown pe-3"><a
 					class="nav-link nav-profile d-flex align-items-center pe-0"
 					href="#" data-bs-toggle="dropdown"> <img
-						src="resources/assets/img/profile-img.jpg" alt="Profile"
+						src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>" width="50" height="50" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
 				</a>
@@ -190,7 +190,7 @@
 						<div
 							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-							<img src="resources/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+							<img src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>"  width="150" height="150" alt="Profile" class="rounded-circle">
 							
 							<h2>${currentUser.fullname}</h2>
 							<h3>${currentUser.position}</h3>
@@ -278,15 +278,15 @@
 							<div class="tab-pane fade show profile-edit pt-2" id="profile-edit">
 
 
-								<form action="editprofileadmin" method="post" >
+								<form action="editprofileadmin" method="post" enctype="multipart/form-data" >
 
 
-						<!-- 		<div class="row mb-3">
+						 		<div class="row mb-3">
 							        <label class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
 							        <div class="col-md-8 col-lg-9">
-							            <input type="file" name="profilePicture" class="form-control" >
+							            <input type="file" name="profilePicture" id="profilePicture" class="form-control" >
 							        </div>
-							    </div> -->
+							    </div> 
 																		
 									<div class="row mb-3">
 										<label class="col-md-4 col-lg-3 col-form-label">Full

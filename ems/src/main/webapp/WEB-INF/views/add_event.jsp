@@ -272,7 +272,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index">Home</a></li>
-          <li class="breadcrumb-item">Basic</a></li>
+          <li class="breadcrumb-item">Basic</li>
            <li class="breadcrumb-item active">Add New Event</li>
         </ol>
       </nav>

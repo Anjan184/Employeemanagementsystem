@@ -19,6 +19,7 @@ import ems.entities.Holidays;
 import ems.entities.Leaves;
 import ems.entities.PunchIn;
 import ems.entities.PunchOut;
+
 import ems.entities.User;
 
 
@@ -344,6 +345,7 @@ public class UserDao {
 		String hql="update Leaves set status=:status where leave_Id=:leave_Id";
 		return session.createQuery(hql).setParameter("status", status).setParameter("leave_Id", leave_Id).executeUpdate();		
 	}
+	 
 	
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;

@@ -25,6 +25,9 @@
 	    <property name="suffix" value=".jsp"></property>
 	    </bean>
 	    
+	    <bean id="multipartResolver"   
+  			 class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>   
+	    
 	    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="url" value="jdbc:mysql://localhost:3306/EMS"/>
@@ -49,6 +52,7 @@
 				<value>ems.entities.PunchIn</value>
 				<value>ems.entities.PunchOut</value>
 				<value>ems.entities.Leaves</value>
+			
 			</list>
 		</property>
 	</bean>

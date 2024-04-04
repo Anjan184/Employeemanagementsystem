@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import org.apache.commons.codec.binary.Base64;
 import ems.dao.UserDao;
 import ems.entities.*;
 
@@ -300,7 +302,6 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
 		return "pages-contact";
 	}
-	
 	
 	
 	@RequestMapping(value="/employee_dashboard")
@@ -659,13 +660,19 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/editprofileadmin",method=RequestMethod.POST)
-	public RedirectView edit_profile_admin(HttpSession session,Model model,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String gender,@RequestParam String email,@RequestParam String password,@RequestParam String bloodgroup,HttpServletRequest request) {
+	public RedirectView edit_profile_admin(HttpSession session,Model model, @RequestParam("profilePicture") CommonsMultipartFile profilePicture,@RequestParam String fullname,@RequestParam String address,@RequestParam String contact,@RequestParam String gender,@RequestParam String email,@RequestParam String password,@RequestParam String bloodgroup,HttpServletRequest request) {
 	
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
-        
-     
+ 
+        if (!profilePicture.isEmpty()) {
+            byte[] imageData = profilePicture.getBytes();
+         currentUser.setProfilePicture(imageData);
+         String img = Base64.encodeBase64String(imageData);
+         session.setAttribute("img",img);
+        }
+
         currentUser.setFullname(fullname);
         currentUser.setAddress(address);
         currentUser.setContact(contact);

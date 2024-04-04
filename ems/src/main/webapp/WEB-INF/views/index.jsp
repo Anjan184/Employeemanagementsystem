@@ -193,21 +193,6 @@
           </li>
           
         </ul>
-        
- <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tasks-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-check2-square"></i><span>Tasks</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="tasks-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-            <a class="nav-link" href="tasks">
-                <i class="bi bi-circle"></i><span>Assign Tasks</span>
-            </a>
-        </li>
-       
-    </ul>
-</li><!-- End Tables Nav -->
-
 		
 
       <li class="nav-heading">Pages</li>
