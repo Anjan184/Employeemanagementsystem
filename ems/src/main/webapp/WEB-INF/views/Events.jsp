@@ -281,6 +281,7 @@
               <td>${evnt.time}</td>
               <td>
           	    <div>
+          	     <a href="edit_event?eventid=${evnt.eventid}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
                 <a href="delt/${evnt.eventid}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
             	</div>
             	</tr>

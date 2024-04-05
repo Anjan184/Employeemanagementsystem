@@ -291,6 +291,7 @@
               <td>${hlday.days}</td>
               <td>
           	    <div>
+          	      <a href="edit_holiday?id=${hlday.id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
                 <a href="dlt/${hlday.id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
             	</div>
             	</tr>

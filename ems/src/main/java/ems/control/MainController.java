@@ -149,12 +149,21 @@ public class MainController {
 		return "Events";
 	}
 	
+	 @RequestMapping(value="/edit_event")
+	    public String editEvent(@RequestParam("eventid") int eventid,HttpServletRequest request,Model model) {
+		 Events eve = userDao.findEventById(eventid);
+		 model.addAttribute("eve",eve); 	
+	    	return "editevent";
+	    }
+	 
+
 	//add event page
 	@RequestMapping(value="/add_event")
 	public String Add_new_event(HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
+        
 		return "add_event";
 	}
 
@@ -189,6 +198,13 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
 		return "Holidays";
 	}
+	
+	 @RequestMapping(value="/edit_holiday")
+	    public String editHoliday(@RequestParam("id") int id,HttpServletRequest request,Model model) {
+		 Holidays hol = userDao.findHolidayById(id);
+		 model.addAttribute("hol",hol); 	
+	    	return "edit_holiday";
+	    }
 	
 	//holiday button and when clicked fire add holiday(Admin)
 	@RequestMapping(value="/add_new_holiday")

@@ -19,8 +19,8 @@ public class PunchIn {
 	 @SequenceGenerator(name="p_in_id_generator", sequenceName = "p_in_id_seq", initialValue = 1, allocationSize = 1)
 	private int p_in_id;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="id",nullable = false)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="id")
 	private User user;
 	
 	private Date PunchIn_Date;

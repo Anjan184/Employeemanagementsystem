@@ -182,7 +182,14 @@ public class UserDao {
 	
 	@Transactional
 	public void addEvents(Events event) {
-		this.hibernateTemplate.save(event);
+		this.hibernateTemplate.saveOrUpdate(event);;
+	}
+	
+	@Transactional
+	public Events findEventById(int eventid) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Events where eventid=:eventid";
+		return session.createQuery(hql,Events.class).setParameter("eventid",eventid).uniqueResult();	
 	}
 	
 	@Transactional
@@ -201,7 +208,14 @@ public class UserDao {
 	
 	@Transactional
 	public void addHoliday(Holidays holiday) {
-		this.hibernateTemplate.save(holiday);
+		this.hibernateTemplate.saveOrUpdate(holiday);
+	}
+	
+	@Transactional
+	public Holidays findHolidayById(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Holidays where id=:id";
+		return session.createQuery(hql,Holidays.class).setParameter("id",id).uniqueResult();	
 	}
 	
 	@Transactional

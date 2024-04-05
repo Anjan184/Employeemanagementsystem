@@ -1,76 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="en">
 
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <%@include file="./base.jsp"%>
-<title>Attendance</title>
+<title>Events</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 <style>
-.attendance-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
 
-.attendance-table th, .attendance-table td {
-	padding: 8px;
-	border: 1px solid #ddd;
-	text-align: center;
-}
+  			body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
 
-.attendance-table th {
-	background-color: #f2f2f2;
-}
+        label {
+            font-weight: bold;
+        }
 
-.attendance-table tbody tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
+        input[type="date"],
+        input[type="text"],
+        input[type="time"] {
+            width: 100%;
+            padding: 8px;
+            
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-.attendance-table tbody tr:hover {
-	background-color: #ddd;
-}
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width:40%;
+            margin-left:140px;
+        }
 
-.attendance-table th {
-	font-size: 14px; /* Adjust font size */
-	color: #333; /* Darker text color */
-	border: 1px solid #ccc; /* Lighter border color */
-}
-
-/* Additional styling for table rows */
-.attendance-table td {
-	font-size: 14px; /* Adjust font size */
-	color: #555; /* Dark gray text color */
-	border: 1px solid #ccc; /* Lighter border color */
-}
-
-/* Styling for hover effect */
-.attendance-table tbody tr:hover td {
-	background-color: #e2e2e2; /* Light gray background on hover */
-}
-
-.attendance-table td a {
-	display: inline-block;
-	padding: 8px 12px;
-	background-color: #007bff; /* Blue background color */
-	color: #fff; /* White text color */
-	text-decoration: none; /* Remove default underline */
-	border-radius: 4px; /* Rounded corners */
-	transition: background-color 0.3s ease;
-	/* Smooth transition on hover */
-}
-
-.attendance-table td a:hover {
-	background-color: #0056b3; /* Darker blue on hover */
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+       .fm {
+    width: 50%;
+    margin-left: 220px;
+    border: 2px solid green; /* Set border color to blue */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    padding: 20px; /* Add padding for better spacing */
 }
 </style>
 </head>
 
 <body>
+
 
 	<!-- ======= Header ======= -->
 	<header id="header" class="header fixed-top d-flex align-items-center">
@@ -84,7 +74,6 @@
 		<!-- End Logo -->
 
 
-
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
 
@@ -95,8 +84,7 @@
 						src="data:profilePicture/jpeg;base64,<%=session.getAttribute("img")%>"
 						width="50" height="50" alt="Profile" class="rounded-circle">
 						<span class="d-none d-md-block dropdown-toggle ps-2">${currentUser.fullname}</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -130,8 +118,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -177,7 +164,6 @@
 					data-bs-parent="#sidebar-nav">
 
 
-
 					<li><a href="Attendance_correction"> <i
 							class="bi bi-circle"></i><span>Attendance</span>
 					</a></li>
@@ -194,31 +180,35 @@
 					data-bs-parent="#sidebar-nav">
 					<li><a href="Leave_application"> <i class="bi bi-circle"></i><span>Leave
 								Application</span>
-					</a></li>
-
+					</a>
 					<li><a href="approved_application"> <i
 							class="bi bi-circle"></i><span>Approved Application</span>
 					</a></li>
 
 					<li><a href="rejected_application"> <i
 							class="bi bi-circle"></i><span>Rejected Application</span>
-					</a></li>
+					</a></li></li>
 
-				</ul></li>
-			<!-- End Icons Nav -->
+		</ul>
+		</li>
+		<!-- End Icons Nav -->
 
-			<li class="nav-heading">Pages</li>
+		<li class="nav-heading">Pages</li>
 
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="users-profile"> <i class="bi bi-person"></i> <span>Profile</span>
-			</a></li>
-			<!-- End Profile Page Nav -->
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="users-profile"> <i class="bi bi-person"></i> <span>Profile</span>
+		</a></li>
+		<!-- End Profile Page Nav -->
 
 
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="pages-contact"> <i class="bi bi-envelope"></i> <span>Contact</span>
-			</a></li>
-			<!-- End Contact Page Nav -->
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="pages-contact"> <i class="bi bi-envelope"></i> <span>Contact</span>
+		</a></li>
+		<!-- End Contact Page Nav -->
+
+
+
+
 		</ul>
 
 	</aside>
@@ -227,49 +217,39 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Attendance</h1>
+			<h1>Events</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index">Home</a></li>
-					<li class="breadcrumb-item active">Attendance</li>
+					<li class="breadcrumb-item active">Basic</li>
 				</ol>
 			</nav>
 		</div>
 		<!-- End Page Title -->
 
-		<section class="section">
-
-			<table class="attendance-table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Details</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${employees}" var="emp">
-						<tr>
-						
-							<td>${emp.getFullname()}</td>
-							<td>${emp.getEmail()}</td>
-							<td><a href="attendance_admin/${emp.getId()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Details</a></td>
-						
-						</tr>
-
-
-					</c:forEach>
-
-				</tbody>
-
-			</table>
+		<section class="section dashboard">
+		  <form action="add_new_event" method="post" class="fm">
+    <h1 style="text-align:center">Edit Event</h1>
+   	 <label for="eventid"></label>
+      <input type="hidden" id="eventid" value="${eve.eventid}" name="eventid" required>
+    
+      <label for="date">Date:</label>
+      <input type="date" id="date" value="${eve.date}" name="date" required>
+		
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="${eve.name}" required>
+    
+       <label for="time">Time:</label>
+      <input type="time" id="time" name="time" value="${eve.time}" required>
+    <br><br>
+      <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
 
 
 		</section>
 
 	</main>
 	<!-- End #main -->
-
 	<script>
 		function select(selector) {
 			return document.querySelector(selector);
@@ -288,17 +268,11 @@
 				const body = select('body');
 				body.classList.toggle('toggle-sidebar');
 				const icon = select('.toggle-sidebar-btn i');
-				// Toggle icon based on body class
 
 				e.preventDefault(); // Prevent default behavior of the anchor tag
 			});
 		}
 	</script>
-
-
-	<a href="#"
-		class="back-to-top d-flex align-items-center justify-content-center"><i
-		class="bi bi-arrow-up-short"></i></a>
 
 
 </body>

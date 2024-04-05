@@ -14,8 +14,8 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Leaves {
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="id",nullable = false)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="id")
 	private User user;
 
 	@Id

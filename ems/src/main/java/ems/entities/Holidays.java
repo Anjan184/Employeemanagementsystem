@@ -12,19 +12,11 @@ public class Holidays {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
-private String fromdate;
+private Date fromdate;
 private Date date;
 private String name;
 private int days;
 
-public Holidays(int id, String fromdate, Date date, String name, int days) {
-	super();
-	this.id = id;
-	this.fromdate = fromdate;
-	this.date = date;
-	this.name = name;
-	this.days = days;
-}
 
 public int getId() {
 	return id;
@@ -45,10 +37,11 @@ public Date getDate() {
 public void setDate(Date date) {
 	this.date = date;
 }
-public String getFromdate() {
+
+public Date getFromdate() {
 	return fromdate;
 }
-public void setFromdate(String fromdate) {
+public void setFromdate(Date fromdate) {
 	this.fromdate = fromdate;
 }
 public int getDays() {
@@ -60,5 +53,15 @@ public void setDays(int days) {
 public Holidays() {
 	super();
 }
+public Holidays(int id, Date fromdate, Date date, String name, int days) {
+	super();
+	this.id = id;
+	this.fromdate = fromdate;
+	this.date = date;
+	this.name = name;
+	this.days = days;
+}
+
+
 
 }
