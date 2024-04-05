@@ -585,7 +585,7 @@ public class MainController {
 		}
 	
 	  public String calculateExtraWorkDashboard(List<PunchIn> punchInDetails,List<PunchOut> punchOutDetails,String selectedDate){
-			 long totalMilliseconds = 0;
+		  long totalMilliseconds = 0;
 			for (int i = 0; i < Math.min(punchInDetails.size(), punchOutDetails.size()); i++) {
 	            PunchIn punchIn = punchInDetails.get(i);
 	            PunchOut punchOut = punchOutDetails.get(i);
@@ -606,7 +606,8 @@ public class MainController {
 		        }
 		        totalMinutes -= 30; 
 		    }
-		    return String.format("%02d:%02d", totalHours, totalMinutes, totalSeconds, extraHours, totalMinutes);
+		    return String.format("%02d:%02d", extraHours, totalMinutes);
+
 		}
 	  
 	@RequestMapping(value="/employee_leave",method=RequestMethod.GET)
@@ -628,7 +629,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/process_leave",method=RequestMethod.POST)
-	public String add_leave(@ModelAttribute Leaves leave,Model model,HttpServletRequest request,HttpSession session) {
+	public RedirectView add_leave(@ModelAttribute Leaves leave,Model model,HttpServletRequest request,HttpSession session) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
@@ -637,8 +638,10 @@ public class MainController {
 		List<Leaves> leaves = userDao.getLeaves(currentUser);
 		model.addAttribute("leaves",leaves);
 		
-		return "employee_leave";
-		
+		RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/employee_leave");
+		return redirectView;
+	
 	}
 	
 	@RequestMapping(value="/deleted/{leave_Id}",method=RequestMethod.GET)
