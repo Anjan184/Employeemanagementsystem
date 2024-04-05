@@ -78,6 +78,13 @@ public class PunchOut {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "PunchOut [p_out_id=" + p_out_id + ", user=" + user + ", PunchOut_Date=" + PunchOut_Date + ", PunchOut="
+				+ PunchOut + "]";
+	}
+	
 	
 	
 }

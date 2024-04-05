@@ -221,14 +221,28 @@ public class MainController {
 	
 	@RequestMapping(value="/Attendance_correction")
 	public String Attendance_correction(HttpSession session,Model model) {	
-		String currentUserEmail = (String) session.getAttribute("email"); 
-        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
-        model.addAttribute("currentUser", currentUser);
-    	List<PunchIn> showFirstAdmin=userDao.showFirstInAdmin();
-		model.addAttribute("showFirstAdmin",showFirstAdmin);
-		List<PunchOut> showLast=userDao.showLastOutAdmin();
-		model.addAttribute("showLastAdmin",showLast);
+		 String currentUserEmail = (String) session.getAttribute("email"); 
+	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+	        model.addAttribute("currentUser", currentUser);
+	        List<User> employees = userDao.getAllAttendanceEmployees();
+	        model.addAttribute("employees", employees);
+
 		return "Attendance_correction";
+	}
+	
+	@RequestMapping(value="attendance_admin/{id}")
+	public String Attendance_admin(@PathVariable("id") int id,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+		User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+		model.addAttribute("currentUser", currentUser);
+		
+		 List<PunchIn> showFirstAdmin=userDao.showFirstInAdmin(id);
+			model.addAttribute("showFirstAdmin",showFirstAdmin);
+			
+			List<PunchOut> showLast=userDao.showLastOutAdmin(id);
+			model.addAttribute("showLastAdmin",showLast);	
+	
+			return "attendance_admin";
 	}
 	
 	@RequestMapping(value="/Leave_application",method=RequestMethod.GET)
@@ -485,6 +499,7 @@ public class MainController {
        
         return "employee_attendance_details";
 		}
+	
 	
 	//method to calculate work done between particular punchin and punchout
 	  private List<String> calculateElapsedTimes(List<PunchIn> punchInDetails, List<PunchOut> punchOutDetails,String selectedDate) {

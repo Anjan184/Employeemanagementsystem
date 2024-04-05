@@ -46,6 +46,15 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public List<User> getAllAttendanceEmployees() {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM User where role='employee' ";
+		return session.createQuery(hql,User.class).getResultList();
+		
+	}
+	
+	
+	@Transactional
 	public void updateEmployee(int id,User user) {
 		Session session=sessionFactory.getCurrentSession();
 		 String hql = "UPDATE User u SET " +
@@ -262,20 +271,22 @@ public class UserDao {
 	}
 	
 	@Transactional
-	public List<PunchIn> showFirstInAdmin(){
+	public List<PunchIn> showFirstInAdmin(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchIn p WHERE (p.PunchIn_Date, p.p_in_id) IN (SELECT p2.PunchIn_Date, MIN(p2.p_in_id) FROM PunchIn p2 GROUP BY p2.PunchIn_Date)";
-		return session.createQuery(hql,PunchIn.class).getResultList();
+		String hql="FROM PunchIn pi WHERE pi.PunchIn = (SELECT MIN(p.PunchIn) FROM PunchIn p WHERE p.user.id = :id)";
+	
+		return session.createQuery(hql,PunchIn.class).setParameter("id", id).getResultList();
 	}
 	
 	@Transactional
-	public List<PunchOut> showLastOutAdmin(){
+	public List<PunchOut> showLastOutAdmin(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchOut p WHERE (p.PunchOut_Date, p.p_out_id) IN (SELECT p2.PunchOut_Date, MAX(p2.p_out_id) FROM PunchOut p2 GROUP BY p2.PunchOut_Date)";
-
-		return session.createQuery(hql,PunchOut.class).getResultList();
+		String hql="FROM PunchOut pi WHERE pi.PunchOut = (SELECT MAX(p.PunchOut) FROM PunchOut p WHERE p.user.id = :id)";		
+		List<PunchOut> p= session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
+		return p;
 	}
 	
+
 	
 	@Transactional
 	public void addpunchin(PunchIn punchIn,User user) {

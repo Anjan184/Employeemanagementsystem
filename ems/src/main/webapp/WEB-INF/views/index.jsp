@@ -239,7 +239,7 @@
             <th>Name</th>
             <th>Contact</th>
             <th>Email</th>
-            <th>Gender</th>
+           <th>Password
             <th>Position</th>
             <th>Blood Group</th>
             <th>Address</th>
@@ -253,7 +253,7 @@
                 <td>${employee.fullname}</td>
                 <td>${employee.contact}</td>
                 <td>${employee.email}</td>
-                <td>${employee.gender}</td>
+                <td>${employee.password}</td>
                 <td>${employee.position}</td>
                 <td>${employee.bloodgroup}</td>
                 <td>${employee.address}</td>
