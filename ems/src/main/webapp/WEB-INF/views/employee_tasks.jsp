@@ -47,11 +47,33 @@
 .add-new-task-btn:hover {
 	background-color: #0056b3; /* Darker blue background on hover */
 }
+
+.punch-btn {
+	display: block;
+	width: 80%;
+	padding: 8px;
+	margin-bottom: 10px;
+	border: none;
+	margin-left: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	text-align: center;
+	color: #fff;
+	border-radius: 30px;
+}
+
+.punch-in-btn {
+	background-color: green;
+}
+
+.punch-out-btn {
+	background-color: red;
+}
 </style>
 </head>
 
 <body>
-	<%@include file="./Navemp.jsp" %>
+	<%@include file="./Navemp.jsp"%>
 
 	<main id="main" class="main">
 
@@ -71,24 +93,32 @@
 			<table class="task-table">
 				<thead>
 					<tr>
-					
+
+						<th>Assigned By</th>
 						<th>Task Name</th>
 						<th>Description</th>
-						<th>Assigned By</th>
 						<th>Due Date</th>
 						<th>Status</th>
-					
+
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${task}" var="tsk">
 						<tr>
+							<td>${tsk.assignedBy}</td>
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
-							<td>${tsk.assignedBy}</td>
 							<td>${tsk.due_date}</td>
-							<td>${tsk.status}</td>
 							
+							<td>
+								<form action="process_task_status/${tsk.task_id}" method="post">
+									<select  name="${tsk.status}" required>
+											<option value="ToDo">Todo</option>
+											<option value="In_Progress">In Progress</option>
+											<option value="Done">Done</option>
+									</select>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -98,15 +128,11 @@
 
 			<br>
 
-			<div style="text-align: center;">
-				<a href="add_task" class="add-new-task-btn"><strong>Add
-						new Task</strong></a>
-			</div>
 
 		</section>
 
 	</main>
-	
+
 
 
 </body>
