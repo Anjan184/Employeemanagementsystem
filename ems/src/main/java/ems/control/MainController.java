@@ -315,7 +315,47 @@ public class MainController {
 	}
 	
 
+	@RequestMapping(value="/Admin_tasks")
+	public String Tasks(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        List<Tasks> tasks=userDao.getAllTasks();
+		model.addAttribute("task",tasks);
+		return "Admin-tasks";
+	}
 	
+	@RequestMapping(value="/add_task")
+	public String add_task(Model model,HttpSession session) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids);
+       return "add_new_task";
+	}
+	
+	@RequestMapping(value="/add_button",method=RequestMethod.POST)
+	public RedirectView add_new_task(HttpServletRequest request,HttpSession session,Model model,@ModelAttribute Tasks task) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+		userDao.addTask(task);
+		  List<Tasks> tasks=userDao.getAllTasks();
+			model.addAttribute("task",tasks);
+		 RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/Admin_tasks");
+			return redirectView;
+	}
+	
+	
+	  @RequestMapping(value="/dlete/{task_id}",method= {RequestMethod.GET,RequestMethod.POST})
+	    public RedirectView deleteTasks(@PathVariable("task_id") int task_id,HttpServletRequest request,Tasks task) {
+	    	userDao.deleteTask(task_id,task);
+	    	RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/Admin_tasks");
+			return redirectView;
+	    }
 	
 	//this is help in showing profile of user(Admin,Employee)
 	@RequestMapping(value="/users-profile")

@@ -52,7 +52,7 @@
 				<value>ems.entities.PunchIn</value>
 				<value>ems.entities.PunchOut</value>
 				<value>ems.entities.Leaves</value>
-			
+				<value>ems.entities.Tasks</value>
 			</list>
 		</property>
 	</bean>

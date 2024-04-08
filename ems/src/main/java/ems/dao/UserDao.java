@@ -19,7 +19,7 @@ import ems.entities.Holidays;
 import ems.entities.Leaves;
 import ems.entities.PunchIn;
 import ems.entities.PunchOut;
-
+import ems.entities.Tasks;
 import ems.entities.User;
 
 
@@ -371,6 +371,23 @@ public class UserDao {
 		return session.createQuery(hql).setParameter("status", status).setParameter("leave_Id", leave_Id).executeUpdate();		
 	}
 	 
+	@Transactional
+	public void addTask(Tasks task) {
+		this.hibernateTemplate.saveOrUpdate(task);
+	}
+	
+	@Transactional
+	public List<Tasks> getAllTasks() {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks";
+		 return session.createQuery(hql, Tasks.class).getResultList();	
+	}
+	
+	@Transactional
+	public void deleteTask(int task_id,Tasks task) {
+		Tasks h=this.hibernateTemplate.load(Tasks.class,task_id);
+		this.hibernateTemplate.delete(h);
+	}
 	
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;

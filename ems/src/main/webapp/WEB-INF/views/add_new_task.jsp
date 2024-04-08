@@ -1,9 +1,9 @@
-<%@page import="ems.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@include file="./base.jsp" %>
+     <%@include file="./base.jsp" %>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -12,47 +12,83 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
   
+  
 <style>
 
-.employee-table {
-    width: 103%;
-    border-collapse: collapse;
-    margin: 0 auto;
-}
-
-.employee-table th, .employee-table td {
-    padding: 10px;
-    border: 1px solid #ddd; /* Border style */
-}
-
-.employee-table th {
-    background-color: #f2f2f2; /* Header background color */
-    font-weight: bold;
-}
-
-.employee-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternate row background color */
-}
-
-.add-new-employee-btn {
-        display: inline-block;
-        padding: 10px 20px; /* Adjust padding */
-        background-color: #007bff; /* Blue background color */
-        color: white; /* White text color */
-        text-decoration: none; /* Remove underline */
-        border-radius: 5px; /* Rounded border */
-        transition: background-color 0.3s ease; /* Smooth transition */
+.container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    /* Hover effect */
-    .add-new-employee-btn:hover {
-        background-color: #0056b3; /* Darker blue background on hover */
+    form div {
+      margin-bottom: 15px;
     }
-</style>
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    
+.punch-btn {
+      display: block;
+      width: 80%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: none;
+      margin-left:8px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      color: #fff;
+      border-radius:30px;
+    }
+
+    .punch-in-btn {
+      background-color: green;
+    }
+
+    .punch-out-btn {
+      background-color: red;
+    }
+    
+    h2 {
+      text-align: center;
+    }
+    
+  </style>
+
+
+
 </head>
 
 <body>
-  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -232,62 +268,55 @@
 
   </aside><!-- End Sidebar-->
 
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Admin Dashboard</h1>
+      <h1>Add new Task</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item">Tasks</li>
+          <li class="breadcrumb-item"><a href="Admin_tasks">Assign Tasks</a></li>
+          <li class="breadcrumb-item Active">Add new Task</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
-<h2 style="text-align:center;">All Employees and Admins</h2>
-<br>
+	 <div class="container">
+	 
+        <form action="add_button" method="post">
+		
+         <div>
+            <label for="task_name">Task Name</label>
+            <input type="text" id="task_name" name="task_name" required>
+          </div>
+          
+          <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+          </div>
+          
+          <div>
+        <label for="assignedTo">Assign Task To:</label>
+        <select id="assignedTo" name="assignedTo" required>
+            <c:forEach items="${empids}" var="employee">
+                <option value="${employee.fullname}">${employee.fullname}</option>
+            </c:forEach>
+        </select>
+   		 </div>
+          
+         <div>
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+          </div>
+         
+         <input type="hidden" id="status" name="status" value="Todo">
+         
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 
-<table class="employee-table">
-    <thead>
-        <tr>
-       	    <th>User Id</th>
-            <th>Name</th>
-            <th>Contact</th>
-            <th>Email</th>
-           <th>Password
-            <th>Position</th>
-            <th>Blood Group</th>
-            <th>Address</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${employees}" var="employee">
-            <tr>
-                <td>${employee.id}</td>
-                <td>${employee.fullname}</td>
-                <td>${employee.contact}</td>
-                <td>${employee.email}</td>
-                <td>${employee.password}</td>
-                <td>${employee.position}</td>
-                <td>${employee.bloodgroup}</td>
-                <td>${employee.address}</td>
-                
-                <td>
-                <a href="edit_employee/${employee.id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
-                <a href="delete/${employee.id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
-          	    </td>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
-	<br>
-				
-	<div style="text-align: center;">
-   <a href="add_new_employee" class="add-new-employee-btn"><strong>Add new employee</strong></a>
-	</div>
-     
     </section>
 
   </main><!-- End #main -->
