@@ -228,7 +228,7 @@
 			<h1>Attendance</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index">Home</a></li>
+					<li class="breadcrumb-item">Attendance</li>
 					<li class="breadcrumb-item"><a href="Attendance_correction">Attendance</a></li>
 					<li class="breadcrumb-item active">Attendance Details</li>
 				</ol>

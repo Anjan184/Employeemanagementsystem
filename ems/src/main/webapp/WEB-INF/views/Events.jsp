@@ -97,8 +97,8 @@
 			<h1>Events</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index">Home</a></li>
-					<li class="breadcrumb-item active">Basic</li>
+					<li class="breadcrumb-item">Basic</li>
+					<li class="breadcrumb-item active">Events</li>
 				</ol>
 			</nav>
 		</div>

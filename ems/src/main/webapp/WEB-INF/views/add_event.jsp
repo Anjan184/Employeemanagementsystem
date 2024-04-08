@@ -271,8 +271,8 @@
       <h1>Add Events</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index">Home</a></li>
-          <li class="breadcrumb-item">Basic</li>
+          <li class="breadcrumb-item"><a href="Events">Basic</a></li>
+          <li class="breadcrumb-item">Events</li>
            <li class="breadcrumb-item active">Add New Event</li>
         </ol>
       </nav>
@@ -296,29 +296,7 @@
     
   </div>
   </main>
-  <script>
- function select(selector) {
-	        return document.querySelector(selector);
-	    }
-
-	    function on(event, element, callback) {
-	        document.addEventListener(event, function (e) {
-	            if (e.target.closest(element)) {
-	                callback(e);
-	            }
-	        });
-	    }
-
-	    if (select('.toggle-sidebar-btn')) {
-	        on('click', '.toggle-sidebar-btn', function (e) {
-	            const body = select('body');
-	            body.classList.toggle('toggle-sidebar');
-	            const icon = select('.toggle-sidebar-btn i');
-	          
-	            e.preventDefault(); // Prevent default behavior of the anchor tag
-	        });
-	    }
-</script>
+ 
   
 </body>
 </html>

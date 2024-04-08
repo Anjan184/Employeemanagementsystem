@@ -17,6 +17,7 @@ public class Tasks {
 	private String task_name;
 	private String description;
 	private String assignedTo;
+	private String assignedBy;
 	private Date due_date;
 	private String status;
 	
@@ -56,12 +57,24 @@ public class Tasks {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Tasks(int task_id, String task_name, String description, String assignedTo, Date due_date, String status) {
+	
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+	
+	
+	
+	public Tasks(int task_id, String task_name, String description, String assignedTo, String assignedBy, Date due_date,
+			String status) {
 		super();
 		this.task_id = task_id;
 		this.task_name = task_name;
 		this.description = description;
 		this.assignedTo = assignedTo;
+		this.assignedBy = assignedBy;
 		this.due_date = due_date;
 		this.status = status;
 	}

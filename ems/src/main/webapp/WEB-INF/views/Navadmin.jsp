@@ -156,7 +156,7 @@
     </ul>
 </li><!-- End Tables Nav -->
 
-      <li class="nav-heading">Pages</li>
+      <li class="nav-heading" style="text-align:center;font-size:15px;font-style:italic;"><b>Details</b></li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile">

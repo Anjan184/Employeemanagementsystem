@@ -384,6 +384,14 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public List<Tasks> getAllTasksByName(String name) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks where AssignedTo=:name";
+		 return session.createQuery(hql, Tasks.class).setParameter("name",name).getResultList();	
+	}
+	
+	
+	@Transactional
 	public void deleteTask(int task_id,Tasks task) {
 		Tasks h=this.hibernateTemplate.load(Tasks.class,task_id);
 		this.hibernateTemplate.delete(h);

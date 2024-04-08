@@ -332,17 +332,21 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
         List<User> employeeids = userDao.getAllAttendanceEmployees();
         model.addAttribute("empids",employeeids);
+      
        return "add_new_task";
 	}
 	
 	@RequestMapping(value="/add_button",method=RequestMethod.POST)
-	public RedirectView add_new_task(HttpServletRequest request,HttpSession session,Model model,@ModelAttribute Tasks task) {
+	public RedirectView add_new_task(HttpServletRequest request,HttpSession session,Model model,@ModelAttribute Tasks task,Tasks tk) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
         model.addAttribute("currentUser", currentUser);
+        tk.setAssignedBy(currentUser.getFullname());  
 		userDao.addTask(task);
-		  List<Tasks> tasks=userDao.getAllTasks();
+		List<Tasks> tasks=userDao.getAllTasks();
 			model.addAttribute("task",tasks);
+
+			
 		 RedirectView redirectView=new RedirectView();
 			redirectView.setUrl(request.getContextPath()+"/Admin_tasks");
 			return redirectView;
@@ -692,7 +696,16 @@ public class MainController {
 		return redirectView;
 	}
 	
-	
+	@RequestMapping(value="/employee_tasks")
+	public String employee_task(Model model,HttpServletRequest request,HttpSession session) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+		List<Tasks> tasks=userDao.getAllTasksByName(currentUser.getFullname());
+		model.addAttribute("task",tasks);
+
+		return "employee_tasks";
+	}
 	
 	@RequestMapping(value="/employee_profile")
 	public String employee_profile(HttpSession session,Model model){
