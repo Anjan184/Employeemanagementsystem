@@ -253,7 +253,7 @@
 						
 							<td>${emp.getFullname()}</td>
 							<td>${emp.getEmail()}</td>
-							<td><a href="attendance_admin/${emp.getId()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Details</a></td>
+							<td><a href="attendance_admin?id=${emp.getId()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Details</a></td>
 						
 						</tr>
 

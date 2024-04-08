@@ -282,7 +282,7 @@
 								</c:if>
 							</c:forEach>
 							<td><a
-								href="employee_attendance_details/${showFirst.getPunchIn_Date()}">
+								href="employee_attendance_details?selectedDate=${showFirst.getPunchIn_Date()}">
 									<i class="bi bi-people-fill"></i> Details
 							</a></td>
 						</tr>

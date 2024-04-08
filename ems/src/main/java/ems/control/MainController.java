@@ -246,8 +246,8 @@ public class MainController {
 		return "Attendance_correction";
 	}
 	
-	@RequestMapping(value="attendance_admin/{id}")
-	public String Attendance_admin(@PathVariable("id") int id,HttpSession session,Model model) {
+	@RequestMapping(value="attendance_admin")
+	public String Attendance_admin(@RequestParam("id") int id,HttpSession session,Model model) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
 		User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 		model.addAttribute("currentUser", currentUser);
@@ -494,8 +494,8 @@ public class MainController {
 	}
 	
 	//employee attendance details page
-	@RequestMapping(value="/employee_attendance_details/{selectedDate}")
-		public String showPunchDetails(@PathVariable("selectedDate") String selectedDate,Model model,HttpSession session) {
+	@RequestMapping(value="/employee_attendance_details")
+		public String showPunchDetails(@RequestParam("selectedDate") String selectedDate,Model model,HttpSession session) {
 	
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
