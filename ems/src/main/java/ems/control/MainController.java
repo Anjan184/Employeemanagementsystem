@@ -703,8 +703,19 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
 		List<Tasks> tasks=userDao.getAllTasksByName(currentUser.getFullname());
 		model.addAttribute("task",tasks);
-
+		
 		return "employee_tasks";
+	}
+	
+	@RequestMapping(value="/process_task_status/{task_id}")
+	public RedirectView process_task(@PathVariable int task_id,@RequestParam("status") String status,Tasks tk,HttpServletRequest request) {
+			tk.setStatus(status);
+		userDao.addTask(tk);
+		
+		
+		RedirectView redirectView=new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/employee_tasks");
+		return redirectView;
 	}
 	
 	@RequestMapping(value="/employee_profile")

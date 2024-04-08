@@ -69,6 +69,20 @@
 .punch-out-btn {
 	background-color: red;
 }
+ button[type="submit"] {
+            background-color: green;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width:20%;
+            margin-left:10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
 </style>
 </head>
 
@@ -113,10 +127,11 @@
 							<td>
 								<form action="process_task_status/${tsk.task_id}" method="post">
 									<select  name="${tsk.status}" required>
-											<option value="ToDo">Todo</option>
-											<option value="In_Progress">In Progress</option>
-											<option value="Done">Done</option>
+											<option value="Todo">TODO</option>
+											<option value="In_Progress">IN PROGRESS</option>
+											<option value="Done">DONE</option>
 									</select>
+									 <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-circle-check"></i></button>
 								</form>
 							</td>
 						</tr>
