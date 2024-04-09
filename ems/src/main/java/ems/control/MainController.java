@@ -707,10 +707,10 @@ public class MainController {
 		return "employee_tasks";
 	}
 	
-	@RequestMapping(value="/process_task_status/{task_id}")
+	@RequestMapping(value="/saveStatus/{task_id}")
 	public RedirectView process_task(@PathVariable int task_id,@RequestParam("status") String status,Tasks tk,HttpServletRequest request) {
-			tk.setStatus(status);
-		userDao.addTask(tk);
+		
+		userDao.saveStatus(task_id,status,tk);
 		
 		
 		RedirectView redirectView=new RedirectView();

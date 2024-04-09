@@ -113,7 +113,7 @@
 						<th>Description</th>
 						<th>Due Date</th>
 						<th>Status</th>
-
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -123,10 +123,10 @@
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
 							<td>${tsk.due_date}</td>
-							
+							<td>${tsk.status }</td>
 							<td>
-								<form action="process_task_status/${tsk.task_id}" method="post">
-									<select  name="${tsk.status}" required>
+								<form action="saveStatus/${tsk.task_id}" method="post">
+									<select  name="status" required>
 											<option value="Todo">TODO</option>
 											<option value="In_Progress">IN PROGRESS</option>
 											<option value="Done">DONE</option>

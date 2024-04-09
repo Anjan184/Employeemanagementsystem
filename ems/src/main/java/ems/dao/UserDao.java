@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
 import ems.entities.Events;
@@ -374,6 +375,18 @@ public class UserDao {
 	@Transactional
 	public void addTask(Tasks task) {
 		this.hibernateTemplate.saveOrUpdate(task);
+	}
+	@Transactional
+	public void saveStatus(int task_id,String status,Tasks task) {
+		Session session=sessionFactory.getCurrentSession();
+		 String hql = "UPDATE Tasks t SET " +
+                 "t.status = :status " +
+                 "WHERE t.task_id = :task_id";
+    
+    Query query = session.createQuery(hql);
+    query.setParameter("status", task.getStatus());
+    query.setParameter("task_id",task.getTask_id() );
+    query.executeUpdate();
 	}
 	
 	@Transactional
