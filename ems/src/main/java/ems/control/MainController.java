@@ -325,6 +325,26 @@ public class MainController {
 		return "Admin-tasks";
 	}
 	
+	@RequestMapping(value="/Inprogress_tasks")
+	public String InProgressTasks(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        List<Tasks> tasks=userDao.getInProgressTasks();
+		model.addAttribute("task",tasks);
+		return "Admin-tasks";
+	}
+	
+	@RequestMapping(value="/Done_tasks")
+	public String Done_Tasks(HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        List<Tasks> tasks=userDao.getDoneTasks();
+		model.addAttribute("task",tasks);
+		return "Admin-tasks";
+	}
+	
 	@RequestMapping(value="/add_task")
 	public String add_task(Model model,HttpSession session) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
@@ -709,10 +729,7 @@ public class MainController {
 	
 	@RequestMapping(value="/saveStatus/{task_id}")
 	public RedirectView process_task(@PathVariable int task_id,@RequestParam("status") String status,Tasks tk,HttpServletRequest request) {
-		
-		userDao.saveStatus(task_id,status,tk);
-		
-		
+		userDao.saveStatus(task_id,status,tk);	
 		RedirectView redirectView=new RedirectView();
 		redirectView.setUrl(request.getContextPath()+"/employee_tasks");
 		return redirectView;

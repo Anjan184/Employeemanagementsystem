@@ -392,7 +392,21 @@ public class UserDao {
 	@Transactional
 	public List<Tasks> getAllTasks() {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM Tasks";
+		String hql="FROM Tasks where status='Todo'";
+		 return session.createQuery(hql, Tasks.class).getResultList();	
+	}
+	
+	@Transactional
+	public List<Tasks> getInProgressTasks() {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks where status='In_Progress'";
+		 return session.createQuery(hql, Tasks.class).getResultList();	
+	}
+	
+	@Transactional
+	public List<Tasks> getDoneTasks() {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks where status='Done'";
 		 return session.createQuery(hql, Tasks.class).getResultList();	
 	}
 	

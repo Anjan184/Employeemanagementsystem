@@ -154,6 +154,23 @@
             </a>
         </li>
     </ul>
+    
+    <ul id="assign-tasks-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="Inprogress_tasks">
+                <i class="bi bi-circle"></i><span>In Progress Tasks</span>
+            </a>
+        </li>
+    </ul>
+    
+    <ul id="assign-tasks-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="Done_tasks">
+                <i class="bi bi-circle"></i><span>Done Tasks</span>
+            </a>
+        </li>
+    </ul>
+    
 </li><!-- End Tables Nav -->
 
       <li class="nav-heading" style="text-align:center;font-size:15px;font-style:italic;"><b>Details</b></li>

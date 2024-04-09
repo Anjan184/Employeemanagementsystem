@@ -47,48 +47,11 @@
 .add-new-task-btn:hover {
 	background-color: #0056b3; /* Darker blue background on hover */
 }
-
-.punch-btn {
-	display: block;
-	width: 80%;
-	padding: 8px;
-	margin-bottom: 10px;
-	border: none;
-	margin-left: 8px;
-	cursor: pointer;
-	font-size: 16px;
-	text-align: center;
-	color: #fff;
-	border-radius: 30px;
-}
-
-.punch-in-btn {
-	background-color: green;
-}
-
-.punch-out-btn {
-	background-color: red;
-}
- button[type="submit"] {  
-            color: Green;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width:20%;
-            margin-left:10px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: red;
-            border-radius:60px;
-            
-        }
 </style>
 </head>
 
 <body>
-	<%@include file="./Navemp.jsp"%>
+	<%@include file="./Navadmin.jsp" %>
 
 	<main id="main" class="main">
 
@@ -108,10 +71,11 @@
 			<table class="task-table">
 				<thead>
 					<tr>
-
-						<th>Assigned By</th>
+						<th>Task_Id</th>
 						<th>Task Name</th>
 						<th>Description</th>
+						<th>Assigned To</th>
+						<th>Assigned By</th>
 						<th>Due Date</th>
 						<th>Status</th>
 						<th>Action</th>
@@ -120,22 +84,17 @@
 				<tbody>
 					<c:forEach items="${task}" var="tsk">
 						<tr>
-							<td>${tsk.assignedBy}</td>
+							<td>${tsk.task_id}</td>
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
+							<td>${tsk.assignedTo}</td>
+							<td>${currentUser.fullname}</td>
 							<td>${tsk.due_date}</td>
-							<td>${tsk.status }</td>
-							
-							<td>
-								<form action="saveStatus/${tsk.task_id}" method="post">
-									<select  name="status" required>
-											<option value="Todo">TODO</option>
-											<option value="In_Progress">IN PROGRESS</option>
-											<option value="Done">DONE</option>
-									</select>
-									 <button type="submit" ><i class="fa-solid fa-circle-check"></i></button>
-								</form>
-							</td>
+							<td>${tsk.status}</td>
+							<td><div>
+									<a href="dlete/${tsk.task_id}"><i
+										class="fa-solid fa-trash text-danger">Delete</i></a>
+								</div></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -145,11 +104,15 @@
 
 			<br>
 
+			<div style="text-align: center;">
+				<a href="add_task" class="add-new-task-btn"><strong>Add
+						new Task</strong></a>
+			</div>
 
 		</section>
 
 	</main>
-
+	
 
 
 </body>
