@@ -56,11 +56,11 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Tasks</h1>
+			<h1>InProgress Tasks</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">Tasks</li>
-					<li class="breadcrumb-item Active">Assign Tasks</li>
+					<li class="breadcrumb-item Active">InProgress Tasks</li>
 				</ol>
 			</nav>
 		</div>
