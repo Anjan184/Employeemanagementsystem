@@ -51,11 +51,40 @@
         }
        .fm {
     width: 50%;
-    margin-left: 220px;
-    border: 2px solid green; /* Set border color to blue */
+    margin-left: 250px;
+    border: 1px groove black; /* Set border color to blue */
     border-radius: 10px; /* Add border-radius for rounded corners */
     padding: 20px; /* Add padding for better spacing */
 }
+
+  label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style the input */
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* Additional styles based on your preference */
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            /* Add more styles as needed */
+        }
+
+        /* Style the input when focused */
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+            /* Additional styles for focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
 </style>
 </head>
 
