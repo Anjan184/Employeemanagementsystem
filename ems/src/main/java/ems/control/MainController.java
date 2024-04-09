@@ -1,14 +1,14 @@
 package ems.control;
 
 
-import java.io.IOException;
+
 import java.sql.Date;
 import java.sql.Time;
-import java.time.DayOfWeek;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 import java.util.*;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -110,25 +110,19 @@ public class MainController {
 	        return "index";
 	}
 	
-	//this is button of edit and when clicked fire the link of change details(Admin)
-	@RequestMapping(value="/edit_employee/{id}",method= RequestMethod.GET)
-    public String edit_employee(@PathVariable("id") int id, Model model) {
-        User employee = userDao.getEmployee(id);
-        model.addAttribute("employee", employee);
-        return "edit_employee";
-    }
-    
-	//this is to change employee details(Admin)
-    @RequestMapping(value="/change_details/{id}",method= RequestMethod.POST)
-    public RedirectView change_details(@PathVariable("id") int id,@ModelAttribute User user, Model model,HttpServletRequest request) {
-    	userDao.updateEmployee(id, user);
+	@RequestMapping(value="/edit_employee")
+  public String edit_employee(@RequestParam("id") int id, Model model,HttpServletRequest request,HttpSession session) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+		User user=userDao.findUserById(id);
+        model.addAttribute("user",user);
         List<User> employees = userDao.getAllEmployees();
         model.addAttribute("employees", employees);
-        RedirectView redirectView=new RedirectView();
-		redirectView.setUrl(request.getContextPath()+"/index");
-		return redirectView;
-    }
-    
+		return "edit_employee";
+	}
+	
+	
     //this deletes the employee by the id of employee(Admin)
     @RequestMapping(value="/delete/{id}",method= {RequestMethod.GET,RequestMethod.POST})
     public RedirectView deleteEmployee(@PathVariable("id") int id,HttpServletRequest request) {
@@ -150,7 +144,10 @@ public class MainController {
 	}
 	
 	 @RequestMapping(value="/edit_event")
-	    public String editEvent(@RequestParam("eventid") int eventid,HttpServletRequest request,Model model) {
+	    public String editEvent(@RequestParam("eventid") int eventid,HttpServletRequest request,Model model,HttpSession session) {
+		 String currentUserEmail = (String) session.getAttribute("email"); 
+	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+	        model.addAttribute("currentUser", currentUser);
 		 Events eve = userDao.findEventById(eventid);
 		 model.addAttribute("eve",eve); 	
 	    	return "editevent";
@@ -200,7 +197,10 @@ public class MainController {
 	}
 	
 	 @RequestMapping(value="/edit_holiday")
-	    public String editHoliday(@RequestParam("id") int id,HttpServletRequest request,Model model) {
+	    public String editHoliday(@RequestParam("id") int id,HttpServletRequest request,Model model,HttpSession session) {
+		 String currentUserEmail = (String) session.getAttribute("email"); 
+	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+	        model.addAttribute("currentUser", currentUser);
 		 Holidays hol = userDao.findHolidayById(id);
 		 model.addAttribute("hol",hol); 	
 	    	return "edit_holiday";
@@ -332,7 +332,7 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
         List<Tasks> tasks=userDao.getInProgressTasks();
 		model.addAttribute("task",tasks);
-		return "Admin-tasks";
+		return "Inprogress_tasks";
 	}
 	
 	@RequestMapping(value="/Done_tasks")
@@ -342,7 +342,7 @@ public class MainController {
         model.addAttribute("currentUser", currentUser);
         List<Tasks> tasks=userDao.getDoneTasks();
 		model.addAttribute("task",tasks);
-		return "Admin-tasks";
+		return "Done_tasks";
 	}
 	
 	@RequestMapping(value="/add_task")

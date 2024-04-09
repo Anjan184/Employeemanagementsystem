@@ -79,7 +79,7 @@
             <th>Email</th>
            <th>Password
             <th>Position</th>
-            <th>Blood Group</th>
+            <th>Role</th>
        
             <th>Action</th>
         </tr>
@@ -93,12 +93,12 @@
                 <td>${employee.email}</td>
                 <td>${employee.password}</td>
                 <td>${employee.position}</td>
-                <td>${employee.bloodgroup}</td>
+                <td>${employee.role}</td>
             
                 
                 <td><div>
-                <a href="edit_employee/${employee.id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
-                <a href="delete/${employee.id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
+                <a href="edit_employee?id=${employee.id}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
+                <a href="delete/${employee.id}"><i class="fa-solid fa-trash text-danger"></i></a>
           	    </div></td>
             </tr>
         </c:forEach>

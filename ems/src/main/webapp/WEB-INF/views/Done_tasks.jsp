@@ -12,27 +12,62 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<style>
-.task-table {
-	width: 103%;
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-
-.task-table th, .task-table td {
+<style>.task-table th, .task-table td {
 	padding: 10px;
-	border: 1px solid #ddd; /* Border style */
+	border: 1px solid #ddd;
 }
 
 .task-table th {
-	background-color: #f2f2f2; /* Header background color */
+	background-color: #f8f9fa;
+	text-align: left;
 	font-weight: bold;
 }
 
-.task-table tbody tr:nth-child(even) {
-	background-color: #f9f9f9; /* Alternate row background color */
+.task-table td {
+	text-align: left;
 }
 
+ .task-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+ 
+ .task-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .task-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .task-table tbody tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  /* Additional styling for table header */
+
+  .task-table th {
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Additional styling for table rows */
+
+  .task-table td {
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Dark gray text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Styling for hover effect */
+
+  .task-table tbody tr:hover td {
+    background-color: #e2e2e2; /* Light gray background on hover */
+  }
 .add-new-task-btn {
 	display: inline-block;
 	padding: 10px 20px; /* Adjust padding */
@@ -104,10 +139,7 @@
 
 			<br>
 
-			<div style="text-align: center;">
-				<a href="add_task" class="add-new-task-btn"><strong>Add
-						new Task</strong></a>
-			</div>
+		
 
 		</section>
 

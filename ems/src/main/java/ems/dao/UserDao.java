@@ -39,6 +39,13 @@ public class UserDao {
 	}
 	
 	@Transactional
+	public User findUserById(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM User where id=:id";
+		return session.createQuery(hql,User.class).setParameter("id",id).uniqueResult();
+	}
+	
+	@Transactional
 	public List<User> getAllEmployees() {
 		Session session=sessionFactory.getCurrentSession();
 		String hql="FROM User";
@@ -52,33 +59,6 @@ public class UserDao {
 		String hql="FROM User where role='employee' ";
 		return session.createQuery(hql,User.class).getResultList();
 		
-	}
-	
-	
-	@Transactional
-	public void updateEmployee(int id,User user) {
-		Session session=sessionFactory.getCurrentSession();
-		 String hql = "UPDATE User u SET " +
-                 "u.fullname = :fullname, " +
-                 "u.contact = :contact, " +
-                 "u.email = :email, " +
-                 "u.gender = :gender, " +
-                 "u.position = :position, " +
-                 "u.bloodgroup = :bloodgroup, " +
-                 "u.role = :role, " + "u.address = :address "+
-                 "WHERE u.id = :id";
-    
-    Query query = session.createQuery(hql);
-    query.setParameter("fullname", user.getFullname());
-    query.setParameter("contact", user.getContact());
-    query.setParameter("email", user.getEmail());
-    query.setParameter("gender", user.getGender());
-    query.setParameter("position", user.getPosition());
-    query.setParameter("bloodgroup", user.getBloodgroup());
-    query.setParameter("role", user.getRole());
-    query.setParameter("id", id);
-    query.setParameter("address",user.getAddress());
-    query.executeUpdate();
 	}
 	
 	
