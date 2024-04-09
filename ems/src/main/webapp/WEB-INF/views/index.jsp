@@ -80,7 +80,7 @@
            <th>Password
             <th>Position</th>
             <th>Blood Group</th>
-            <th>Address</th>
+       
             <th>Action</th>
         </tr>
     </thead>
@@ -94,12 +94,12 @@
                 <td>${employee.password}</td>
                 <td>${employee.position}</td>
                 <td>${employee.bloodgroup}</td>
-                <td>${employee.address}</td>
+            
                 
-                <td>
+                <td><div>
                 <a href="edit_employee/${employee.id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
                 <a href="delete/${employee.id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>
-          	    </td>
+          	    </div></td>
             </tr>
         </c:forEach>
     </tbody>

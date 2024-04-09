@@ -364,12 +364,25 @@ public class MainController {
         tk.setAssignedBy(currentUser.getFullname());  
 		userDao.addTask(task);
 		List<Tasks> tasks=userDao.getAllTasks();
-			model.addAttribute("task",tasks);
-
-			
+			model.addAttribute("task",tasks);	
 		 RedirectView redirectView=new RedirectView();
 			redirectView.setUrl(request.getContextPath()+"/Admin_tasks");
 			return redirectView;
+	}
+	
+	@RequestMapping(value="edit_task")
+	public String edit_task(@RequestParam("task_id") int task_id,HttpServletRequest request,HttpSession session,Model model,Tasks tk) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        
+        Tasks task=userDao.findTaskById(task_id);
+        model.addAttribute("task",task);
+        
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids);
+  
+        return "edit_task";
 	}
 	
 	

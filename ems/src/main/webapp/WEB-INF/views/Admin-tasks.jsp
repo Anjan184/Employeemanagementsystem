@@ -51,7 +51,7 @@
 </head>
 
 <body>
-	<%@include file="./Navadmin.jsp" %>
+	<%@include file="./Navadmin.jsp"%>
 
 	<main id="main" class="main">
 
@@ -92,9 +92,11 @@
 							<td>${tsk.due_date}</td>
 							<td>${tsk.status}</td>
 							<td><div>
-									<a href="dlete/${tsk.task_id}"><i
-										class="fa-solid fa-trash text-danger">Delete</i></a>
-								</div></td>
+							<a href="edit_task?task_id=${tsk.task_id}"><i class="fa-solid fa-pen-nib text-primary">Edit</i></a>
+							<a href="dlete/${tsk.task_id}"><i class="fa-solid fa-trash text-danger">Delete</i></a>	
+							</div>
+							
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -112,7 +114,7 @@
 		</section>
 
 	</main>
-	
+
 
 
 </body>
