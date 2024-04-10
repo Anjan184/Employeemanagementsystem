@@ -114,6 +114,21 @@
 input[type="date"]:focus {
     border-color: #007bff; /* Border color on focus */
 }
+
+ input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  /* Additional styling */
+  background-color: #fff; /* Background color */
+  color: #000; /* Text color */
+  font-size: 16px; /* Font size */
+  line-height: 1.5; /* Line height */
+  outline: none; /* Remove outline */
+}
   </style>
 </head>
 
@@ -142,7 +157,7 @@ input[type="date"]:focus {
       <input type="date" id="date" name="date" required>
 		
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Name Of Event" required>
+      <input type="text" id="name" name="name" placeholder="Enter Name Of Event" required>
     
        <label for="time">Time:</label>
       <input type="time" id="time" name="time" required>

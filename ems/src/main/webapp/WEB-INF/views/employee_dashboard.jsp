@@ -285,7 +285,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="card bg-primary border-0 shadow-lg rounded"
 						style="height: 115px;">
 						<div class="card-body " style="border-radius: 30px;">
@@ -299,12 +299,12 @@
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="card bg-success border-0 shadow-lg rounded"
 						style="height: 115px;">
 						<div class="card-body " style="border-radius: 30px;">
 							<h5 class="card-title mb-3"
-								style="font-size: 1.2rem; color: #fff;">Total Leaves
+								style="font-size: 1.2rem; color: #fff;">Leaves
 								Applied</h5>
 							<div class="total-leaves">
 								<span class="total-leaves-value"
@@ -314,7 +314,21 @@
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-3">
+					<div class="card bg-danger border-0 shadow-lg rounded"
+						style="height: 115px;">
+						<div class="card-body " style="border-radius: 30px;">
+							<h5 class="card-title mb-3"
+								style="font-size: 1.2rem; color: #fff;">Task Assigned</h5>
+							<div class="total-time">
+								<span class="total-time-value"
+									style="font-size: 1.5rem; color: white;">${TaskAssigned}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3">
 					<div class="card bg-danger border-0 shadow-lg rounded"
 						style="height: 115px;">
 						<div class="card-body " style="border-radius: 30px;">
@@ -327,6 +341,11 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				
+				
+				
 
 			</div>
 		</div>

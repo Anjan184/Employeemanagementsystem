@@ -411,6 +411,14 @@ public class UserDao {
 		this.hibernateTemplate.delete(h);
 	}
 	
+	@Transactional
+	public Long countTask(String AssignedTo) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="select count(task_id) from Tasks where AssignedTo=:AssignedTo";
+		Long count=(Long)session.createQuery(hql).setParameter("AssignedTo", AssignedTo).uniqueResult();
+		return count;
+	}
+	
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}

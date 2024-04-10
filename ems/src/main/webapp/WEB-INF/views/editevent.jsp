@@ -98,7 +98,22 @@
     font-size: 16px; /* Font size */
     line-height: 1.5; /* Line height */
     outline: none; /* Remove outline */
+    }
     
+    input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  /* Additional styling */
+  background-color: #fff; /* Background color */
+  color: #000; /* Text color */
+  font-size: 16px; /* Font size */
+  line-height: 1.5; /* Line height */
+  outline: none; /* Remove outline */
+}
 </style>
 </head>
 

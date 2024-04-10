@@ -488,6 +488,9 @@ public class MainController {
 		List<String> ToDateOfHolidays=userDao.getToDateOfHolidays();
 		model.addAttribute("ToDateOfHolidays",ToDateOfHolidays);  
 
+		Long TaskAssigned=userDao.countTask(currentUser.getFullname());
+		model.addAttribute("TaskAssigned",TaskAssigned);
+		
         return "employee_dashboard";
 	}
 

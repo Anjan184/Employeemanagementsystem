@@ -95,6 +95,21 @@
     button:hover {
       background-color: #45a049;
     }
+    
+    input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Additional styling */
+    background-color: #fff; /* Background color */
+    color: #000; /* Text color */
+    font-size: 16px; /* Font size */
+    line-height: 1.5; /* Line height */
+    outline: none; /* Remove outline */
+    }
   </style>
 </head>
 
@@ -130,10 +145,10 @@
       <input type="date" id="date" name="date" required>
 
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" placeholder="Enter Name of Holiday" required>
       
        <label for="days">Days:</label>
-      <input type="text" id="days" name="days" required>
+      <input type="text" id="days" name="days" placeholder="Enter Number of Days" required>
 
 
       <button type="submit" class="btn btn-primary btn-block">Add Holiday</button>
