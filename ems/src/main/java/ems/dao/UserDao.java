@@ -62,7 +62,6 @@ public class UserDao {
 	}
 	
 	
-	
 	@Transactional
 	public void deleteUser(int id,User user) {
 		User u=this.hibernateTemplate.load(User.class,id);
@@ -268,17 +267,15 @@ public class UserDao {
 	@Transactional
 	public List<PunchIn> showFirstInAdmin(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchIn pi WHERE pi.PunchIn = (SELECT MIN(p.PunchIn) FROM PunchIn p WHERE p.user.id = :id)";
-	
+		String hql="FROM PunchIn p WHERE (p.PunchIn_Date, p.p_in_id) IN (SELECT p2.PunchIn_Date, MIN(p2.p_in_id) FROM PunchIn p2 WHERE p2.user.id = :id GROUP BY p2.PunchIn_Date)";
 		return session.createQuery(hql,PunchIn.class).setParameter("id", id).getResultList();
 	}
 	
 	@Transactional
 	public List<PunchOut> showLastOutAdmin(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchOut pi WHERE pi.PunchOut = (SELECT MAX(p.PunchOut) FROM PunchOut p WHERE p.user.id = :id)";		
-		List<PunchOut> p= session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
-		return p;
+		String hql="FROM PunchOut p WHERE (p.PunchOut_Date, p.p_out_id) IN (SELECT p2.PunchOut_Date, MAX(p2.p_out_id) FROM PunchOut p2 WHERE p2.user.id = :id GROUP BY p2.PunchOut_Date)";		
+		return session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
 	}
 	
 
