@@ -73,7 +73,7 @@ public class MainController {
 		         		return redirectView;
 	            }  
 	        }
-		 	model.addAttribute("error", "Incorrect email, password, or role.");
+		 	model.addAttribute("error", "Incorrect email or password.");
 			 RedirectView redirectView=new RedirectView();
       		redirectView.setUrl(request.getContextPath()+"/");
       		return redirectView;

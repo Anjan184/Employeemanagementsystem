@@ -57,27 +57,7 @@
       background-color: #0056b3;
     }
     
-.punch-btn {
-      display: block;
-      width: 80%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: none;
-      margin-left:8px;
-      cursor: pointer;
-      font-size: 16px;
-      text-align: center;
-      color: #fff;
-      border-radius:30px;
-    }
 
-    .punch-in-btn {
-      background-color: green;
-    }
-
-    .punch-out-btn {
-      background-color: red;
-    }
     
     h2 {
       text-align: center;
@@ -104,14 +84,14 @@ label {
   margin-bottom: 5px; /* Add some space below the label */
 }
 
-/* Styling for the input field */
+
 input[type="text"] {
-  width: 100%; /* Make the input field take up the full width */
-  padding: 10px; /* Add padding */
-  font-size: 16px; /* Set font size */
-  border: 1px solid #ccc; /* Add border */
-  border-radius: 5px; /* Add border radius */
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  width: 100%; 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-sizing: border-box; 
 }
 
    

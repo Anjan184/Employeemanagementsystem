@@ -82,6 +82,31 @@
       text-align: center;
     }
     
+    .fm {
+            width: 90%;
+            margin: 0 auto; /* Center the form horizontally */
+            padding: 20px;
+            border: 1px groove black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+         button[type="submit"] {
+      display: block;
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin:0 auto;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
   </style>
 
 
@@ -107,7 +132,7 @@
 
     <section class="section dashboard">
 	 <div class="container">
-        <form action="process_leave" method="post">
+        <form action="process_leave" method="post" class="fm">
 		 <h2>Leave Application Form</h2>
         
           <div>
