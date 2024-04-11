@@ -204,6 +204,15 @@ public class UserDao {
 		this.hibernateTemplate.delete(h);
 	}
 	
+//	@Transactional
+//	public List<PunchIn> showPunchInAdmin(int id) {
+//		Session session=sessionFactory.getCurrentSession();
+//	   
+//		String hql="From PunchIn p ";
+//		  return session.createQuery(hql,PunchIn.class).setParameter("user", user).setParameter("selectedDate", date).getResultList();
+//	}
+//	
+	
 	@Transactional
 	public List<PunchIn> showPunchIn(String selectedDate,User user) {
 		Session session=sessionFactory.getCurrentSession();
@@ -278,6 +287,19 @@ public class UserDao {
 		return session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
 	}
 	
+	@Transactional
+	public List<PunchIn> showInAdmin(int id){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM PunchIn where user.id = :id";
+		return session.createQuery(hql,PunchIn.class).setParameter("id", id).getResultList();
+	}
+
+	@Transactional
+	public List<PunchOut> showOutAdmin(int id){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM PunchOut where user.id = :id";
+		return session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
+	}
 
 	
 	@Transactional

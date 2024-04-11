@@ -81,6 +81,13 @@ public class PunchIn {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "PunchIn [p_in_id=" + p_in_id + ", user=" + user + ", PunchIn_Date=" + PunchIn_Date + ", PunchIn="
+				+ PunchIn + "]";
+	}
+	
 	
 	
 	
