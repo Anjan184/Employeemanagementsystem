@@ -298,8 +298,25 @@ public class UserDao {
 	@Transactional
 	public List<Object[]> BreakTime(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="select  TIMEDIFF('07:30:00', SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(po.PunchOut, pi.PunchIn))))) as Break from PunchIn pi join PunchOut po on pi.p_in_id=po.p_out_id where pi.user.id=:id group by pi.PunchIn_Date";
+	
+		String hql = "SELECT " +
+	             "  TIMEDIFF(" +
+	             "    TIMEDIFF(MAX(po.PunchOut), MIN(pi.PunchIn)), " +
+	             "    SUM(TIMEDIFF(po.PunchOut, pi.PunchIn))" +
+	             "  ) AS breakhour " +
+	             "FROM " +
+	             "  PunchIn pi " +
+	             "JOIN " +
+	             "  PunchOut po " +
+	             "ON " +
+	             "  pi.p_in_id = po.p_out_id " +
+	             "WHERE " +
+	             "  pi.user.id = :id " +
+	             "GROUP BY " +
+	             "  pi.PunchIn_Date";
+		
 		List<Object[]> l= session.createQuery(hql).setParameter("id", id).getResultList();
+		System.out.println(l);
 		return l;
 	}
 	

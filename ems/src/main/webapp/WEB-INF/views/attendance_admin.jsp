@@ -97,8 +97,8 @@
 						<th>Date</th>
 						<th>First In</th>
 						<th>Last Out</th>
-						<th>Total Time</th>	
-						<th>Break Time</th>			
+						<th>Total Hour</th>	
+						<th>Break Hour</th>			
 					</tr>
 				</thead>
 				<tbody>
