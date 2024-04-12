@@ -18,10 +18,11 @@
     <div class="container">
 
       <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+       <h2>There Is Some Error</h2>
         <img src="resources/assets/img/not-found.svg" class="img-fluid py-4" alt="Page Not Found">
-        <h5 style="width: 1100px;">${exception}</h5>
-        <h2>There is some error at admin side</h2>
-        <a class="btn" href="index">Back to Admin</a>
+        <h5 style="width: 1000px;">${exception}</h5>
+       
+        <a class="btn" href="login">Back to Login</a>
         
       </section>
 

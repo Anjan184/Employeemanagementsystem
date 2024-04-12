@@ -29,10 +29,15 @@ public class MainController {
 	User user;
 	
 	@RequestMapping(value = "/")
-	public String def(Model m) {
+	public String def() {
 		return "login";
 	}
 
+	@RequestMapping(value = "/login")
+	public String Login() {
+		return "login";
+	}
+	
 	// For authentication purpose of login
 	@RequestMapping(value = "/Dashboard", method = { RequestMethod.GET, RequestMethod.POST })
 	public RedirectView admin(@RequestParam String email, @RequestParam String password, Model model,
@@ -87,9 +92,15 @@ public class MainController {
 	// this is admin dashboard where we get session and get list of employees(Admin)
 	@RequestMapping(value = "/index")
 	public String index(Model model, HttpSession session) {
+		if(session.getAttribute("email")==(null)) {
+			return "login";
+		}
+		
 		List<User> employees = userDao.getAllEmployees();
 		String currentUserEmail = (String) session.getAttribute("email");
 		User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+		
+		
 		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("employees", employees);
 		return "index";
