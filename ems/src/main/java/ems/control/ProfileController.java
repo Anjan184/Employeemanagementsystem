@@ -98,4 +98,9 @@ public class ProfileController {
 			return redirectView;
 			
 		}
+		
+		@RequestMapping("/error_page")
+		public String ErrorPage() {
+			return "error_page";
+		}
 }
