@@ -107,8 +107,8 @@
             <td>${showFirst.getUser().getId()}</td>
             <td>${showFirst.getPunchIn_Date()}</td>
             <td>${showFirst.getPunchIn()}</td>
-            <td>${showLastAdmin[loop.index].getPunchOut()}</td> <!-- Assuming showLastAdmin is the corresponding list for punch out times -->
-        	<td>${TotalTimeAdmin[loop.index] }</td>
+            <td>${showLastAdmin[loop.index].getPunchOut()}</td> 
+        	<td>${TotalTime[loop.index] }</td>
         </tr>
     </c:forEach>
 </tbody>

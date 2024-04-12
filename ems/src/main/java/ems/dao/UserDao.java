@@ -288,18 +288,13 @@ public class UserDao {
 	}
 	
 	@Transactional
-	public List<PunchIn> showInAdmin(int id){
+	public List<Object[]> TotalTime(int id){
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchIn where user.id = :id";
-		return session.createQuery(hql,PunchIn.class).setParameter("id", id).getResultList();
+		String hql="select SEC_TO_TIME(SUM(TIME_TO_SEC(timediff(po.PunchOut,pi.PunchIn)))) as TotalTime from PunchIn pi join PunchOut po on pi.p_in_id=po.p_out_id where pi.user.id=:id group by pi.PunchIn_Date";
+		List<Object[]> l= session.createQuery(hql).setParameter("id", id).getResultList();
+		return l;
 	}
 
-	@Transactional
-	public List<PunchOut> showOutAdmin(int id){
-		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM PunchOut where user.id = :id";
-		return session.createQuery(hql,PunchOut.class).setParameter("id", id).getResultList();
-	}
 
 	
 	@Transactional

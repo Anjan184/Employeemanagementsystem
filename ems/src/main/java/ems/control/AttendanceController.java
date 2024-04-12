@@ -54,51 +54,13 @@ public class AttendanceController {
 			List<PunchOut> showLast=userDao.showLastOutAdmin(id);
 			model.addAttribute("showLastAdmin",showLast);	
 			
-			List<PunchIn> showIn=userDao.showInAdmin(id);
-			model.addAttribute("showIn",showIn);
+			List<Object[]> TotalTime=userDao.TotalTime(id);
+			model.addAttribute("TotalTime",TotalTime);
 			
-			
-			List<PunchOut> showOut=userDao.showOutAdmin(id);
-			model.addAttribute("showOut",showOut);
-			 
-			    
-			List<String> TotalTimeAdmin=calculateElapsedTimesAdmin(showIn, showOut);
-			model.addAttribute("TotalTimeAdmin",TotalTimeAdmin);
-		
 			
 			return "attendance_admin";
 	}
 	
-	private List<String> calculateElapsedTimesAdmin(List<PunchIn> showIn, List<PunchOut> showOut) {
-		 long totalElapsedMillis = 0;
-	    List<String> formattedElapsedTimes = new ArrayList<>();
-	    // Create a map to store PunchOut objects based on their ID
-	    Map<Integer, Time> punchOutMap = new HashMap<>();
-	    for (PunchOut punchOut : showOut) {
-	        punchOutMap.put(punchOut.getP_out_id(), punchOut.getPunchOut());
-	    }
-	   
-	    for (PunchIn punchIn : showIn) {
-	        Integer punchInId = punchIn.getP_in_id();
-	        // Check if corresponding PunchOut exists
-	        if (punchOutMap.containsKey(punchInId)) {
-	            Time punchInTime = punchIn.getPunchIn();
-	            Time punchOutTime = punchOutMap.get(punchInId);
-	            long elapsedTimeMillis = Duration.between(punchInTime.toLocalTime(), punchOutTime.toLocalTime()).toMillis();
-	            totalElapsedMillis += elapsedTimeMillis;
-	        }
-	    }
-	   
-	    long hours = totalElapsedMillis / 3600000;
-	    long minutes = (totalElapsedMillis% 3600000) / 60000;
-	    long seconds = (totalElapsedMillis % 60000) / 1000;
-	    
-	    String formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-	    
-	    formattedElapsedTimes.add(formattedTime);
-	    return formattedElapsedTimes;
-	}
-
 	
 	// Punchin method
 		@RequestMapping(value="/punchin", method=RequestMethod.GET)
