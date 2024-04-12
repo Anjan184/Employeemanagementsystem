@@ -57,6 +57,8 @@ public class AttendanceController {
 			List<Object[]> TotalTime=userDao.TotalTime(id);
 			model.addAttribute("TotalTime",TotalTime);
 			
+			List<Object[]> BreakTime=userDao.BreakTime(id);
+			model.addAttribute("BreakTime",BreakTime);
 			
 			return "attendance_admin";
 	}

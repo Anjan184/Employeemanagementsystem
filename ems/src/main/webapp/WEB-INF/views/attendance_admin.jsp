@@ -97,7 +97,8 @@
 						<th>Date</th>
 						<th>First In</th>
 						<th>Last Out</th>
-						<th>Total time</th>				
+						<th>Total Time</th>	
+						<th>Break Time</th>			
 					</tr>
 				</thead>
 				<tbody>
@@ -109,6 +110,7 @@
             <td>${showFirst.getPunchIn()}</td>
             <td>${showLastAdmin[loop.index].getPunchOut()}</td> 
         	<td>${TotalTime[loop.index] }</td>
+        	<td>${BreakTime[loop.index] }</td>
         </tr>
     </c:forEach>
 </tbody>
