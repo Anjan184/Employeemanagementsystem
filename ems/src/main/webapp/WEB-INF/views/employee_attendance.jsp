@@ -121,6 +121,8 @@
 						<th>Date</th>
 						<th>First In</th>
 						<th>Last Out</th>
+						<th>Total Time</th>
+						<th>Total Break</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -136,6 +138,8 @@
 									<td>${punchOut.getPunchOut()}</td>
 								</c:if>
 							</c:forEach>
+							<td>${TotalTimeemp[status.index] }</td>
+							<td>${TotalBreakemp[status.index]}</td>
 							<td><a	href="employee_attendance_details?selectedDate=${showFirst.getPunchIn_Date()}" style="border-radius:30px;">
 									<i class="bi bi-people-fill"></i> Details
 							</a></td>

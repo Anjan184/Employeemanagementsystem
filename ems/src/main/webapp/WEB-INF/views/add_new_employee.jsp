@@ -95,6 +95,20 @@
     button:hover {
       background-color: #45a049;
     }
+    
+     input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Additional styling */
+    background-color: #fff; /* Background color */
+    color: #000; /* Text color */
+    font-size: 16px; /* Font size */
+    line-height: 1.5; /* Line height */
+    outline: none; /* Remove outline */
   </style>
 </head>
 
@@ -138,7 +152,7 @@
 
       <label for="dob">Date of Birth:</label>
       <input type="date" id="dob" name="dob" required>
-
+	<br>
       <label for="contact">Contact:</label>
       <input type="text" id="contact" placeholder="Enter Phone" name="contact">
 

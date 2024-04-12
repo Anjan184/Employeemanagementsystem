@@ -60,6 +60,8 @@ public class AttendanceController {
 			List<Object[]> BreakTime=userDao.BreakTime(id);
 			model.addAttribute("BreakTime",BreakTime);
 			
+			
+			
 			return "attendance_admin";
 	}
 	
@@ -119,6 +121,11 @@ public class AttendanceController {
 	        model.addAttribute("punchindetails", punchindetails);
 	        List<PunchOut> punchoutdetails=userDao.showPunchOut(currentUser);
 	        model.addAttribute("punchoutdetails", punchoutdetails);  
+	        List<Object[]> TotalTimeemp=userDao.TotalTimeEmployee(currentUser);
+	        model.addAttribute("TotalTimeemp",TotalTimeemp);
+	        List<Object[]> TotalBreakemp=userDao.BreakTimeEmployee(currentUser);
+	        model.addAttribute("TotalBreakemp",TotalBreakemp);
+	        
 			return "employee_attendance";
 		}
 		

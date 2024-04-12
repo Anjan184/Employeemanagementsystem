@@ -130,7 +130,7 @@
 							<td>${tsk.status}</td>
 							<td><div>
 									<a href="dlete/${tsk.task_id}"><i
-										class="fa-solid fa-trash text-danger">Delete</i></a>
+										class="fa-solid fa-trash text-danger"></i></a>
 								</div></td>
 						</tr>
 					</c:forEach>

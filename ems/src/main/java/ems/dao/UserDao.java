@@ -204,14 +204,38 @@ public class UserDao {
 		this.hibernateTemplate.delete(h);
 	}
 	
-//	@Transactional
-//	public List<PunchIn> showPunchInAdmin(int id) {
-//		Session session=sessionFactory.getCurrentSession();
-//	   
-//		String hql="From PunchIn p ";
-//		  return session.createQuery(hql,PunchIn.class).setParameter("user", user).setParameter("selectedDate", date).getResultList();
-//	}
-//	
+	@Transactional
+	public List<Object[]> TotalTimeEmployee(User user){
+		Session session=sessionFactory.getCurrentSession();
+		String hql="select SEC_TO_TIME(SUM(TIME_TO_SEC(timediff(po.PunchOut,pi.PunchIn)))) as TotalTime from PunchIn pi join PunchOut po on pi.p_in_id=po.p_out_id where pi.user=:user group by pi.PunchIn_Date";
+		List<Object[]> l= session.createQuery(hql).setParameter("user", user).getResultList();
+		return l;
+	}
+	
+	@Transactional
+	public List<Object[]> BreakTimeEmployee(User user){
+		Session session=sessionFactory.getCurrentSession();
+	
+		String hql = "SELECT " +
+	             "  TIMEDIFF(" +
+	             "    TIMEDIFF(MAX(po.PunchOut), MIN(pi.PunchIn)), " +
+	             "    SUM(TIMEDIFF(po.PunchOut, pi.PunchIn))" +
+	             "  ) AS breakhour " +
+	             "FROM " +
+	             "  PunchIn pi " +
+	             "JOIN " +
+	             "  PunchOut po " +
+	             "ON " +
+	             "  pi.p_in_id = po.p_out_id " +
+	             "WHERE " +
+	             "  pi.user = :user " +
+	             "GROUP BY " +
+	             "  pi.PunchIn_Date";
+		
+		List<Object[]> l= session.createQuery(hql).setParameter("user", user).getResultList();
+	
+		return l;
+	}
 	
 	@Transactional
 	public List<PunchIn> showPunchIn(String selectedDate,User user) {
