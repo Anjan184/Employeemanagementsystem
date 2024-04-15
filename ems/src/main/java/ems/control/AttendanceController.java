@@ -121,10 +121,11 @@ public class AttendanceController {
 	        model.addAttribute("punchindetails", punchindetails);
 	        List<PunchOut> punchoutdetails=userDao.showPunchOut(currentUser);
 	        model.addAttribute("punchoutdetails", punchoutdetails);  
-	        List<Object[]> TotalTimeemp=userDao.TotalTimeEmployee(currentUser);
+	        List<Object[]> TotalTimeemp=userDao.TotalTime(currentUser.getId());
 	        model.addAttribute("TotalTimeemp",TotalTimeemp);
-	        List<Object[]> TotalBreakemp=userDao.BreakTimeEmployee(currentUser);
-	        model.addAttribute("TotalBreakemp",TotalBreakemp);
+	        
+	        List<Object[]> TotalBreakemp=userDao.BreakTime(currentUser.getId());
+			model.addAttribute("TotalBreakemp",TotalBreakemp);
 	        
 			return "employee_attendance";
 		}

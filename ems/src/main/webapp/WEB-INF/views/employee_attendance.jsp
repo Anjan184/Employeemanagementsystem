@@ -93,11 +93,18 @@
 	background-color: #0056b3; /* Darker blue on hover */
 }
 
+.present {
+	color: green;
+}
+
+.absent {
+	color: red;
+}
 </style>
 </head>
 
 <body>
-	<%@include file="./Navemp.jsp" %>
+	<%@include file="./Navemp.jsp"%>
 
 	<main id="main" class="main">
 
@@ -123,6 +130,7 @@
 						<th>Last Out</th>
 						<th>Total Time</th>
 						<th>Total Break</th>
+						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -140,8 +148,18 @@
 							</c:forEach>
 							<td>${TotalTimeemp[status.index] }</td>
 							<td>${TotalBreakemp[status.index]}</td>
-							<td><a	href="employee_attendance_details?selectedDate=${showFirst.getPunchIn_Date()}" style="border-radius:30px;">
-									<i class="bi bi-people-fill"></i> Details
+							<td><c:choose>
+									<c:when test="${TotalTimeemp[status.index] >= '07:30:00'}">
+										<span class="present">PRESENT</span>
+									</c:when>
+									<c:otherwise>
+										<span class="absent">ABSENT</span>
+									</c:otherwise>
+								</c:choose></td>
+							<td><a
+								href="employee_attendance_details?selectedDate=${showFirst.getPunchIn_Date()}"
+								style="border-radius: 30px;"> <i class="bi bi-people-fill"></i>
+									Details
 							</a></td>
 						</tr>
 
@@ -153,7 +171,7 @@
 		</section>
 
 	</main>
-	
+
 
 </body>
 
