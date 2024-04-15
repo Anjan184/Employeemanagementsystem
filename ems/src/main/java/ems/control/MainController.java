@@ -42,8 +42,9 @@ public class MainController {
 	@RequestMapping(value = "/Dashboard", method = { RequestMethod.GET, RequestMethod.POST })
 	public RedirectView admin(@RequestParam String email, @RequestParam String password, Model model,
 			@ModelAttribute User user, HttpSession session, HttpServletRequest request) {
+	
 		session.setAttribute("email", email);
-
+		
 		if (userDao.authenticateUser(email, password)) {
 			User u = userDao.getUserByEmail(email);
 			String img = Base64.encodeBase64String(u.getProfilePicture());
@@ -61,6 +62,7 @@ public class MainController {
 				return redirectView;
 			}
 		}
+		
 		model.addAttribute("error", "Incorrect email or password.");
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(request.getContextPath() + "/");

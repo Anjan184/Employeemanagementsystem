@@ -1,5 +1,6 @@
 package ems.control;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,7 +39,7 @@ public class ContactController {
 	@RequestMapping(value="/signout",method=RequestMethod.GET)
 	public RedirectView signout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
 		session.invalidate();
-	
+		 
 		RedirectView redirectView=new RedirectView();
 		redirectView.setUrl(request.getContextPath()+"/");
 		return redirectView;

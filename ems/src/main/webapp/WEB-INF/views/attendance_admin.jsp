@@ -68,6 +68,12 @@
 	background-color: #0056b3; /* Darker blue on hover */
 }
 
+.absent{
+color:red;
+}
+.present{
+color:green;
+}
 </style>
 </head>
 
@@ -99,6 +105,7 @@
 						<th>Last Out</th>
 						<th>Total Hour</th>	
 						<th>Break Hour</th>		
+						<th>Status</th>
 					
 					</tr>
 				</thead>
@@ -112,6 +119,16 @@
             <td>${showLastAdmin[loop.index].getPunchOut()}</td> 
         	<td>${TotalTime[loop.index] }</td>
         	<td>${BreakTime[loop.index] }</td>
+        	<td>
+             <c:choose>
+            <c:when test="${TotalTime[loop.index] >= '07:30:00'}">
+               <span class="present">PRESENT</span>
+            </c:when>
+            <c:otherwise>
+                 <span class="absent">ABSENT</span>
+            </c:otherwise>
+        </c:choose>
+        </td>
         	
         </tr>
     </c:forEach>
