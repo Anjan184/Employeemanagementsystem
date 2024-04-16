@@ -123,12 +123,12 @@
 			
 			<li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#assign-tasks-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-check2-square"></i><span>Tasks</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-check2-square"></i><span>Project</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="assign-tasks-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-            <a href="employee_tasks">
-                <i class="bi bi-circle"></i><span>Show Tasks</span>
+            <a href="employee_project">
+                <i class="bi bi-circle"></i><span>Projects</span>
             </a>
         </li>
     </ul>

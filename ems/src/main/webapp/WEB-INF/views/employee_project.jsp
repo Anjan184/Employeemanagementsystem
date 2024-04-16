@@ -13,27 +13,64 @@
 <meta content="" name="keywords">
 
 <style>
-.task-table {
-	width: 103%;
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-
 .task-table th, .task-table td {
 	padding: 10px;
-	border: 1px solid #ddd; /* Border style */
+	border: 1px solid #ddd;
 }
 
 .task-table th {
-	background-color: #f2f2f2; /* Header background color */
+	background-color: #f8f9fa;
+	text-align: left;
 	font-weight: bold;
 }
 
-.task-table tbody tr:nth-child(even) {
-	background-color: #f9f9f9; /* Alternate row background color */
+.task-table td {
+	text-align: left;
 }
 
-.add-new-task-btn {
+ .task-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+ 
+ .task-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .task-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .task-table tbody tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  /* Additional styling for table header */
+
+  .task-table th {
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Additional styling for table rows */
+
+  .task-table td {
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Dark gray text color */
+    border: 1px solid #ccc; /* Lighter border color */
+  }
+
+  /* Styling for hover effect */
+
+  .task-table tbody tr:hover td {
+    background-color: #e2e2e2; /* Light gray background on hover */
+  }
+
+.add-new-project-btn {
 	display: inline-block;
 	padding: 10px 20px; /* Adjust padding */
 	background-color: #007bff; /* Blue background color */
@@ -44,10 +81,9 @@
 }
 
 /* Hover effect */
-.add-new-task-btn:hover {
+.add-new-project-btn:hover {
 	background-color: #0056b3; /* Darker blue background on hover */
 }
-
 .punch-btn {
 	display: block;
 	width: 80%;
@@ -69,21 +105,6 @@
 .punch-out-btn {
 	background-color: red;
 }
- button[type="submit"] {  
-            color: Green;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width:20%;
-            margin-left:10px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: red;
-            border-radius:60px;
-            
-        }
 </style>
 </head>
 
@@ -93,52 +114,39 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Tasks</h1>
+			<h1>All Projects</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item Active">Show Task</li>
+					<li class="breadcrumb-item Active">Projects</li>
 				</ol>
 			</nav>
 		</div>
 		<!-- End Page Title -->
 
 		<section class="section dashboard">
-<h1 style="text-align: center;"><b>Tasks Assigned</b></h1>
-<br>
+
 			<table class="task-table">
 				<thead>
 					<tr>
+						<th>Project_Id</th>
 						<th>Project Name</th>
 						<th>Assigned By</th>
-						<th>Task Name</th>
-						<th>Description</th>
-						<th>Task Due</th>
-						<th>Status</th>
+						<th>Project Due</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${task}" var="tsk">
+					<c:forEach items="${project}" var="p">
 						<tr>
-							<td>${tsk.project.project_name}</td>
-							<td>${tsk.assignedBy}</td>
-							<td>${tsk.task_name}</td>
-							<td>${tsk.description}</td>
-							<td>${tsk.due_date}</td>
-							<td>${tsk.status }</td>
+							<td>${p.project_id}</td>
+							<td>${p.project_name}</td>
+							<td>${currentUser.fullname}</td>
+							<td>${p.projectduedate}</td>
+							<td><a href="employee_tasks?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Show Task</a></td>
 							
-							<td>
-								<form action="saveStatus/${tsk.task_id}" method="post">
-									<select  name="status" required>
-											<option value="Todo">TODO</option>
-											<option value="In_Progress">IN PROGRESS</option>
-											<option value="Done">DONE</option>
-									</select>
-									 <button type="submit" ><i class="fa-solid fa-circle-check"></i></button>
-								</form>
-							</td>
+							
+							
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -148,7 +156,7 @@
 
 			<br>
 
-
+			
 		</section>
 
 	</main>

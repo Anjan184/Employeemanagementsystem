@@ -445,10 +445,10 @@ public class UserDao {
 	}
 	
 	@Transactional
-	public List<Tasks> getAllTasksByName(String name) {
+	public List<Tasks> getAllTasksByName(String name,int project_id) {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM Tasks where AssignedTo=:name";
-		 return session.createQuery(hql, Tasks.class).setParameter("name",name).getResultList();	
+		String hql="FROM Tasks where AssignedTo=:name and project_id=:project_id";
+		 return session.createQuery(hql, Tasks.class).setParameter("name",name).setParameter("project_id",project_id).getResultList();	
 	}
 	
 	@Transactional

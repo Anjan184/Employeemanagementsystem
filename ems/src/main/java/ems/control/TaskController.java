@@ -206,12 +206,22 @@ public class TaskController {
 			return redirectView;
 	    }
 	  
-	  @RequestMapping(value="/employee_tasks")
-		public String employee_task(Model model,HttpServletRequest request,HttpSession session) {
+	  @RequestMapping(value="/employee_project")
+		public String employee_Project(HttpSession session,Model model) {
 			String currentUserEmail = (String) session.getAttribute("email"); 
 	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
 	        model.addAttribute("currentUser", currentUser);
-			List<Tasks> tasks=userDao.getAllTasksByName(currentUser.getFullname());
+	        List<Project> p=userDao.getProjects();
+	        model.addAttribute("project",p);
+	        return "employee_project";
+		}
+	  
+	  @RequestMapping(value="/employee_tasks")
+		public String employee_task(Model model,HttpServletRequest request,HttpSession session,@RequestParam int project_id) {
+			String currentUserEmail = (String) session.getAttribute("email"); 
+	        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+	        model.addAttribute("currentUser", currentUser);
+			List<Tasks> tasks=userDao.getAllTasksByName(currentUser.getFullname(),project_id);
 			model.addAttribute("task",tasks);
 			
 			return "employee_tasks";
@@ -221,7 +231,7 @@ public class TaskController {
 		public RedirectView process_task(@PathVariable int task_id,@RequestParam("status") String status,Tasks tk,HttpServletRequest request) {
 			userDao.saveStatus(task_id,status,tk);	
 			RedirectView redirectView=new RedirectView();
-			redirectView.setUrl(request.getContextPath()+"/employee_tasks");
+			redirectView.setUrl(request.getContextPath()+"/employee_project");
 			return redirectView;
 		}
 }
