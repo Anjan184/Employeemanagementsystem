@@ -459,7 +459,7 @@ public class UserDao {
 	}
 	
 	@Transactional
-	public void deleteTask(int task_id,Tasks task) {
+	public void deleteTask(int task_id) {
 		Tasks h=hibernateTemplate.load(Tasks.class,task_id);
 		this.hibernateTemplate.delete(h);
 	}

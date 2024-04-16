@@ -129,42 +129,80 @@ public class TaskController {
        return "add_new_task";
 	}
 	
+	@RequestMapping(value="edit_todo_task")
+	public String edit_todo_task(@RequestParam("task_id") int task_id,HttpServletRequest request,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        Tasks task=userDao.findTaskById(task_id);
+        model.addAttribute("task",task);
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids);
+  
+        return "edit_todo_task";
+	}
+	
+	@RequestMapping(value="edit_Inprogress_task")
+	public String edit_Inprogress_task(@RequestParam("task_id") int task_id,HttpServletRequest request,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        Tasks task=userDao.findTaskById(task_id);
+        model.addAttribute("task",task);
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids);
+  
+        return "edit_Inprogress_task";
+	}
+	
+	@RequestMapping(value="edit_done_task")
+	public String edit_Done_task(@RequestParam("task_id") int task_id,HttpServletRequest request,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        Tasks task=userDao.findTaskById(task_id);
+        model.addAttribute("task",task);
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids);
+  
+        return "edit_done_task";
+	}
+	
 	@RequestMapping(value="/add_button",method=RequestMethod.POST)
 	public RedirectView add_new_task(HttpServletRequest request,HttpSession session,Model model,@ModelAttribute Tasks task,Tasks tk,Project project) {
 		String currentUserEmail = (String) session.getAttribute("email"); 
         User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
-        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUser", currentUser);  
         tk.setAssignedBy(currentUser.getFullname());
         Project projectid = userDao.getProjectsId(project.getProject_id());
         tk.setProject(projectid);
-		userDao.addTask(task);
-			
+		userDao.addTask(task);	
 		 RedirectView redirectView=new RedirectView();
 			redirectView.setUrl(request.getContextPath()+"/ProjectAdmin");
 			return redirectView;
 	}
 	
-	@RequestMapping(value="edit_task")
-	public String edit_task(@RequestParam("task_id") int task_id,HttpServletRequest request,HttpSession session,Model model,Tasks tk) {
-		String currentUserEmail = (String) session.getAttribute("email"); 
-        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
-        model.addAttribute("currentUser", currentUser);
-        
-        Tasks task=userDao.findTaskById(task_id);
-        model.addAttribute("task",task);
-        
-        List<User> employeeids = userDao.getAllAttendanceEmployees();
-        model.addAttribute("empids",employeeids);
-  
-        return "edit_task";
-	}
-	
-	
 	  @RequestMapping(value="/dlete",method= RequestMethod.GET)
-	    public RedirectView deleteTodoTasks(@RequestParam int task_id ,HttpServletRequest request,Tasks task) {
-	    	userDao.deleteTask(task_id,task);
+	    public RedirectView deleteTodoTasks(@RequestParam int task_id ,HttpServletRequest request) {
+	    	userDao.deleteTask(task_id);
 	    	RedirectView redirectView=new RedirectView();
-			redirectView.setUrl(request.getContextPath()+"/Todo_tasks");
+			redirectView.setUrl(request.getContextPath()+"/Todo_Project");
+			return redirectView;
+	    }
+	  
+	  @RequestMapping(value="/dete",method= RequestMethod.GET)
+	    public RedirectView deleteInProgressTasks(@RequestParam int task_id ,HttpServletRequest request) {
+	    	userDao.deleteTask(task_id);
+	    	RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/Inprogress_Project");
+			return redirectView;
+	    }
+	  
+	  @RequestMapping(value="/dlee",method= RequestMethod.GET)
+	    public RedirectView deleteDoneTasks(@RequestParam int task_id ,HttpServletRequest request) {
+	    	userDao.deleteTask(task_id);
+	    	RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/Done_Project");
 			return redirectView;
 	    }
 	  

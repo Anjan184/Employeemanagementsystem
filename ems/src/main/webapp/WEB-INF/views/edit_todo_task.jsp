@@ -97,19 +97,20 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Assign Tasks</h1>
+            <h1>Edit Todo Tasks</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Tasks</li>
-                    <li class="breadcrumb-item"><a href="Admin_tasks">Assign Tasks</a></li>
-                    <li class="breadcrumb-item active">Edit Task</li>
+                   <li class="breadcrumb-item">Projects</li>
+					<li class="breadcrumb-item"><a href="Todo_Project">Todo Project</a></li>
+					<li class="breadcrumb-item Active">Todo Tasks</li>
+					<li class="breadcrumb-item Active">Edit Tasks</li>
                 </ol>
             </nav>
         </div>
         <!-- End Page Title -->
 
         <section class="section dashboard">
-         <h1 style="text-align: center;">Edit Tasks</h1>
+         <h1 style="text-align: center;">Edit Todo Tasks</h1>
             <form action="add_button" method="post" class="fm">
                 <input type="hidden" id="task_id" value="${task.task_id}" name="task_id" required>
 
@@ -141,7 +142,7 @@
                 </div>
 
                 <input type="hidden" id="status" name="status" value="${task.status}">
-
+				<input type="hidden" id="project_id" name="project_id" value="${task.project.project_id}">
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </section>

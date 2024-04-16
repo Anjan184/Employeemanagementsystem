@@ -97,8 +97,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item"><a href="Todo_Project">Todo Project</a></li>
-					
+					<li class="breadcrumb-item"><a href="Todo_Project">Todo Project</a></li>	
 					<li class="breadcrumb-item Active">Todo Tasks</li>
 				</ol>
 			</nav>
@@ -131,7 +130,7 @@
 							<td>${tsk.due_date}</td>
 							<td>${tsk.status}</td>
 							<td><div>
-							<a href="edit_task?task_id=${tsk.task_id}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
+							<a href="edit_todo_task?task_id=${tsk.getTask_id()}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
 							<a href="dlete?task_id=${tsk.getTask_id()}"><i class="fa-solid fa-trash text-danger"></i></a>	
 							</div>
 							

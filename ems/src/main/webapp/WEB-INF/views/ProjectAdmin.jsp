@@ -93,11 +93,11 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Assign Tasks</h1>
+			<h1>All Projects</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Tasks</li>
-					<li class="breadcrumb-item Active">Assign Tasks</li>
+					<li class="breadcrumb-item">Projects</li>
+					<li class="breadcrumb-item Active">Projects</li>
 				</ol>
 			</nav>
 		</div>
