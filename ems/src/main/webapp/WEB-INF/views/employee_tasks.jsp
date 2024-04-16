@@ -117,7 +117,7 @@
 		<!-- End Page Title -->
 
 		<section class="section dashboard">
-<h3 style="text-align: center;"><b>Tasks Assigned</b></h3>
+<h3 style="text-align: center;font-style:italic;"><b>Tasks Assigned</b></h3>
 <br>
 			<table class="task-table">
 				<thead>

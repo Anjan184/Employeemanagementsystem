@@ -107,7 +107,20 @@
 							<td>${allleave.to_Date}</td>
 							<td>${allleave.leave_type}</td>
 							<td>${allleave.reason}</td>
-							<td>${allleave.status}</td>
+							<td><c:choose>
+									<c:when test="${allleave.status eq 'reject'}">
+										<h5>
+											<span class="badge bg-danger text-dark"> ${allleave.status }</span>
+										</h5>
+									</c:when>
+									
+									<c:when test="${allleave.status eq 'approve'}">
+										<h5>
+											<span class="badge bg-success"> ${allleave.status }</span>
+										</h5>
+
+									</c:when>
+								</c:choose></td>
 
 						</tr>
 					</c:forEach>

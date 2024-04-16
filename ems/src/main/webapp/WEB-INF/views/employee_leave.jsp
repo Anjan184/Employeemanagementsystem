@@ -123,7 +123,7 @@
 			<table class="leave-table">
 				<thead> 
 					<tr>
-						<th>Id</th>
+						
 						<th>From Date</th>
 						<th>To Date</th>
 						<th>Leave Type</th>
@@ -135,19 +135,38 @@
 				<tbody>
 					<c:forEach items="${leaves}" var="leave">
 						<tr>
-							<td>${leave.leave_Id}</td>
+							
 							<td>${leave.from_Date}</td>
 							<td>${leave.to_Date}</td>
 							<td>${leave.leave_type}</td>
 							<td>${leave.reason}</td>
-							<td>${leave.status}</td>
-							<td>
-								<div>
-									<a href="deleted/${leave.leave_Id}"><i
-										class="fa-solid fa-trash text-danger">Delete</i></a>
-								</div>
+							<td><c:choose>
+									<c:when test="${leave.status eq 'reject'}">
+										<h5>
+											<span class="badge bg-danger text-dark"> ${leave.status }</span>
+										</h5>
+									</c:when>
+									
+									<c:when test="${leave.status eq 'approve'}">
+										<h5>
+											<span class="badge bg-success"> ${leave.status }</span>
+										</h5>
+									</c:when>
+									
+									 <c:when test="${leave.status eq 'Pending'}">
+										<h5>
+											<span class="badge bg-warning text-dark"> ${leave.status }</span>
+										</h5>
+									</c:when>
+								</c:choose></td>
+							
+							<td>		
+							<a href="edit_leave?leave_Id=${leave.leave_Id}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
+							<a href="deleted/${leave.leave_Id}"><i class="fa-solid fa-trash text-danger"></i></a>							
 							</td>
+							
 						</tr>
+						
 					</c:forEach>
 				</tbody>
 

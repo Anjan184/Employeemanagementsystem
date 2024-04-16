@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import ems.dao.UserDao;
 import ems.entities.Leaves;
+import ems.entities.Tasks;
 import ems.entities.User;
 
 @Controller
@@ -111,6 +112,20 @@ public class LeaveController {
 		redirectView.setUrl(request.getContextPath()+"/employee_leave");
 		return redirectView;
 	
+	}
+	
+	@RequestMapping(value="edit_leave")
+	public String edit_Done_task(@RequestParam("leave_Id") int leave_Id,HttpServletRequest request,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        
+        Leaves leave=userDao.findLeaveById(leave_Id);
+        model.addAttribute("leave",leave);
+        
+        List<Leaves> leaves = userDao.getLeaves(currentUser);
+		model.addAttribute("leaves",leaves);
+        return "edit_leave";
 	}
 	
 	@RequestMapping(value="/deleted/{leave_Id}",method=RequestMethod.GET)

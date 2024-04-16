@@ -125,7 +125,7 @@
 
 		<section class="section dashboard">
 
-<h3 style="text-align: center;"><b>Projects</b></h3>
+<h3 style="text-align: center;font-style:italic;"><b>Projects</b></h3>
 			<table class="task-table">
 				<thead>
 					<tr>

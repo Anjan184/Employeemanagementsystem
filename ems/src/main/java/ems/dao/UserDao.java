@@ -331,7 +331,14 @@ public class UserDao {
 	@Transactional
 	public void addLeaves(Leaves leave,User user) {
 		leave.setUser(user);
-		this.hibernateTemplate.save(leave);
+		this.hibernateTemplate.saveOrUpdate(leave);
+	}
+	
+	@Transactional
+	public Leaves findLeaveById(int leave_Id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Leaves where leave_Id=:leave_Id";
+		return session.createQuery(hql,Leaves.class).setParameter("leave_Id",leave_Id).uniqueResult();
 	}
 	
 	@Transactional
