@@ -111,7 +111,7 @@
 						<th>Project_Id</th>
 						<th>Project Name</th>
 						<th>Assigned By</th>
-						<th>Status</th>
+						<th>Project Due</th>
 						<th>Action</th>
 					</tr>
 				</thead>

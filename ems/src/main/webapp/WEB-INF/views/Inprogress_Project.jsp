@@ -122,7 +122,7 @@
 							<td>${p.project_name}</td>
 							<td>${currentUser.fullname}</td>
 							<td>${p.projectduedate}</td>
-							<td><a href="Inprogress_tasks?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Show Inprogress Tasks</a></td>
+							<td><a href="Inprogress_tasks?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i> Inprogress Tasks</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
