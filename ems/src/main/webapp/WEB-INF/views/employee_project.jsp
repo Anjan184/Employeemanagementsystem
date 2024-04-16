@@ -112,7 +112,6 @@
 	<%@include file="./Navemp.jsp"%>
 
 	<main id="main" class="main">
-
 		<div class="pagetitle">
 			<h1>All Projects</h1>
 			<nav>
@@ -126,6 +125,7 @@
 
 		<section class="section dashboard">
 
+<h3 style="text-align: center;"><b>Projects</b></h3>
 			<table class="task-table">
 				<thead>
 					<tr>

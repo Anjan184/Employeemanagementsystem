@@ -28,47 +28,44 @@
 	text-align: left;
 }
 
- .task-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
- 
- .task-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+.task-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .task-table tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-  }
+.task-table tbody tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 
-  .task-table tbody tr:hover {
-    background-color: #e2e2e2;
-  }
+.task-table tbody tr:nth-child(odd) {
+	background-color: #ffffff;
+}
 
-  /* Additional styling for table header */
+.task-table tbody tr:hover {
+	background-color: #e2e2e2;
+}
 
-  .task-table th {
-    font-size: 14px; /* Adjust font size */
-    color: #333; /* Darker text color */
-    border: 1px solid #ccc; /* Lighter border color */
-  }
+/* Additional styling for table header */
+.task-table th {
+	font-size: 14px; /* Adjust font size */
+	color: #333; /* Darker text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
 
-  /* Additional styling for table rows */
+/* Additional styling for table rows */
+.task-table td {
+	font-size: 14px; /* Adjust font size */
+	color: #555; /* Dark gray text color */
+	border: 1px solid #ccc; /* Lighter border color */
+}
 
-  .task-table td {
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Dark gray text color */
-    border: 1px solid #ccc; /* Lighter border color */
-  }
-
-  /* Styling for hover effect */
-
-  .task-table tbody tr:hover td {
-    background-color: #e2e2e2; /* Light gray background on hover */
-  }
+/* Styling for hover effect */
+.task-table tbody tr:hover td {
+	background-color: #e2e2e2; /* Light gray background on hover */
+}
 
 .add-new-task-btn {
 	display: inline-block;
@@ -97,7 +94,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item"><a href="Todo_Project">Todo Project</a></li>	
+					<li class="breadcrumb-item"><a href="Todo_Project">Todo
+							Project</a></li>
 					<li class="breadcrumb-item Active">Todo Tasks</li>
 				</ol>
 			</nav>
@@ -128,13 +126,38 @@
 							<td>${tsk.assignedTo}</td>
 							<td>${currentUser.fullname}</td>
 							<td>${tsk.due_date}</td>
-							<td>${tsk.status}</td>
+							<td><c:choose>
+									<c:when test="${tsk.status eq 'Todo'}">
+										<h5>
+											<span class="badge bg-warning text-dark"><i
+												class="bi bi-skip-end-circle-fill"></i> ${tsk.status }</span>
+										</h5>
+									</c:when>
+									<c:when test="${tsk.status eq 'In_Progress'}">
+										<h5>
+											<span class="badge bg-primary"><i
+												class="bi bi-battery-half"></i> ${tsk.status }</span>
+										</h5>
+									</c:when>
+									<c:when test="${tsk.status eq 'Done'}">
+										<h5>
+											<span class="badge bg-success"><i
+												class="bi bi-check-circle me-1"></i> ${tsk.status }</span>
+										</h5>
+
+									</c:when>
+									<c:otherwise>
+                    ${tsk.status }
+                </c:otherwise>
+
+								</c:choose></td>
+
 							<td><div>
-							<a href="edit_todo_task?task_id=${tsk.getTask_id()}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
-							<a href="dlete?task_id=${tsk.getTask_id()}"><i class="fa-solid fa-trash text-danger"></i></a>	
-							</div>
-							
-							</td>
+									<a href="edit_todo_task?task_id=${tsk.getTask_id()}"><i
+										class="fa-solid fa-pen-nib text-primary"></i></a> <a
+										href="dlete?task_id=${tsk.getTask_id()}"><i
+										class="fa-solid fa-trash text-danger"></i></a>
+								</div></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -144,7 +167,7 @@
 
 			<br>
 
-			
+
 
 		</section>
 

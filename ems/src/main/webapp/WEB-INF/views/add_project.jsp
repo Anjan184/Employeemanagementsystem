@@ -108,12 +108,12 @@ input[type="text"] {
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Add new Task</h1>
+      <h1>Add new Project</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Tasks</li>
-          <li class="breadcrumb-item"><a href="Admin_tasks">Assign Tasks</a></li>
-          <li class="breadcrumb-item Active">Add new Task</li>
+          <li class="breadcrumb-item">Projects</li>
+          <li class="breadcrumb-item"><a href="ProjectAdmin">Projects</a></li>
+          <li class="breadcrumb-item Active">Add new Project</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

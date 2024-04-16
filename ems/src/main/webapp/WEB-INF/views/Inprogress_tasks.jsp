@@ -110,7 +110,7 @@
 			<table class="task-table">
 				<thead>
 					<tr>
-						<th>Task_Id</th>
+						<th>Project Name</th>
 						<th>Task Name</th>
 						<th>Description</th>
 						<th>Assigned To</th>
@@ -123,13 +123,37 @@
 				<tbody>
 					<c:forEach items="${task}" var="tsk">
 						<tr>
-							<td>${tsk.task_id}</td>
+							<td>${tsk.project.project_name}</td>
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
 							<td>${tsk.assignedTo}</td>
 							<td>${currentUser.fullname}</td>
 							<td>${tsk.due_date}</td>
-							<td>${tsk.status}</td>
+							<td><c:choose>
+									<c:when test="${tsk.status eq 'Todo'}">
+										<h5>
+											<span class="badge bg-warning text-dark"><i
+												class="bi bi-skip-end-circle-fill"></i> ${tsk.status }</span>
+										</h5>
+									</c:when>
+									<c:when test="${tsk.status eq 'In_Progress'}">
+										<h5>
+											<span class="badge bg-primary"><i
+												class="bi bi-battery-half"></i> ${tsk.status }</span>
+										</h5>
+									</c:when>
+									<c:when test="${tsk.status eq 'Done'}">
+										<h5>
+											<span class="badge bg-success"><i
+												class="bi bi-check-circle me-1"></i> ${tsk.status }</span>
+										</h5>
+
+									</c:when>
+									<c:otherwise>
+                    ${tsk.status }
+                </c:otherwise>
+
+								</c:choose></td>
 							<td><div>
 							
 	

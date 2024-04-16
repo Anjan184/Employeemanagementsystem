@@ -80,10 +80,22 @@
         }
 
         button[type="submit"]:hover {
-            background-color: red;
-            border-radius:60px;
+            background-color: green;
+            border-radius:90px;
             
         }
+        
+        .status-todo {
+   color: yellow;
+}
+
+.status-in-progress {
+    color: blue;
+}
+
+.status-done {
+   color: green;
+}
 </style>
 </head>
 
@@ -105,7 +117,7 @@
 		<!-- End Page Title -->
 
 		<section class="section dashboard">
-<h1 style="text-align: center;"><b>Tasks Assigned</b></h1>
+<h3 style="text-align: center;"><b>Tasks Assigned</b></h3>
 <br>
 			<table class="task-table">
 				<thead>
@@ -127,17 +139,39 @@
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
 							<td>${tsk.due_date}</td>
-							<td>${tsk.status }</td>
+							<td>
+							  <c:choose>
+                <c:when test="${tsk.status eq 'Todo'}">
+                  <h5> <span class="badge bg-warning text-dark"><i class="bi bi-skip-end-circle-fill"></i> ${tsk.status }</span></h5>
+                </c:when>
+                <c:when test="${tsk.status eq 'In_Progress'}">
+                  <h5> <span class="badge bg-primary"><i class="bi bi-battery-half"></i> ${tsk.status }</span></h5> 
+                </c:when>
+                <c:when test="${tsk.status eq 'Done'}">
+                <h5> <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> ${tsk.status }</span></h5>
+
+                </c:when>
+                <c:otherwise>
+                    ${tsk.status }
+                </c:otherwise>
+               
+            </c:choose>
 							
 							<td>
 								<form action="saveStatus/${tsk.task_id}" method="post">
-									<select  name="status" required>
-											<option value="Todo">TODO</option>
-											<option value="In_Progress">IN PROGRESS</option>
-											<option value="Done">DONE</option>
-									</select>
-									 <button type="submit" ><i class="fa-solid fa-circle-check"></i></button>
-								</form>
+    <div class="input-group">
+        <select name="status" class="form-control status-select" required>
+            <option value="" disabled selected>Select Status</option>
+            <option value="Todo">TODO</option>
+            <option value="In_Progress">IN PROGRESS</option>
+            <option value="Done">DONE</option>
+        </select>
+     
+            <button type="submit" class="btn "><i class="fas fa-check-circle"></i> </button>
+      
+    </div>
+</form>
+
 							</td>
 						</tr>
 					</c:forEach>
