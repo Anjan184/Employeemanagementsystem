@@ -88,18 +88,18 @@
 </head>
 
 <body>
-	<%@include file="./Navadmin.jsp" %>
+	<%@include file="./Navadmin.jsp"%>
 
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>In Progress Tasks</h1>
+			<h1>Todo Tasks</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item"><a href="Inprogress_Project">In Progress Project</a></li>
+					<li class="breadcrumb-item"><a href="Todo_Project">Todo Project</a></li>
 					
-					<li class="breadcrumb-item Active">In Progress Tasks</li>
+					<li class="breadcrumb-item Active">Todo Tasks</li>
 				</ol>
 			</nav>
 		</div>
@@ -110,12 +110,12 @@
 			<table class="task-table">
 				<thead>
 					<tr>
-						<th>Task_Id</th>
+						<th>Project Name</th>
 						<th>Task Name</th>
 						<th>Description</th>
 						<th>Assigned To</th>
 						<th>Assigned By</th>
-						<th>Due Date</th>
+						<th>Task Due</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -123,7 +123,7 @@
 				<tbody>
 					<c:forEach items="${task}" var="tsk">
 						<tr>
-							<td>${tsk.task_id}</td>
+							<td>${tsk.project.project_name}</td>
 							<td>${tsk.task_name}</td>
 							<td>${tsk.description}</td>
 							<td>${tsk.assignedTo}</td>
@@ -131,9 +131,11 @@
 							<td>${tsk.due_date}</td>
 							<td>${tsk.status}</td>
 							<td><div>
-									<a href="dlete/${tsk.task_id}"><i
-										class="fa-solid fa-trash text-danger"></i></a>
-								</div></td>
+							<a href="edit_task?task_id=${tsk.task_id}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
+							<a href="dlete?task_id=${tsk.getTask_id()}"><i class="fa-solid fa-trash text-danger"></i></a>	
+							</div>
+							
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -143,13 +145,12 @@
 
 			<br>
 
-		
+			
 
 		</section>
-		
 
 	</main>
-	
+
 
 
 </body>

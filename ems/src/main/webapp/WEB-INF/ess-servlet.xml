@@ -53,6 +53,7 @@
 				<value>ems.entities.PunchOut</value>
 				<value>ems.entities.Leaves</value>
 				<value>ems.entities.Tasks</value>
+				<value>ems.entities.Project</value>
 			</list>
 		</property>
 	</bean>

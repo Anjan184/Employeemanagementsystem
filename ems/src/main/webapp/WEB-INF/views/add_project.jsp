@@ -121,36 +121,23 @@ input[type="text"] {
     <section class="section dashboard">
 	 <div class="container">
 	 
-        <form action="add_button" method="post" class="fm">
-		<h1 style="text-align:center;">Add Task</h1>
-         <div class="task-input-container">
-            <label for="task_name">Task Name</label>
-            <input type="text" id="task_name" name="task_name" placeholder="Enter Task" required>
+        <form action="add_project_button" method="post" class="fm">
+        
+		<h1 style="text-align:center;">Add Project</h1>
+         
+         <div class="project-input-container">
+            <label for="project_name">Project Name</label>
+            <input type="text" id="project_name" name="project_name" placeholder="Enter Project Name" required>
           </div>
-          
-          <div>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" placeholder="Enter Description" required></textarea>
-          </div>
-          
-          <div>
-        <label for="assignedTo">Assign Task To:</label>
-        <select id="assignedTo" name="assignedTo" required>
-            <c:forEach items="${empids}" var="employee">
-                <option value="${employee.fullname}">${employee.fullname}</option>
-            </c:forEach>
-        </select>
-   		 </div>
           
          <div>
-            <label for="due_date">Due Date:</label>
-            <input type="date" id="due_date" name="due_date" required>
-          </div>
+          <label for="projectduedate">Project Due Date</label>
+            <input type="date" id="projectduedate" name="projectduedate" placeholder="Enter Project Due Date" required>
          
-         <input type="hidden" id="status" name="status" value="Todo">
-         <input type="hidden" id="project_id" name="project_id" value="${project_id }">
+         </div>
+          
         
-          <button type="submit">Add Task</button>
+          <button type="submit">Add Project</button>
         </form>
       </div>
 

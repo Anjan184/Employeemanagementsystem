@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import ems.entities.Events;
 import ems.entities.Holidays;
 import ems.entities.Leaves;
+import ems.entities.Project;
 import ems.entities.PunchIn;
 import ems.entities.PunchOut;
 import ems.entities.Tasks;
@@ -384,6 +385,11 @@ public class UserDao {
 	}
 	 
 	@Transactional
+	public void addProject(Project project) {
+		this.hibernateTemplate.saveOrUpdate(project);
+	}
+	
+	@Transactional
 	public void addTask(Tasks task) {
 		this.hibernateTemplate.saveOrUpdate(task);
 	}
@@ -402,24 +408,40 @@ public class UserDao {
 	}
 	
 	@Transactional
-	public List<Tasks> getAllTasks() {
+	public List<Project> getProjects() {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM Tasks where status='Todo'";
-		 return session.createQuery(hql, Tasks.class).getResultList();	
+		String hql="FROM Project";
+		 return session.createQuery(hql, Project.class).getResultList();	
 	}
 	
 	@Transactional
-	public List<Tasks> getInProgressTasks() {
+	public Project getProjectsId(int project) {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM Tasks where status='In_Progress'";
-		 return session.createQuery(hql, Tasks.class).getResultList();	
+		return session.get(Project.class, project);
+	}
+	
+	
+	@Transactional
+	public List<Tasks> getTodoTasks(int project_id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks where status='Todo' and project_id=:project_id";
+		 return session.createQuery(hql, Tasks.class).setParameter("project_id",project_id).getResultList();	
+	}
+	
+	
+	
+	@Transactional
+	public List<Tasks> getInProgressTasks(int project_id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Tasks where status='In_Progress' and project_id=:project_id";
+		 return session.createQuery(hql, Tasks.class).setParameter("project_id",project_id).getResultList();	
 	}
 	
 	@Transactional
-	public List<Tasks> getDoneTasks() {
+	public List<Tasks> getDoneTasks(int project_id) {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="FROM Tasks where status='Done'";
-		 return session.createQuery(hql, Tasks.class).getResultList();	
+		String hql="FROM Tasks where status='Done' and project_id=:project_id";
+		 return session.createQuery(hql, Tasks.class).setParameter("project_id",project_id).getResultList();	
 	}
 	
 	@Transactional
@@ -438,7 +460,7 @@ public class UserDao {
 	
 	@Transactional
 	public void deleteTask(int task_id,Tasks task) {
-		Tasks h=this.hibernateTemplate.load(Tasks.class,task_id);
+		Tasks h=hibernateTemplate.load(Tasks.class,task_id);
 		this.hibernateTemplate.delete(h);
 	}
 	

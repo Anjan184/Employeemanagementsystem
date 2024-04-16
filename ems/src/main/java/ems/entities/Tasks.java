@@ -2,11 +2,13 @@ package ems.entities;
 
 import java.sql.Date;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -21,6 +23,17 @@ public class Tasks {
 	private Date due_date;
 	private String status;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="project_id")
+	private Project project;
+	
+	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
 	public int getTask_id() {
 		return task_id;
 	}
@@ -65,10 +78,12 @@ public class Tasks {
 		this.assignedBy = assignedBy;
 	}
 	
-	
-	
+	public Tasks() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Tasks(int task_id, String task_name, String description, String assignedTo, String assignedBy, Date due_date,
-			String status) {
+			String status, Project project) {
 		super();
 		this.task_id = task_id;
 		this.task_name = task_name;
@@ -77,10 +92,7 @@ public class Tasks {
 		this.assignedBy = assignedBy;
 		this.due_date = due_date;
 		this.status = status;
-	}
-	public Tasks() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.project = project;
 	}
 	
 	

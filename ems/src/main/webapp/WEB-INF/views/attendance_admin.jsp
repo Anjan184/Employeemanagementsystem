@@ -69,10 +69,15 @@
 }
 
 .absent{
-color:red;
+	color:red;
+	font-style:oblique;
+	font-weight:bold;
 }
 .present{
 color:green;
+	font-style:bold;
+	font-style:oblique;
+	font-weight:bold;
 }
 </style>
 </head>

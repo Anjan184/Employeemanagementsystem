@@ -94,7 +94,9 @@
 			<h1>Done Tasks</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Tasks</li>
+					<li class="breadcrumb-item">Projects</li>
+					<li class="breadcrumb-item"><a href="Done_Project">Done Project</a></li>
+					
 					<li class="breadcrumb-item Active">Done Tasks</li>
 				</ol>
 			</nav>

@@ -70,7 +70,7 @@
     background-color: #e2e2e2; /* Light gray background on hover */
   }
 
-.add-new-task-btn {
+.add-new-project-btn {
 	display: inline-block;
 	padding: 10px 20px; /* Adjust padding */
 	background-color: #007bff; /* Blue background color */
@@ -81,7 +81,7 @@
 }
 
 /* Hover effect */
-.add-new-task-btn:hover {
+.add-new-project-btn:hover {
 	background-color: #0056b3; /* Darker blue background on hover */
 }
 </style>
@@ -93,11 +93,11 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Assign Tasks</h1>
+			<h1>Inprogress Project</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Tasks</li>
-					<li class="breadcrumb-item Active">Assign Tasks</li>
+					<li class="breadcrumb-item">Projects</li>
+					<li class="breadcrumb-item Active">In Progress Project</li>
 				</ol>
 			</nav>
 		</div>
@@ -108,32 +108,21 @@
 			<table class="task-table">
 				<thead>
 					<tr>
-						<th>Task_Id</th>
-						<th>Task Name</th>
-						<th>Description</th>
-						<th>Assigned To</th>
+						<th>Project_Id</th>
+						<th>Project Name</th>
 						<th>Assigned By</th>
-						<th>Due Date</th>
-						<th>Status</th>
+						<th>Project Due</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${task}" var="tsk">
+					<c:forEach items="${project}" var="p">
 						<tr>
-							<td>${tsk.task_id}</td>
-							<td>${tsk.task_name}</td>
-							<td>${tsk.description}</td>
-							<td>${tsk.assignedTo}</td>
+							<td>${p.project_id}</td>
+							<td>${p.project_name}</td>
 							<td>${currentUser.fullname}</td>
-							<td>${tsk.due_date}</td>
-							<td>${tsk.status}</td>
-							<td><div>
-							<a href="edit_task?task_id=${tsk.task_id}"><i class="fa-solid fa-pen-nib text-primary"></i></a>
-							<a href="dlete/${tsk.task_id}"><i class="fa-solid fa-trash text-danger"></i></a>	
-							</div>
-							
-							</td>
+							<td>${p.projectduedate}</td>
+							<td><a href="Inprogress_tasks?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Show Inprogress Tasks</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -143,10 +132,7 @@
 
 			<br>
 
-			<div style="text-align: center;">
-				<a href="add_task" class="add-new-task-btn"><strong>Add
-						new Task</strong></a>
-			</div>
+		
 
 		</section>
 

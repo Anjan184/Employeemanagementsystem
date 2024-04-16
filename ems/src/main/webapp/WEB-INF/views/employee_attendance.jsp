@@ -95,10 +95,14 @@
 
 .present {
 	color: green;
+	font-style:oblique;
+	font-weight:bold;
 }
 
 .absent {
 	color: red;
+	font-style:oblique;
+	font-weight:bold;
 }
 </style>
 </head>
