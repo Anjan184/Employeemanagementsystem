@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import ems.dao.UserDao;
 import ems.entities.Tasks;
 import ems.entities.User;
+import ems.entities.Leaves;
 import ems.entities.Project;
 
 @Controller
@@ -56,6 +57,30 @@ public class TaskController {
         RedirectView redirectView=new RedirectView();
 		redirectView.setUrl(request.getContextPath()+"/ProjectAdmin");
 		return redirectView;
+	}
+	
+	@RequestMapping(value="edit_project")
+	public String edit_project(@RequestParam("project_id") int project_id,HttpServletRequest request,HttpSession session,Model model) {
+		String currentUserEmail = (String) session.getAttribute("email"); 
+        User currentUser = userDao.getCurrentUserByEmail(currentUserEmail);
+        model.addAttribute("currentUser", currentUser);
+        
+        Project project=userDao.findProjectById(project_id);
+        model.addAttribute("project",project);
+        
+        List<User> employeeids = userDao.getAllAttendanceEmployees();
+        model.addAttribute("empids",employeeids); 
+       return "edit_project";
+	}
+	
+	@RequestMapping(value="/delete_project")
+	public RedirectView delete_project(@RequestParam("project_id") int project_id,HttpServletRequest request,Model model,Project project) {
+		 	
+		userDao.deleteProject(project_id, project);
+		
+			RedirectView redirectView=new RedirectView();
+			redirectView.setUrl(request.getContextPath()+"/ProjectAdmin");
+			return redirectView;
 	}
 	
 	@RequestMapping(value="/Todo_Project")

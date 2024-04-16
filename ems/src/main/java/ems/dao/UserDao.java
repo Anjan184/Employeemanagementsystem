@@ -427,6 +427,18 @@ public class UserDao {
 		return session.get(Project.class, project);
 	}
 	
+	@Transactional
+	public Project findProjectById(int project_id) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="FROM Project where project_id=:project_id";
+		return session.createQuery(hql,Project.class).setParameter("project_id",project_id).uniqueResult();	
+	}
+	
+	@Transactional
+	public void deleteProject(int project_id,Project project) {
+		Project h=this.hibernateTemplate.load(Project.class,project_id);
+		this.hibernateTemplate.delete(h);
+	}
 	
 	@Transactional
 	public List<Tasks> getTodoTasks(int project_id) {

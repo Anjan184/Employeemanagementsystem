@@ -122,9 +122,12 @@
 							<td>${p.project_name}</td>
 							<td>${currentUser.fullname}</td>
 							<td>${p.projectduedate}</td>
-							<td><a href="add_task?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Add Task</a></td>
+							<td>
 							
-							
+							<a href="add_task?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Add Task</a>			
+							<a href="edit_project?project_id=${p.getProject_id()}" class="btn btn-outline-success" style="border-radius:30px;"> <i class="bi bi-pencil-fill" ></i></a>
+							<a href="delete_project?project_id=${p.getProject_id()}" class="btn btn-outline-danger" style="border-radius:30px;"> <i class="bi bi-trash-fill"></i></a>								
+							</td>
 							
 						</tr>
 					</c:forEach>
