@@ -112,6 +112,7 @@
 						<th>Project Name</th>
 						<th>Assigned By</th>
 						<th>Project Due</th>
+						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -122,6 +123,7 @@
 							<td>${p.project_name}</td>
 							<td>${currentUser.fullname}</td>
 							<td>${p.projectduedate}</td>
+							<td>${p.projectstatus }</td>
 							<td>
 							
 							<a href="add_task?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Add Task</a>			

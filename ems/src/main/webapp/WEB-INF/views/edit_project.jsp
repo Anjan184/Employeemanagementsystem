@@ -138,9 +138,9 @@ input[type="text"] {
             <input type="date" id="projectduedate" name="projectduedate" value="${project.projectduedate}" required>
          
          </div>
-          
+          <br>
         
-          <button type="submit">Add Project</button>
+          <button type="submit">Edit Project</button>
         </form>
       </div>
 
