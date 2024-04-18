@@ -1,156 +1,171 @@
 <%@page import="ems.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@include file="./base.jsp"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>ESS</title>
-<meta content="" name="description">
-<meta content="" name="keywords">
+        <title>ESS</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords"> 
 
-<style>
-.task-table th, .task-table td {
-	padding: 10px;
-	border: 1px solid #ddd;
-}
+        <style>
+            .task-table th, .task-table td {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
 
-.task-table th {
-	background-color: #f8f9fa;
-	text-align: left;
-	font-weight: bold;
-}
+            .task-table th {
+                background-color: #f8f9fa;
+                text-align: left;
+                font-weight: bold;
+            }
 
-.task-table td {
-	text-align: left;
-}
+            .task-table td {
+                text-align: left;
+            }
 
- .task-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
- 
- .task-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+            .task-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
 
-  .task-table tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-  }
+            .task-table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
 
-  .task-table tbody tr:hover {
-    background-color: #e2e2e2;
-  }
+            .task-table tbody tr:nth-child(odd) {
+                background-color: #ffffff;
+            }
 
-  /* Additional styling for table header */
+            .task-table tbody tr:hover {
+                background-color: #e2e2e2;
+            }
 
-  .task-table th {
-    font-size: 14px; /* Adjust font size */
-    color: #333; /* Darker text color */
-    border: 1px solid #ccc; /* Lighter border color */
-  }
+            /* Additional styling for table header */
 
-  /* Additional styling for table rows */
+            .task-table th {
+                font-size: 14px; /* Adjust font size */
+                color: #333; /* Darker text color */
+                border: 1px solid #ccc; /* Lighter border color */
+            }
 
-  .task-table td {
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Dark gray text color */
-    border: 1px solid #ccc; /* Lighter border color */
-  }
+            /* Additional styling for table rows */
 
-  /* Styling for hover effect */
+            .task-table td {
+                font-size: 14px; /* Adjust font size */
+                color: #555; /* Dark gray text color */
+                border: 1px solid #ccc; /* Lighter border color */
+            }
 
-  .task-table tbody tr:hover td {
-    background-color: #e2e2e2; /* Light gray background on hover */
-  }
+            /* Styling for hover effect */
 
-.add-new-project-btn {
-	display: inline-block;
-	padding: 10px 20px; /* Adjust padding */
-	background-color: #007bff; /* Blue background color */
-	color: white; /* White text color */
-	text-decoration: none; /* Remove underline */
-	border-radius: 5px; /* Rounded border */
-	transition: background-color 0.3s ease; /* Smooth transition */
-}
+            .task-table tbody tr:hover td {
+                background-color: #e2e2e2; /* Light gray background on hover */
+            }
 
-/* Hover effect */
-.add-new-project-btn:hover {
-	background-color: #0056b3; /* Darker blue background on hover */
-}
-</style>
-</head>
+            .add-new-project-btn {
+                display: inline-block;
+                padding: 10px 20px; /* Adjust padding */
+                background-color: #007bff; /* Blue background color */
+                color: white; /* White text color */
+                text-decoration: none; /* Remove underline */
+                border-radius: 5px; /* Rounded border */
+                transition: background-color 0.3s ease; /* Smooth transition */
+            }
 
-<body>
-	<%@include file="./Navadmin.jsp"%>
+            /* Hover effect */
+            .add-new-project-btn:hover {
+                background-color: #0056b3; /* Darker blue background on hover */
+            }
+        </style>
+    </head>
 
-	<main id="main" class="main">
+    <body>
+        <%@include file="./Navadmin.jsp"%>
 
-		<div class="pagetitle">
-			<h1>All Projects</h1>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Projects</li>
-					<li class="breadcrumb-item Active">Projects</li>
-				</ol>
-			</nav>
-		</div>
-		<!-- End Page Title -->
+        <main id="main" class="main">
 
-		<section class="section dashboard">
+            <div class="pagetitle">
+                <h1>All Projects</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Projects</li>
+                        <li class="breadcrumb-item Active">Projects</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
 
-			<table class="task-table">
-				<thead>
-					<tr>
-						<th>Project_Id</th>
-						<th>Project Name</th>
-						<th>Assigned By</th>
-						<th>Project Due</th>
-						<th>Status</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${project}" var="p">
-						<tr>
-							<td>${p.project_id}</td>
-							<td>${p.project_name}</td>
-							<td>${currentUser.fullname}</td>
-							<td>${p.projectduedate}</td>
-							<td>${p.projectstatus }</td>
-							<td>
-							
-							<a href="add_task?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Add Task</a>			
-							<a href="edit_project?project_id=${p.getProject_id()}" class="btn btn-outline-success" style="border-radius:30px;"> <i class="bi bi-pencil-fill" ></i></a>
-							<a href="delete_project?project_id=${p.getProject_id()}" class="btn btn-outline-danger" style="border-radius:30px;"> <i class="bi bi-trash-fill"></i></a>								
-							</td>
-							
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+            <section class="section dashboard">
+
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Project_Id</th>
+                            <th>Project Name</th>
+                            <th>Assigned By</th>
+                            <th>Project Due</th>
+                            <th>Project Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${project}" var="p" varStatus="loop">
+                            <tr>
+                                <td>${p.project_id}</td>
+                                <td>${p.project_name}</td>
+                                <td>${currentUser.fullname}</td>
+                                <td>${p.projectduedate}</td>                  
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${ProjectStatus[loop.index]  eq 'Todo'}">
+                                            <h5> <span class="badge bg-warning text-dark"><i class="bi bi-skip-end-circle-fill"></i> ${ProjectStatus[loop.index] }</span></h5>
+                                        </c:when>
+                                        <c:when test="${ProjectStatus[loop.index]  eq 'In_Progress'}">
+                                            <h5> <span class="badge bg-primary"><i class="bi bi-battery-half"></i> ${ProjectStatus[loop.index] }</span></h5> 
+                                        </c:when>
+                                        <c:when test="${ProjectStatus[loop.index]  eq 'Done'}">
+                                            <h5> <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> ${ProjectStatus[loop.index] }</span></h5>
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${ProjectStatus[loop.index] }
+                                        </c:otherwise>
+
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <a href="add_task?project_id=${p.getProject_id()}" class="btn btn-primary" style="border-radius:30px;"> <i class="bi bi-people-fill"></i>Add Task</a>			
+                                    <a href="edit_project?project_id=${p.getProject_id()}" class="btn btn-outline-success" style="border-radius:30px;"> <i class="bi bi-pencil-fill" ></i></a>
+                                    <a href="delete_project?project_id=${p.getProject_id()}" class="btn btn-outline-danger" style="border-radius:30px;"> <i class="bi bi-trash-fill"></i></a>								
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
 
 
 
-			<br>
+                <br>
 
-			<div style="text-align: center;">
-				<a href="add_new_project" class="add-new-project-btn"><strong>Add
-						new Project</strong></a>
-			</div>
+                <div style="text-align: center;">
+                    <a href="add_new_project" class="add-new-project-btn"><strong>Add
+                            new Project</strong></a>
+                </div>
 
-		</section>
+            </section>
 
-	</main>
+        </main>
 
 
 
-</body>
+    </body>
 
 </html>

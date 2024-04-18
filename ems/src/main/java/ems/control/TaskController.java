@@ -33,6 +33,8 @@ public class TaskController {
         model.addAttribute("currentUser", currentUser);
         List<Project> p=userDao.getProjects();
         model.addAttribute("project",p);
+        List<Object[]> ProjectStatus=userDao.getProjectStatus();
+        model.addAttribute("ProjectStatus",ProjectStatus);
         return "ProjectAdmin";
 	}
 	

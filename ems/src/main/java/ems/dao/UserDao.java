@@ -421,6 +421,22 @@ public class UserDao {
 		 return session.createQuery(hql, Project.class).getResultList();	
 	}
 	
+      @Transactional
+public List<Object[]> getProjectStatus() {
+    Session session = sessionFactory.getCurrentSession();
+    String sql = "SELECT " +
+                 "    CASE " +
+                 "        WHEN SUM(CASE WHEN t.status = 'Todo' THEN 1 ELSE 0 END) = COUNT(t.task_id) THEN 'Todo' " +
+                 "        WHEN SUM(CASE WHEN t.status = 'Done' THEN 1 ELSE 0 END) = COUNT(t.task_id) THEN 'Done' " +
+                 "        ELSE 'In_Progress' " +
+                 "    END AS project_status " +
+                 "FROM EMS.Project p " +
+                 "JOIN EMS.Tasks t ON p.project_id = t.project_id " +
+                 "GROUP BY p.project_id";
+    return session.createNativeQuery(sql).getResultList();
+}
+
+        
 	@Transactional
 	public Project getProjectsId(int project) {
 		Session session=sessionFactory.getCurrentSession();
